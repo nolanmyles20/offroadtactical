@@ -349,3 +349,21 @@ h1, h2{
 }
 .footer a{ color:#e0e0e0; text-decoration:none; }
 .footer a:hover{ color:#ffffff; }
+/* Hidden on desktop, visible on mobile */
+.nav-mobile-logo {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .nav-mobile-logo {
+    display: block;
+    grid-row: 2;          /* second row */
+    grid-column: 2;       /* centered */
+    justify-self: center;
+    align-self: center;
+    height: 34px;
+    width: auto;
+    pointer-events: none; /* stops accidental taps */
+    user-select: none;
+  }
+}
