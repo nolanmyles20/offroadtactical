@@ -1,5 +1,30 @@
 [
   {
+    "id": "molle-panel",
+    "title": "MOLLE PANEL",
+    "desc": "Universal aluminum MOLLE mounting panel — multiple sizes and thicknesses.",
+    "basePrice": 89,
+    "platforms": ["Tactical Supplies"],
+    "tags": ["Tactical", "Mounts", "Aluminum"],
+    "image": "assets/tactical/molle-panel.png",
+
+    "option_labels": {
+      "first": "Size",
+      "second": "Thickness"
+    },
+
+    "variant_ids": {
+      "8\"×8\"":   { "1mm": "VARIANT_ID_8x8_1mm",  "2mm": "VARIANT_ID_8x8_2mm",  "3mm": "VARIANT_ID_8x8_3mm"  },
+      "8\"×16\"":  { "1mm": "VARIANT_ID_8x16_1mm", "2mm": "VARIANT_ID_8x16_2mm", "3mm": "VARIANT_ID_8x16_3mm" },
+      "8\"×24\"":  { "1mm": "VARIANT_ID_8x24_1mm", "2mm": "VARIANT_ID_8x24_2mm", "3mm": "VARIANT_ID_8x24_3mm" }
+    }
+
+    /* Optional powdercoat upsell (uncomment if/when you have a variant for it)
+    ,"powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 20
+    */
+  },
+  {
     "id": "hd-front-bumper",
     "title": "HD FRONT BUMPER",
     "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
