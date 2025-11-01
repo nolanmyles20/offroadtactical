@@ -361,7 +361,7 @@ h1, h2{
     grid-column: 2;       /* centered */
     justify-self: center;
     align-self: center;
-    height: 60px;
+    height: 100px;
     width: auto;
     pointer-events: none; /* stops accidental taps */
     user-select: none;
