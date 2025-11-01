@@ -25,6 +25,16 @@ function bumpShadow(q) {
   setShadowQty(getShadowQty() + Math.max(1, Number(q) || 1));
 }
 
+// ============== IMAGE HELPERS ==============
+function primaryImage(p) {
+  if (Array.isArray(p.images) && p.images.length) return p.images[0];
+  return p.image || 'assets/placeholder.png';
+}
+function allImages(p) {
+  if (Array.isArray(p.images) && p.images.length) return p.images.slice();
+  return p.image ? [p.image] : ['assets/placeholder.png'];
+}
+
 // ============== LOCAL CART (source of truth) ==============
 const LS_CART_KEY = 'headless_cart_v1';
 
@@ -376,10 +386,18 @@ async function loadProducts() {
 
 // ================= RENDER =================
 function productCard(p) {
+  const imgs = allImages(p);
+
   if (p.simple) {
     return `
     <div class="card" data-id="${p.id}" id="product-${p.id}">
-      <img src="${p.image}" alt="${p.title}">
+      <img class="product-img" src="${imgs[0]}" alt="${p.title}">
+      ${imgs.length > 1 ? `
+        <div class="thumbs">
+          ${imgs.map((src,i)=>`<button class="thumb" type="button" data-src="${src}" aria-pressed="${i===0}">
+            <img src="${src}" alt="">
+          </button>`).join('')}
+        </div>` : ``}
       <div class="content">
         <div class="badge">${p.platforms.join(' • ')}</div>
         <h3>${p.title}</h3>
@@ -410,7 +428,13 @@ function productCard(p) {
 
   return `
   <div class="card" data-id="${p.id}" id="product-${p.id}">
-    <img src="${p.image}" alt="${p.title}">
+    <img class="product-img" src="${imgs[0]}" alt="${p.title}">
+    ${imgs.length > 1 ? `
+      <div class="thumbs">
+        ${imgs.map((src,i)=>`<button class="thumb" type="button" data-src="${src}" aria-pressed="${i===0}">
+          <img src="${src}" alt="">
+        </button>`).join('')}
+      </div>` : ``}
     <div class="content">
       <div class="badge">${p.platforms.join(' • ')}</div>
       <h3>${p.title}</h3>
@@ -448,11 +472,21 @@ function wireCards(items) {
     const qty  = card.querySelector('.qty');
     const coat = card.querySelector('.powder');
 
+    // Image thumb switcher
+    const mainImg = card.querySelector('.product-img');
+    card.querySelectorAll('.thumb').forEach(btnThumb => {
+      btnThumb.addEventListener('click', () => {
+        const src = btnThumb.getAttribute('data-src');
+        if (mainImg && src) mainImg.src = src;
+        card.querySelectorAll('.thumb').forEach(b => b.setAttribute('aria-pressed','false'));
+        btnThumb.setAttribute('aria-pressed','true');
+      });
+    });
+
     // Helper: robust resolver for 2- or 3-level variant maps
     function resolveVariantId(vmap, o1Sel, o2Sel, o3Sel) {
       if (!vmap || typeof vmap !== 'object') return null;
 
-      // Get selected values (trim to avoid sneaky whitespace issues)
       const o1 = o1Sel ? (o1Sel.value || '').trim() : (Object.keys(vmap)[0] || '');
       if (!o1 || !vmap[o1]) return null;
 
@@ -462,16 +496,12 @@ function wireCards(items) {
 
       const node = vmap[o1][o2];
 
-      // 2-level map → node is a string (the variant ID)
-      if (typeof node === 'string') return node;
-
-      // 3-level map → node is an object of { thirdOption: variantId }
+      if (typeof node === 'string') return node; // 2-level
       if (node && typeof node === 'object') {
         const o3Keys = Object.keys(node);
         const o3 = o3Sel ? (o3Sel.value || '').trim() : (o3Keys[0] || '');
         return node[o3] || null;
       }
-
       return null;
     }
 
@@ -485,14 +515,14 @@ function wireCards(items) {
         const priceCents = Math.round((product.basePrice || 0) * 100);
         addToLocalCart({
           variantId, qty: q,
-          title: product.title, image: product.image,
+          title: product.title, image: primaryImage(product),
           price_cents: priceCents, productId: product.id
         });
 
         if (coat && coat.checked && product.powdercoat_variant_id) {
           addToLocalCart({
             variantId: product.powdercoat_variant_id, qty: 1,
-            title: 'Powdercoat Black', image: product.image,
+            title: 'Powdercoat Black', image: primaryImage(product),
             price_cents: Math.round((product.powdercoat_price || 50) * 100),
             productId: product.id
           });
@@ -533,7 +563,6 @@ function wireCards(items) {
       const variantId = resolveVariantId(vmap, o1Sel, o2Sel, o3Sel);
 
       if (!variantId) {
-        // helpful toast so you see it immediately
         showToast('Please select a valid Size/Thickness');
         return;
       }
@@ -541,14 +570,14 @@ function wireCards(items) {
       const priceCents = Math.round((product.basePrice || 0) * 100);
       addToLocalCart({
         variantId, qty: q,
-        title: product.title, image: product.image,
+        title: product.title, image: primaryImage(product),
         price_cents: priceCents, productId: product.id
       });
 
       if (coat && coat.checked && product.powdercoat_variant_id) {
         addToLocalCart({
           variantId: product.powdercoat_variant_id, qty: 1,
-          title: 'Powdercoat Black', image: product.image,
+          title: 'Powdercoat Black', image: primaryImage(product),
           price_cents: Math.round((product.powdercoat_price || 50) * 100),
           productId: product.id
         });
