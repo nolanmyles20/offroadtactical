@@ -7,7 +7,7 @@
     "basePrice": 20,
     "platforms": ["AR-15"],
     "tags": ["AR-15", "Thread Adapter", "Accessory"],
-    "image": "assets/IMG_4585.png",
+    "image": "assets/IMG_4585.jpeg",
     "simple": true,
     "variant_ids": {
       "Solo": {
@@ -22,7 +22,7 @@
     "basePrice": 20,
     "platforms": ["AR-15"],
     "tags": ["AR-15", "Mag Release", "Accessory"],
-    "image": "assets/IMG_4584.png",
+    "image": "assets/IMG_4584.jpeg",
     "simple": true,
     "variant_ids": {
       "Solo": {
