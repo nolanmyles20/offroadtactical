@@ -448,12 +448,39 @@ function wireCards(items) {
     const qty  = card.querySelector('.qty');
     const coat = card.querySelector('.powder');
 
+    // Helper: robust resolver for 2- or 3-level variant maps
+    function resolveVariantId(vmap, o1Sel, o2Sel, o3Sel) {
+      if (!vmap || typeof vmap !== 'object') return null;
+
+      // Get selected values (trim to avoid sneaky whitespace issues)
+      const o1 = o1Sel ? (o1Sel.value || '').trim() : (Object.keys(vmap)[0] || '');
+      if (!o1 || !vmap[o1]) return null;
+
+      const o2Keys = Object.keys(vmap[o1] || {});
+      const o2 = o2Sel ? (o2Sel.value || '').trim() : (o2Keys[0] || '');
+      if (!o2 || !(o2 in (vmap[o1] || {}))) return null;
+
+      const node = vmap[o1][o2];
+
+      // 2-level map → node is a string (the variant ID)
+      if (typeof node === 'string') return node;
+
+      // 3-level map → node is an object of { thirdOption: variantId }
+      if (node && typeof node === 'object') {
+        const o3Keys = Object.keys(node);
+        const o3 = o3Sel ? (o3Sel.value || '').trim() : (o3Keys[0] || '');
+        return node[o3] || null;
+      }
+
+      return null;
+    }
+
     if (product.simple) {
       const varSel = card.querySelector('.simple-variant');
       btn.addEventListener('click', () => {
         const q = Math.max(1, parseInt(qty?.value, 10) || 1);
         const variantId = (product.variant_ids?.Solo || {})[varSel?.value || 'Default'];
-        if (!variantId) { if (DEBUG) console.warn('[cart] missing variantId'); return; }
+        if (!variantId) { showToast('Variant not found'); return; }
 
         const priceCents = Math.round((product.basePrice || 0) * 100);
         addToLocalCart({
@@ -481,36 +508,35 @@ function wireCards(items) {
     const o2Sel = card.querySelector('.opt2');
     const o3Sel = card.querySelector('.opt3');
 
+    // Keep dependent selects in sync
     o1Sel?.addEventListener('change', () => {
-      const o1 = o1Sel.value;
+      const o1 = (o1Sel.value || '').trim();
       const o2Vals = Object.keys(vmap[o1] || {});
       if (o2Sel) o2Sel.innerHTML = o2Vals.map(v => `<option value="${v}">${v}</option>`).join('');
       const o2 = o2Sel ? o2Sel.value : o2Vals[0];
-      const o3Vals = (vmap[o1] && vmap[o1][o2] && typeof vmap[o1][o2] === 'object')
-        ? Object.keys(vmap[o1][o2]) : [];
+
+      const node = vmap[o1]?.[o2];
+      const o3Vals = node && typeof node === 'object' ? Object.keys(node) : [];
       if (o3Sel) o3Sel.innerHTML = o3Vals.map(v => `<option value="${v}">${v}</option>`).join('');
     });
 
     o2Sel?.addEventListener('change', () => {
-      const o1 = o1Sel ? o1Sel.value : Object.keys(vmap)[0];
-      const o2 = o2Sel.value;
-      const o3Vals = (vmap[o1] && vmap[o1][o2] && typeof vmap[o1][o2] === 'object')
-        ? Object.keys(vmap[o1][o2]) : [];
+      const o1 = o1Sel ? (o1Sel.value || '').trim() : (Object.keys(vmap)[0] || '');
+      const o2 = (o2Sel.value || '').trim();
+      const node = vmap[o1]?.[o2];
+      const o3Vals = node && typeof node === 'object' ? Object.keys(node) : [];
       if (o3Sel) o3Sel.innerHTML = o3Vals.map(v => `<option value="${v}">${v}</option>`).join('');
     });
 
     btn.addEventListener('click', () => {
-      const o1 = o1Sel ? o1Sel.value : Object.keys(vmap)[0];
-      const o2 = o2Sel ? o2Sel.value : (vmap[o1] ? Object.keys(vmap[o1])[0] : '');
-      const node = vmap[o1]?.[o2];
-      const o3 = o3Sel ? o3Sel.value : (node && typeof node === 'object' ? Object.keys(node)[0] : '');
-      const q  = Math.max(1, parseInt(qty?.value, 10) || 1);
+      const q = Math.max(1, parseInt(qty?.value, 10) || 1);
+      const variantId = resolveVariantId(vmap, o1Sel, o2Sel, o3Sel);
 
-      let variantId = null;
-      if (typeof node === 'object') variantId = node?.[o3] || null;  // 3-level
-      else variantId = vmap[o1]?.[o2] || null;                       // 2-level
-
-      if (!variantId) { if (DEBUG) console.warn('[cart] no variantId resolved'); return; }
+      if (!variantId) {
+        // helpful toast so you see it immediately
+        showToast('Please select a valid Size/Thickness');
+        return;
+      }
 
       const priceCents = Math.round((product.basePrice || 0) * 100);
       addToLocalCart({
