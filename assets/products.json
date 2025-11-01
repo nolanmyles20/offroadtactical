@@ -19,10 +19,7 @@
       "8\"×24\"":  { "1mm": "VARIANT_ID_8x24_1mm", "2mm": "VARIANT_ID_8x24_2mm", "3mm": "VARIANT_ID_8x24_3mm" }
     }
 
-    /* Optional powdercoat upsell (uncomment if/when you have a variant for it)
-    ,"powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
-    "powdercoat_price": 20
-    */
+
   },
   {
     "id": "hd-front-bumper",
