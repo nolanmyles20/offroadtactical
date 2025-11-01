@@ -5,7 +5,7 @@
     "desc": "Extended magazine release for AR-15 — faster mag changes, Hard annodized aluminum.",
     "basePrice": 20,
     "platforms": ["AR-15"],
-    "tags": ["AR-15", "Hardware", "Accessory"],
+    "tags": ["AR-15", "Mag Release", "Accessory"],
     "image": "assets/ar15-extended-mag-release.png",
     "simple": true,
     "variant_ids": {
