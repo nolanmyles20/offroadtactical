@@ -1,4 +1,20 @@
 [
+    
+    {
+    "id": "filter-adapter",
+    "title": "1/2-28 to 3/8-16 Filter Adapter",
+    "desc": "Solvent trap adapter.",
+    "basePrice": 20,
+    "platforms": ["AR-15"],
+    "tags": ["AR-15", "Thread Adapter", "Accessory"],
+    "image": "assets/IMG_4585.png",
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    }
+  },
     {
     "id": "ar15-extended-mag-release",
     "title": "AR-15 Extended Mag Release",
