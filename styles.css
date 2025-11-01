@@ -367,3 +367,20 @@ h1, h2{
     user-select: none;
   }
 }
+.thumbs{
+  display:flex; gap:8px; padding:8px 12px 0 12px; flex-wrap:wrap;
+}
+.thumbs .thumb{
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:2px;
+  background:#fff;
+  cursor:pointer;
+}
+.thumbs .thumb img{
+  display:block; width:54px; height:54px; object-fit:cover; border-radius:4px;
+}
+.thumbs .thumb[aria-pressed="true"]{
+  outline:2px solid var(--fg);
+  outline-offset:2px;
+}
