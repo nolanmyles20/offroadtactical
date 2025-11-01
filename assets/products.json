@@ -14,9 +14,9 @@
     },
 
     "variant_ids": {
-      "8\"×8\"":   { "1mm": "VARIANT_ID_8x8_1mm",  "2mm": "VARIANT_ID_8x8_2mm",  "3mm": "VARIANT_ID_8x8_3mm"  },
-      "8\"×16\"":  { "1mm": "VARIANT_ID_8x16_1mm", "2mm": "VARIANT_ID_8x16_2mm", "3mm": "VARIANT_ID_8x16_3mm" },
-      "8\"×24\"":  { "1mm": "VARIANT_ID_8x24_1mm", "2mm": "VARIANT_ID_8x24_2mm", "3mm": "VARIANT_ID_8x24_3mm" }
+      "8×8":   { "1mm": "VARIANT_ID_8x8_1mm",  "2mm": "VARIANT_ID_8x8_2mm",  "3mm": "VARIANT_ID_8x8_3mm"  },
+      "8×16":  { "1mm": "VARIANT_ID_8x16_1mm", "2mm": "VARIANT_ID_8x16_2mm", "3mm": "VARIANT_ID_8x16_3mm" },
+      "8×24":  { "1mm": "VARIANT_ID_8x24_1mm", "2mm": "VARIANT_ID_8x24_2mm", "3mm": "VARIANT_ID_8x24_3mm" }
     }
 
 
