@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <style>
+      @font-face {
+        font-family: 'Black Ops One Local';
+        src: url("data:font/woff2;base64,d09GMgABAAAAA...<snip>...") format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      text {
+        font-family: 'Black Ops One Local', sans-serif;
+        letter-spacing: 2.5px;
+        fill: #0b0b0b;
+      }
+    </style>
+
+    <!-- Hazard stripe pattern (diagonal) -->
+    <pattern id="hazard" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="20" height="20" fill="#f6c314"/>
+      <rect x="0" y="0" width="10" height="20" fill="#111111"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f6c314"/>
+
+  <!-- Hazard stripes top/bottom: 15% height each -->
+  <rect x="0" y="0" width="400" height="45" fill="url(#hazard)"/>
+  <rect x="0" y="255" width="400" height="45" fill="url(#hazard)"/>
+
+  <!-- Text block -->
+  <g text-anchor="middle">
+    <text x="200" y="155" font-size="54">COMING</text>
+    <text x="200" y="210" font-size="54">SOON</text>
+  </g>
+</svg>

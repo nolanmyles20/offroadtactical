@@ -1,0 +1,177 @@
+[
+  {
+    "id": "hd-front-bumper",
+    "title": "HD FRONT BUMPER",
+    "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
+    "basePrice": 899,
+    "platforms": ["Humvee", "Jeep"],
+    "tags": ["Bumper", "Armor"],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": { "1mm": "VARIANT_ID_A_1", "2mm": "VARIANT_ID_A_2", "3mm": "VARIANT_ID_A_3" },
+      "Stainless": { "1mm": "VARIANT_ID_S_1", "2mm": "VARIANT_ID_S_2", "3mm": "VARIANT_ID_S_3" }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50
+  },
+  {
+    "id": "jk-trackbar",
+    "title": "JK FRONT TRACK BAR",
+    "desc": "ADJUSTABLE FRONT TRACK BAR FOR JEEP JK.",
+    "basePrice": 169,
+    "platforms": ["Jeep"],
+    "tags": ["Armor", "Stainless"],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": { "1mm": "VARIANT_ID_JA_1", "2mm": "VARIANT_ID_JA_2", "3mm": "VARIANT_ID_JA_3" },
+      "Stainless": { "1mm": "VARIANT_ID_JS_1", "2mm": "VARIANT_ID_JS_2", "3mm": "VARIANT_ID_JS_3" }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50
+  },
+  {
+    "id": "roof-reinforce",
+    "title": "ROOF REINFORCEMENT KIT",
+    "desc": "STIFFENS HUMVEE ROOF STRUCTURE; BOLT-ON.",
+    "basePrice": 1499,
+    "platforms": ["Humvee"],
+    "tags": ["Roof", "Armor", "Stainless"],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": { "1mm": "VARIANT_ID_RA_1", "2mm": "VARIANT_ID_RA_2", "3mm": "VARIANT_ID_RA_3" },
+      "Stainless": { "1mm": "VARIANT_ID_RS_1", "2mm": "VARIANT_ID_RS_2", "3mm": "VARIANT_ID_RS_3" }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50
+  },
+  {
+    "id": "rear-curtain",
+    "title": "REAR CURTAIN ASSEMBLY",
+    "desc": "REPLACEMENT VINYL REAR CURTAIN WITH WINDOW.",
+    "basePrice": 399,
+    "platforms": ["Humvee"],
+    "tags": ["Rear Curtain", "Windows"],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": { "1mm": "VARIANT_ID_CA_1", "2mm": "VARIANT_ID_CA_2", "3mm": "VARIANT_ID_CA_3" },
+      "Stainless": { "1mm": "VARIANT_ID_CS_1", "2mm": "VARIANT_ID_CS_2", "3mm": "VARIANT_ID_CS_3" }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50
+  },
+  {
+    "id": "ar15-flash",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "CLAYMORE",
+    "basePrice": 79,
+    "platforms": ["AR-15"],
+    "tags": ["Flash Suppressors"],
+    "image": "assets/IMG_4494.jpeg",
+    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
+        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+      },
+      "5/8-24": {
+        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
+        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+      }
+    }
+  },
+  {
+    "id": "ar15-flash-2",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "PREDATOR",
+    "basePrice": 79,
+    "platforms": ["AR-15"],
+    "tags": ["Flash Suppressors"],
+    "image": "assets/IMG_4495.jpeg",
+    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
+        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+      },
+      "5/8-24": {
+        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
+        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+      }
+    }
+  },
+  {
+    "id": "ar15-flash-3",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "ROOK",
+    "basePrice": 79,
+    "platforms": ["AR-15"],
+    "tags": ["Flash Suppressors", "Thread Adapters", "Crush Washers"],
+    "image": "assets/IMG_4496.jpeg",
+    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
+        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+      },
+      "5/8-24": {
+        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
+        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+      }
+    }
+  },
+  {
+    "id": "humvee-rear-insert",
+    "title": "HUMVEE REAR INSERT",
+    "desc": "Humvee rear insert made from 304 Stainless Steel or Aluminum. Different surface finishes and thicknesses.",
+    "basePrice": 185,
+    "platforms": ["Humvee"],
+    "tags": ["Stainless", "Armor"],
+    "image": "assets/IMG_4479.jpeg",
+    "option_labels": { "first": "Item material", "second": "Color", "third": "Thickness" },
+    "variant_ids": {
+      "Stainless steel": {
+        "Black":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
+        "Silver": { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+      },
+      "Aluminum": {
+        "Black":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
+        "Silver": { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+      }
+    },
+    "powdercoat_variant_id": "",
+    "powdercoat_price": 50
+  },
+  {
+    "id": "jeep-visor",
+    "title": "NM CUSTOMS JEEP VISOR",
+    "desc": "LOW-PROFILE SUN VISOR FOR JEEP PLATFORMS.",
+    "basePrice": 79,
+    "platforms": ["Jeep"],
+    "tags": ["Armor", "Stainless"],
+    "image": "assets/visor.PNG",
+    "option_labels": { "first": "Finish", "second": "Material" },
+    "variant_ids": {
+      "RAW": {
+        "ALUMINUM": 47466418438299,
+        "STAINLESS": 47466418569371
+      },
+      "BLACK POWDERCOAT": {
+        "ALUMINUM": 47466418503835,
+        "STAINLESS": 47466418634907
+      }
+    }
+  },
+  {
+    "id": "crosskart-chassis",
+    "title": "CROSS-KART CHASSIS KIT",
+    "desc": "HIGH-PERFORMANCE CROSS-KART PLATFORM. COMING SOON.",
+    "basePrice": 0,
+    "platforms": ["Cross-Karts"],
+    "tags": [],
+    "image": "assets/coming-soon-centered.png",
+    "simple": true,
+    "variant_ids": {
+      "Solo": { "Default": "VARIANT_ID_CK_SOLO" }
+    }
+  }
+]
