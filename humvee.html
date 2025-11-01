@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humvee PARTS</title>
+<link rel="icon" type="image/png" href="assets/favicon_white.png">
+<link rel="stylesheet" href="styles.css">
+<script defer src="scripts.js"></script>
+</head>
+<body>
+  <nav class="nav">
+    <!-- Logo (shown on desktop, hidden on mobile via CSS) -->
+    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+      <img src="assets/logo.svg" alt="" class="logo">
+    </a>
+
+    <!-- Site Title (centered on mobile, left on desktop via CSS overrides) -->
+    <span class="nav-title">TACTICAL OFFROAD</span>
+
+    <!-- Mobile toggle (hidden on desktop via CSS) -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+
+    <!-- DESKTOP links (shown on ≥801px; hidden on mobile via CSS) -->
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/ar15.html">AR-15</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
+
+    <!-- Cart (always visible) -->
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
+  </nav>
+
+<!-- MOBILE-only menu (hidden on desktop via CSS; toggled open with .is-open) -->
+<div id="main-menu" class="menu" hidden>
+  <a class="tab nav-tab" href="/">HOME</a>
+  <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+  <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+  <a class="tab nav-tab" href="/ar15.html">AR-15</a>
+  <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+  <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+</div>
+
+
+<main class="container">
+  <div class="product-header"><h1>Humvee</h1></div>
+    <div class="humvee-hotspots">
+    <!-- using your HUMVEE_transparent_v2.png -->
+    <div class="hotspot-container">
+      <img src="assets/HUMVEE_transparent_v2.png" class="humvee-img" alt="Humvee">
+
+  <!-- Roof → roof-reinforce -->
+      <a class="hotspot" data-target="#product-roof-reinforce" style="left:57%; top:29%;" aria-label="Roof"></a>
+
+  <!-- Door (no product yet? see #3) -->
+      <a class="hotspot" data-target="#product-door" style="left:58%; top:54%;" aria-label="Door"></a>
+
+  <!-- Back slant cover → rear-curtain -->
+      <a class="hotspot" data-target="#product-rear-curtain" style="left:79%; top:43%;" aria-label="Back Slant Cover"></a>
+
+  <!-- Back gate → humvee-rear-insert (or change if you add a tailgate product) -->
+      <a class="hotspot" data-target="#product-humvee-rear-insert" style="left:86%; top:58%;" aria-label="Back Gate"></a>
+
+  <!-- Front bumper → hd-front-bumper -->
+      <a class="hotspot" data-target="#product-hd-front-bumper" style="left:24%; top:67%;" aria-label="Front Bumper"></a>
+
+  <!-- Headlight (no product yet? see #3) -->
+      <a class="hotspot" data-target="#product-headlight" style="left:32%; top:59%;" aria-label="Headlight"></a>
+
+  <!-- Wheel (no product yet? see #3) -->
+      <a class="hotspot" data-target="#product-wheel" style="left:40%; top:72%;" aria-label="Wheel"></a>
+
+  <!-- Back of cab area (no product yet? see #3) -->
+      <a class="hotspot" data-target="#product-cab-rear" style="left:67%; top:50%;" aria-label="Back of Cab"></a>
+    </div>
+
+  </div>
+  <div class="filters"><div class="toggle" data-tag="Stainless">Stainless</div><div class="toggle" data-tag="Armor">Armor</div><div class="toggle" data-tag="Doors">Doors</div><div class="toggle" data-tag="Roof">Roof</div><div class="toggle" data-tag="Rear Curtain">Rear Curtain</div><div class="toggle" data-tag="Windows">Windows</div></div>
+  <!-- Put these just above your grid for now -->
+  <div id="product-door"></div>
+  <div id="product-headlight"></div>
+  <div id="product-wheel"></div>
+  <div id="product-cab-rear"></div>
+
+  <div id="product-grid" class="grid" data-category="Humvee"></div>
+</main>
+<footer class="footer">© 2025 TACTICAL OFFROAD — HUMVEE • JEEP • AR‑15 • CROSS‑KARTS</footer></body></html>
