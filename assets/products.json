@@ -15,21 +15,24 @@
       }
     }
   },
-    {
-    "id": "ar15-extended-mag-release",
-    "title": "AR-15 Extended Mag Release",
-    "desc": "Extended magazine release for AR-15 — faster mag changes, Hard annodized aluminum.",
-    "basePrice": 20,
-    "platforms": ["AR-15"],
-    "tags": ["AR-15", "Mag Release", "Accessory"],
-    "image": "assets/IMG_4584.jpeg",
-    "simple": true,
-    "variant_ids": {
-      "Solo": {
-        "Default": 12345678901234
-      }
-    }
-  },
+  {
+  "id": "ar15-extended-mag-release",
+  "title": "AR-15 Extended Mag Release",
+  "desc": "Extended magazine release for AR-15 — faster mag changes, textured pad for positive feel.",
+  "basePrice": 20,
+  "platforms": ["AR-15"],
+  "tags": ["AR-15", "Hardware", "Accessory"],
+  "image": "assets/IMG_4584.jpeg",
+  "images": [
+    "assets/IMG_4586.jpeg",
+    "assets/ar15-extended-mag-release-angle1.png",
+    "assets/ar15-extended-mag-release-angle2.png"
+  ],
+  "simple": true,
+  "variant_ids": {
+    "Solo": { "Default": 12345678901234 }
+  }
+},
   {
     "id": "molle-panel",
     "title": "MOLLE PANEL",
