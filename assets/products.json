@@ -5,7 +5,7 @@
     "desc": "Universal aluminum MOLLE mounting panel — multiple sizes and thicknesses.",
     "basePrice": 89,
     "platforms": ["Tactical Supplies"],
-    "tags": ["Tactical", "Mounts", "Aluminum"],
+    "tags": ["Tactical", "Mounts", "Molle"],
     "image": "assets/tactical/molle-panel.png",
 
     "option_labels": {
@@ -82,7 +82,7 @@
     "powdercoat_price": 50
   },
   {
-    "id": "ar15-flash",
+    "id": "ar-suppressor",
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "CLAYMORE",
     "basePrice": 79,
