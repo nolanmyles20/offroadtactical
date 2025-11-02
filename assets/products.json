@@ -218,6 +218,32 @@
     }
   },
   {
+  "id": "jeep-door-hinge-tank-mount",
+  "title": "Door Hinge Tank Mount",
+  "desc": "Made From 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
+  "basePrice": 80,
+  "platforms": ["Jeep"],
+  "tags": ["Jeep", "Mounts", "Stainless", "Accessory"],
+  "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
+  "images": [
+    "assets/DOOR_TANK_MOUNT_1.jpeg",
+    "assets/DOOR_TANK_MOUNT_2.jpeg",
+    "assets/DOOR_TANK_MOUNT_DRIVER.jpeg",
+    "assets/DOOR_TANK_MOUNT_PASSENGER.jpeg"
+  ],
+  "option_labels": { "first": "Side", "second": "Finish" },
+  "variant_ids": {
+    "Driver": {
+      "Raw": "VARIANT_ID_DRIVER_RAW",
+      "Powdercoated Wrinkle Black": "VARIANT_ID_DRIVER_PWB"
+    },
+    "Passenger": {
+      "Raw": "VARIANT_ID_PASSENGER_RAW",
+      "Powdercoated Wrinkle Black": "VARIANT_ID_PASSENGER_PWB"
+    }
+  }
+}, 
+  {
     "id": "crosskart",
     "title": "CROSS-KART",
     "desc": "HIGH-PERFORMANCE CROSS-KART PLATFORM. COMING SOON.",
