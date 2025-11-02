@@ -35,6 +35,17 @@ function allImages(p) {
   return p.image ? [p.image] : ['assets/placeholder.png'];
 }
 
+// ============== SIMPLE VARIANT HELPER ==============
+function defaultSimpleVariantId(p) {
+  const idFromMap = p?.variant_ids?.Solo?.Default;
+  if (idFromMap != null) return String(idFromMap);
+  if (p?.variant_id != null) return String(p.variant_id);
+  if (typeof p?.variant_ids === 'string' || typeof p?.variant_ids === 'number') {
+    return String(p.variant_ids);
+  }
+  return null;
+}
+
 // ============== LOCAL CART (source of truth) ==============
 const LS_CART_KEY = 'headless_cart_v1';
 
@@ -388,6 +399,7 @@ async function loadProducts() {
 function productCard(p) {
   const imgs = allImages(p);
 
+  // SIMPLE PRODUCT (no option selectors; show price)
   if (p.simple) {
     return `
     <div class="card" data-id="${p.id}" id="product-${p.id}">
@@ -402,11 +414,8 @@ function productCard(p) {
         <div class="badge">${p.platforms.join(' • ')}</div>
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
+        <p class="price">$${p.basePrice}</p>
         <div class="controls">
-          <div>
-            <label>Variant</label>
-            <select class="select simple-variant"><option value="Default">Solo</option></select>
-          </div>
           <div>
             <label>Qty</label>
             <input type="number" class="qty" min="1" value="1"/>
@@ -417,6 +426,7 @@ function productCard(p) {
     </div>`;
   }
 
+  // CONFIGURABLE PRODUCT (2–3 level variant map)
   const labels = p.option_labels || {};
   const vmap   = p.variant_ids || {};
   const opt1   = Object.keys(vmap);
@@ -505,11 +515,11 @@ function wireCards(items) {
       return null;
     }
 
+    // SIMPLE
     if (product.simple) {
-      const varSel = card.querySelector('.simple-variant');
       btn.addEventListener('click', () => {
         const q = Math.max(1, parseInt(qty?.value, 10) || 1);
-        const variantId = (product.variant_ids?.Solo || {})[varSel?.value || 'Default'];
+        const variantId = defaultSimpleVariantId(product);
         if (!variantId) { showToast('Variant not found'); return; }
 
         const priceCents = Math.round((product.basePrice || 0) * 100);
@@ -533,6 +543,7 @@ function wireCards(items) {
       return;
     }
 
+    // CONFIGURABLE
     const vmap = product.variant_ids || {};
     const o1Sel = card.querySelector('.opt1');
     const o2Sel = card.querySelector('.opt2');
