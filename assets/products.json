@@ -6,7 +6,7 @@
     "desc": "Solvent trap adapter.",
     "basePrice": 20,
     "platforms": ["AR-15"],
-    "tags": ["AR-15", "Thread Adapter", "Accessory"],
+    "tags": ["AR-15", "Thread Adapters", "Accessory"],
     "image": "assets/IMG_4585.jpeg",
     "simple": true,
     "variant_ids": {
@@ -21,7 +21,7 @@
   "desc": "Extended magazine release for AR-15 — faster mag changes, textured pad for positive feel.",
   "basePrice": 20,
   "platforms": ["AR-15"],
-  "tags": ["AR-15", "Hardware", "Accessory"],
+  "tags": ["AR-15", "Hardware", "Mag Release"],
   "image": "assets/IMG_4584.jpeg",
   "images": [
     "assets/IMG_4586.jpeg",
@@ -161,7 +161,7 @@
     "desc": "ROOK",
     "basePrice": 35,
     "platforms": ["AR-15"],
-    "tags": ["Flash Suppressors", "Thread Adapters", "Crush Washers"],
+    "tags": ["Flash Suppressors"],
     "image": "assets/IMG_4496.jpeg",
     "option_labels": { "first": "Thread", "second": "Caliber" },
     "variant_ids": {
