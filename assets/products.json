@@ -63,6 +63,10 @@
     "platforms": ["Tactical Supplies"],
     "tags": ["Tactical", "Mounts", "Molle"],
     "image": "assets/bed_molle_panel_1.PNG",
+    "simple": true,
+    "variant_ids": {
+    "Solo": { "Default": 12345678901234 }
+    }
   },
   {
     "id": "hd-front-bumper",
