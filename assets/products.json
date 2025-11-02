@@ -60,7 +60,7 @@
     "title": "GLADIATOR BED MOLLE PANEL SET",
     "desc": "STAINLESS MOLLE mounting panel — COMES AS A SET.",
     "basePrice": 80,
-    "platforms": ["Tactical Supplies"],
+    "platforms": ["Tactical Supplies", "Jeep"],
     "tags": ["Tactical", "Mounts", "Molle"],
     "image": "assets/bed_molle_panel_1.PNG",
     "simple": true,
