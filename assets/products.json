@@ -65,7 +65,7 @@
     "image": "assets/bed_molle_panel_1.PNG",
     "simple": true,
     "variant_ids": {
-    "Solo": { "Default": 12345678901234 }
+      "Solo": { "Default": 12345678901234 }
     }
   },
   {
