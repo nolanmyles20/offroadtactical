@@ -226,10 +226,10 @@
   "tags": ["Jeep", "Mounts", "Stainless", "Accessory"],
   "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
   "images": [
-    "assets/DOOR_TANK_MOUNT_1.jpeg",
-    "assets/DOOR_TANK_MOUNT_2.jpeg",
-    "assets/DOOR_TANK_MOUNT_DRIVER.jpeg",
-    "assets/DOOR_TANK_MOUNT_PASSENGER.jpeg"
+    "assets/DOOR_TANK_MOUNT_1.PNG",
+    "assets/DOOR_TANK_MOUNT_2.PNG",
+    "assets/DOOR_TANK_MOUNT_DRIVER.PNG",
+    "assets/DOOR_TANK_MOUNT_PASSENGER.PNG"
   ],
   "option_labels": { "first": "Side", "second": "Finish" },
   "variant_ids": {
