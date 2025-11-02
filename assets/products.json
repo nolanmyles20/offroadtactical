@@ -40,7 +40,7 @@
     "basePrice": 20,
     "platforms": ["Tactical Supplies"],
     "tags": ["Tactical", "Mounts", "Molle"],
-    "image": "assets/tactical/molle-panel.png",
+    "image": "assets/tactical/16x24_molle.png",
 
     "option_labels": {
       "first": "Size",
