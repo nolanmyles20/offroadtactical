@@ -63,6 +63,10 @@
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
   "image": "assets/bed_molle_panel_1.PNG",
+  "images": [
+    "assets/bed_molle_panel_1.PNG",
+    "assets/bed_molle_panel_1_RAW.PNG"
+  ],
   "option_labels": { "first": "Finish" },
   "variant_ids": {
     "Raw": "VARIANT_ID_RAW",
