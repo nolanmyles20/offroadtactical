@@ -73,7 +73,24 @@
     "Powdercoated Wrinkle Black": "VARIANT_ID_PWB"
   }
 },
-
+{
+  "id": "front_bed_molle",
+  "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
+  "desc": "STAINLESS MOLLE mounting panel — COMES AS A FULL SET.",
+  "basePrice": 120,
+  "platforms": ["Tactical Supplies", "Jeep"],
+  "tags": ["Tactical", "Mounts", "Molle"],
+  "image": "assets/FRONT BED MOLLE.PNG",
+  "images": [
+    "assets/FRONT BED MOLLE.PNG",
+    "assets/FRONT BED MOLLE BLACK.PNG"
+  ],
+  "option_labels": { "first": "Finish" },
+  "variant_ids": {
+    "Raw": "VARIANT_ID_RAW",
+    "Powdercoated Wrinkle Black": "VARIANT_ID_PWB"
+  }
+},
   {
     "id": "hd-front-bumper",
     "title": "HD FRONT BUMPER",
