@@ -73,8 +73,8 @@
     "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
   },
   "variant_price_cents": {
-    "VAR_RAW_STAINLESS": 6000,
-    "VAR_BLACK_PW_STEEL": 7000
+    "VAR_RAW_STAINLESS": 7000,
+    "VAR_BLACK_PW_STEEL": 6000
   }
 },
 {
