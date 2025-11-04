@@ -87,10 +87,17 @@
   ],
   "option_labels": { "first": "Finish" },
   "variant_ids": {
-    "Raw": "VARIANT_ID_RAW",
-    "Powdercoated Wrinkle Black": "VARIANT_ID_PWB"
+    "Raw Stainless": {
+      "id": "VARIANT_ID_RAW",
+      "price_cents": 12500
+    },
+    "Black Powdercoated Steel": {
+      "id": "VARIANT_ID_PWB",
+      "price_cents": 10000
+    }
   }
-},
+}
+
   {
     "id": "hd-front-bumper",
     "title": "HD FRONT BUMPER",
