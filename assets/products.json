@@ -77,6 +77,28 @@
     "VAR_BLACK_PW_STEEL": 6000
   }
 },
+ {
+  "id": "door_hinge_molle",
+  "title": "GLADIATOR DOOR HINGE MOLLE PANEL FRONT/REAR LEFT/RIGHT",
+  "desc": "14ga STAINLESS MOLLE mounting panel — SINGLE PIECE.",
+  "basePrice": 25,
+  "platforms": ["Tactical Supplies", "Jeep"],
+  "tags": ["Tactical", "Mounts", "Molle"],
+  "image": "assets/door__hinge_molle.PNG",
+  "images": [
+    "assets/door__hinge_molle.PNG",
+    "assets/door__hinge_molle.PNG"
+  ],
+ "option_labels": { "first": "Finish" },
+  "variant_ids": {
+    "Raw Stainless": "VAR_RAW_STAINLESS",
+    "Black Powdercoated": "VAR_BLACK_PW"
+  },
+  "variant_price_cents": {
+    "VAR_RAW_STAINLESS": 2500,
+    "VAR_BLACK_PW": 3000
+  }
+},
 {
   "id": "front_bed_molle",
   "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
