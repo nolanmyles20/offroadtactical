@@ -46,6 +46,51 @@ function defaultSimpleVariantId(p) {
   return null;
 }
 
+// ============== PRICE HELPERS ==============
+// Returns price (in cents) for a given product + variantId, with fallbacks.
+function getDisplayPriceCents(product, variantId) {
+  // Highest precedence: explicit per-variant map (by Shopify variant ID)
+  const map = product.variant_price_cents;
+  if (map && variantId && Object.prototype.hasOwnProperty.call(map, String(variantId))) {
+    return Number(map[String(variantId)]) | 0;
+  }
+
+  // For simple products, allow a single override
+  if (product.simple && product.simple_price_cents != null) {
+    return Number(product.simple_price_cents) | 0;
+  }
+
+  // Fallback to basePrice
+  const base = Math.round((product.basePrice || 0) * 100);
+  return base;
+}
+
+// Build default selection variantId for configurable cards using first keys
+function defaultConfigVariantId(vmap) {
+  if (!vmap || typeof vmap !== 'object') return null;
+  const o1Keys = Object.keys(vmap);
+  const o1 = o1Keys[0];
+  if (!o1) return null;
+
+  const level2 = vmap[o1];
+  if (typeof level2 === 'string') return level2; // 2-level directly to variantId
+
+  const o2Keys = Object.keys(level2 || {});
+  const o2 = o2Keys[0];
+  if (!o2) return null;
+
+  const node = level2[o2];
+  if (typeof node === 'string') return node;
+
+  if (node && typeof node === 'object') {
+    const o3Keys = Object.keys(node);
+    const o3 = o3Keys[0];
+    if (!o3) return null;
+    return node[o3] || null;
+  }
+  return null;
+}
+
 // ============== LOCAL CART (source of truth) ==============
 const LS_CART_KEY = 'headless_cart_v1';
 
@@ -399,8 +444,11 @@ async function loadProducts() {
 function productCard(p) {
   const imgs = allImages(p);
 
-  // SIMPLE PRODUCT (no option selectors; show price)
+  // SIMPLE PRODUCT (no option selectors)
   if (p.simple) {
+    const defaultVid = defaultSimpleVariantId(p);
+    const priceCents = getDisplayPriceCents(p, defaultVid);
+
     return `
     <div class="card" data-id="${p.id}" id="product-${p.id}">
       <img class="product-img" src="${imgs[0]}" alt="${p.title}">
@@ -414,7 +462,7 @@ function productCard(p) {
         <div class="badge">${p.platforms.join(' • ')}</div>
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
-        <p class="price">$${p.basePrice}</p>
+        <p class="price"><span class="price-val">${formatMoney(priceCents)}</span></p>
         <div class="controls">
           <div>
             <label>Qty</label>
@@ -436,6 +484,9 @@ function productCard(p) {
   const opt3   = (o1 && o2 && vmap[o1][o2] && typeof vmap[o1][o2] === 'object')
                ? Object.keys(vmap[o1][o2]) : [];
 
+  const defaultVid = defaultConfigVariantId(vmap);
+  const priceCents = getDisplayPriceCents(p, defaultVid);
+
   return `
   <div class="card" data-id="${p.id}" id="product-${p.id}">
     <img class="product-img" src="${imgs[0]}" alt="${p.title}">
@@ -449,7 +500,7 @@ function productCard(p) {
       <div class="badge">${p.platforms.join(' • ')}</div>
       <h3>${p.title}</h3>
       <p>${p.desc}</p>
-      <p class="price">$${p.basePrice}</p>
+      <p class="price"><span class="price-val">${formatMoney(priceCents)}</span></p>
       <div class="controls">
         <div ${opt1.length<=1 ? 'style="display:none"' : ''}>
           <label>${labels.first || 'Option 1'}</label>
@@ -515,14 +566,35 @@ function wireCards(items) {
       return null;
     }
 
+    // Price updater (for both simple & configurable)
+    const priceEl = card.querySelector('.price-val');
+    function refreshCardPrice() {
+      let vid = null;
+      if (product.simple) {
+        vid = defaultSimpleVariantId(product);
+      } else {
+        const vmap = product.variant_ids || {};
+        const o1Sel = card.querySelector('.opt1');
+        const o2Sel = card.querySelector('.opt2');
+        const o3Sel = card.querySelector('.opt3');
+        vid = resolveVariantId(vmap, o1Sel, o2Sel, o3Sel) || defaultConfigVariantId(vmap);
+      }
+      const cents = getDisplayPriceCents(product, vid);
+      if (priceEl) priceEl.textContent = formatMoney(cents);
+      return cents;
+    }
+
     // SIMPLE
     if (product.simple) {
+      // Ensure the displayed price is correct on load
+      refreshCardPrice();
+
       btn.addEventListener('click', () => {
         const q = Math.max(1, parseInt(qty?.value, 10) || 1);
         const variantId = defaultSimpleVariantId(product);
         if (!variantId) { showToast('Variant not found'); return; }
 
-        const priceCents = Math.round((product.basePrice || 0) * 100);
+        const priceCents = getDisplayPriceCents(product, variantId);
         addToLocalCart({
           variantId, qty: q,
           title: product.title, image: primaryImage(product),
@@ -549,7 +621,7 @@ function wireCards(items) {
     const o2Sel = card.querySelector('.opt2');
     const o3Sel = card.querySelector('.opt3');
 
-    // Keep dependent selects in sync
+    // Keep dependent selects in sync + update price
     o1Sel?.addEventListener('change', () => {
       const o1 = (o1Sel.value || '').trim();
       const o2Vals = Object.keys(vmap[o1] || {});
@@ -559,6 +631,8 @@ function wireCards(items) {
       const node = vmap[o1]?.[o2];
       const o3Vals = node && typeof node === 'object' ? Object.keys(node) : [];
       if (o3Sel) o3Sel.innerHTML = o3Vals.map(v => `<option value="${v}">${v}</option>`).join('');
+
+      refreshCardPrice();
     });
 
     o2Sel?.addEventListener('change', () => {
@@ -567,18 +641,27 @@ function wireCards(items) {
       const node = vmap[o1]?.[o2];
       const o3Vals = node && typeof node === 'object' ? Object.keys(node) : [];
       if (o3Sel) o3Sel.innerHTML = o3Vals.map(v => `<option value="${v}">${v}</option>`).join('');
+
+      refreshCardPrice();
     });
+
+    o3Sel?.addEventListener('change', () => {
+      refreshCardPrice();
+    });
+
+    // Initial price for configurable cards
+    refreshCardPrice();
 
     btn.addEventListener('click', () => {
       const q = Math.max(1, parseInt(qty?.value, 10) || 1);
-      const variantId = resolveVariantId(vmap, o1Sel, o2Sel, o3Sel);
+      const variantId = resolveVariantId(vmap, o1Sel, o2Sel, o3Sel) || defaultConfigVariantId(vmap);
 
       if (!variantId) {
-        showToast('Please select a valid Size/Thickness');
+        showToast('Please select a valid option');
         return;
       }
 
-      const priceCents = Math.round((product.basePrice || 0) * 100);
+      const priceCents = getDisplayPriceCents(product, variantId);
       addToLocalCart({
         variantId, qty: q,
         title: product.title, image: primaryImage(product),
