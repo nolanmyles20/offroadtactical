@@ -100,7 +100,29 @@
   }
   
 },
-
+{
+  "id": "window_plate",
+  "title": "GLADIATOR REAR WINDOW INSERT SET",
+  "desc": "STAINLESS— COMES AS A FULL SET.",
+  "basePrice": 50,
+  "platforms": [ "Jeep"],
+  "tags": ["Tactical", "Mounts", "Molle"],
+  "image": "assets/window_plate.PNG",
+  "images": [
+    "assets/window_plate.PNG",
+    "assets/window_plate.PNG"
+  ],
+  "option_labels": { "first": "Finish" },
+  "variant_ids": {
+    "Raw Stainless": "VAR_RAW_STAINLESS",
+    "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+  },
+  "variant_price_cents": {
+    "VAR_RAW_STAINLESS": 6000,
+    "VAR_BLACK_PW_STEEL": 5000
+  }
+  
+},
   {
     "id": "hd-front-bumper",
     "title": "HD FRONT BUMPER",
