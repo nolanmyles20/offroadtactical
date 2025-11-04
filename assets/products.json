@@ -35,7 +35,7 @@
 },
   {
     "id": "molle-panel",
-    "title": "MOLLE PANEL",
+    "title": "MOLLE-COMPATIBLE PANEL",
     "desc": "Universal aluminum MOLLE mounting panel — multiple sizes and thicknesses.",
     "basePrice": 20,
     "platforms": ["Tactical Supplies"],
@@ -57,7 +57,7 @@
   },
   {
   "id": "bed_molle_panel_1",
-  "title": "GLADIATOR BED MOLLE PANEL REAR LEFT OR RIGHT",
+  "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
   "desc": "16ga STAINLESS or STEEL MOLLE mounting panel — SINGLE PIECE.",
   "basePrice": 75,
   "platforms": ["Tactical Supplies", "Jeep"],
@@ -79,15 +79,15 @@
 },
  {
   "id": "door_hinge_molle",
-  "title": "GLADIATOR DOOR HINGE MOLLE PANEL FRONT/REAR LEFT/RIGHT",
-  "desc": "14ga STAINLESS MOLLE mounting panel — SINGLE PIECE.",
+  "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
+  "desc": "11ga STAINLESS MOLLE mounting panel — SINGLE PIECE.",
   "basePrice": 25,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/door__hinge_molle.PNG",
+  "image": "assets/door_hinge_molle.PNG",
   "images": [
-    "assets/door__hinge_molle.PNG",
-    "assets/door__hinge_molle.PNG"
+    "assets/door_hinge_molle.PNG",
+    "assets/door_hinge_molle.PNG"
   ],
  "option_labels": { "first": "Finish" },
   "variant_ids": {
