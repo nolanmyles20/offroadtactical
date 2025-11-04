@@ -107,10 +107,10 @@
   "basePrice": 50,
   "platforms": [ "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/window_plate.PNG",
+  "image": "assets/window_plate_set.PNG",
   "images": [
-    "assets/window_plate.PNG",
-    "assets/window_plate.PNG"
+    "assets/window_plate_set.PNG",
+    "assets/window_plate_set.PNG"
   ],
   "option_labels": { "first": "Finish" },
   "variant_ids": {
