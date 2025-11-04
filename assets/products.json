@@ -58,7 +58,7 @@
   {
   "id": "bed_molle_panel_1",
   "title": "GLADIATOR BED MOLLE PANEL REAR LEFT OR RIGHT",
-  "desc": "STAINLESS MOLLE mounting panel — SINGLE PIECE.",
+  "desc": "16ga STAINLESS or STEEL MOLLE mounting panel — SINGLE PIECE.",
   "basePrice": 75,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
@@ -80,7 +80,7 @@
 {
   "id": "front_bed_molle",
   "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
-  "desc": "STAINLESS MOLLE mounting panel — COMES AS A FULL SET.",
+  "desc": "16ga STAINLESS or STEEL MOLLE mounting panel — COMES AS A FULL SET.",
   "basePrice": 160,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
@@ -288,8 +288,8 @@
   {
   "id": "jeep-door-hinge-tank-mount",
   "title": "Door Hinge Tank Mount",
-  "desc": "Made From 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
-  "basePrice": 80,
+  "desc": "Made From 14ga 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
+  "basePrice": 65,
   "platforms": ["Jeep"],
   "tags": ["Jeep", "Mounts", "Stainless", "Accessory"],
   "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
