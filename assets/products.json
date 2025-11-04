@@ -67,10 +67,14 @@
     "assets/bed_molle_panel_1.PNG",
     "assets/bed_molle_panel_1_RAW.PNG"
   ],
-  "option_labels": { "first": "Finish" },
+ "option_labels": { "first": "Finish" },
   "variant_ids": {
-    "Raw": "VARIANT_ID_RAW",
-    "Powdercoated Wrinkle Black": "VARIANT_ID_PWB"
+    "Raw Stainless": "VAR_RAW_STAINLESS",
+    "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+  },
+  "variant_price_cents": {
+    "VAR_RAW_STAINLESS": 6000,
+    "VAR_BLACK_PW_STEEL": 7000
   }
 },
 {
