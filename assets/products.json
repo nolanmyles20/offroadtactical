@@ -80,8 +80,8 @@
  {
   "id": "door_hinge_molle",
   "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
-  "desc": "11ga STAINLESS MOLLE mounting panel — SINGLE PIECE.",
-  "basePrice": 25,
+  "desc": "14ga STAINLESS MOLLE-compatable mounting panel — SINGLE PIECE. Stainless hardware and hinge spacer included.",
+  "basePrice": 30,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
   "image": "assets/door_hinge_molle.PNG",
