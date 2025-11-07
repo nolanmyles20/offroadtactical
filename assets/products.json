@@ -36,7 +36,7 @@
   {
     "id": "molle-panel",
     "title": "MOLLE-COMPATIBLE PANEL",
-    "desc": "Universal aluminum MOLLE mounting panel — multiple sizes and thicknesses.",
+    "desc": "Universal aluminum MOLLE-compatible mounting panel — multiple sizes and thicknesses.",
     "basePrice": 20,
     "platforms": ["Tactical Supplies"],
     "tags": ["Tactical", "Mounts", "Molle"],
@@ -58,7 +58,7 @@
   {
   "id": "bed_molle_panel_1",
   "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
-  "desc": "16ga STAINLESS or STEEL MOLLE mounting panel — SINGLE PIECE.",
+  "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — SINGLE PIECE.",
   "basePrice": 75,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
@@ -80,7 +80,7 @@
  {
   "id": "door_hinge_molle",
   "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
-  "desc": "14ga STAINLESS MOLLE-compatable mounting panel — SINGLE PIECE. Stainless hardware and hinge spacer included.",
+  "desc": "14ga STAINLESS MOLLE-compatible mounting panel — SINGLE PIECE. Stainless hardware and hinge spacer included.",
   "basePrice": 30,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
@@ -102,7 +102,7 @@
 {
   "id": "front_bed_molle",
   "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
-  "desc": "16ga STAINLESS or STEEL MOLLE mounting panel — COMES AS A FULL SET.",
+  "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — COMES AS A FULL SET.",
   "basePrice": 160,
   "platforms": ["Tactical Supplies", "Jeep"],
   "tags": ["Tactical", "Mounts", "Molle"],
