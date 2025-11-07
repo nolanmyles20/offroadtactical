@@ -324,12 +324,12 @@
   "option_labels": { "first": "Side", "second": "Finish" },
   "variant_ids": {
     "Driver": {
-      "Raw": "VARIANT_ID_DRIVER_RAW",
-      "Powdercoated Wrinkle Black": "VARIANT_ID_DRIVER_PWB"
+      "Raw": "47487602294939",
+      "Powdercoated Wrinkle Black": "47487602360475"
     },
     "Passenger": {
-      "Raw": "VARIANT_ID_PASSENGER_RAW",
-      "Powdercoated Wrinkle Black": "VARIANT_ID_PASSENGER_PWB"
+      "Raw": "47487602327707",
+      "Powdercoated Wrinkle Black": "47487602393243"
     }
   }
 }, 
