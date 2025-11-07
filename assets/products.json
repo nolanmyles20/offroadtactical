@@ -113,11 +113,11 @@
   ],
   "option_labels": { "first": "Finish" },
   "variant_ids": {
-    "Raw Stainless": "VAR_RAW_STAINLESS",
+    "Raw Stainless": "47508791689371",
     "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
   },
   "variant_price_cents": {
-    "VAR_RAW_STAINLESS": 12500,
+    "47508791689371": 12500,
     "VAR_BLACK_PW_STEEL": 10000
   }
   
