@@ -1,5 +1,22 @@
 [
-    
+    {
+  "id": "hmmwv hood mesh insert",
+  "title": "HMMWV HOOD VENT INSERT MESH",
+  "desc": "Stainless plater lasered out to fit existing holes. Made from 16ga 304 Stainless.",
+  "basePrice": 120,
+  "platforms": ["Humvee"],
+  "tags": ["Humvee", "Armor", "Tactical"],
+  "image": "assets/IMG_4584.jpeg",
+  "images": [
+    "assets/IMG_4586.jpeg",
+    "assets/IMG_4584.jpeg",
+    "assets/ar15-extended-mag-release-angle2.png"
+  ],
+  "simple": true,
+  "variant_ids": {
+    "Solo": { "Default": 12345678901234 }
+  }
+},
     {
     "id": "filter-adapter",
     "title": "1/2-28 to 3/8-16 Filter Adapter",
