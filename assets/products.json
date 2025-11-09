@@ -5,7 +5,7 @@
   "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
   "basePrice": 120,
   "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Tactical"],
+  "tags": ["Humvee", "Armor", "Stainless"],
   "image": "assets/IMG_4799.jpeg",
   "images": [
     "assets/IMG_4800.jpeg",
