@@ -6,10 +6,10 @@
   "basePrice": 120,
   "platforms": ["Humvee"],
   "tags": ["Humvee", "Armor", "Tactical"],
-  "image": "assets/IMG_4584.jpeg",
+  "image": "assets/IMG_4799.jpeg",
   "images": [
-    "assets/IMG_4586.jpeg",
-    "assets/IMG_4584.jpeg",
+    "assets/IMG_4800.jpeg",
+    "assets/IMG_4803.jpeg",
     "assets/ar15-extended-mag-release-angle2.png"
   ],
   "simple": true,
