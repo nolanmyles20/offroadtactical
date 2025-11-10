@@ -1,4 +1,21 @@
 [
+       {
+  "id": "hmmwv grill mesh insert",
+  "title": "HMMWV GRILL INSERT MESH",
+  "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
+  "basePrice": 60,
+  "platforms": ["Humvee"],
+  "tags": ["Humvee", "Armor", "Stainless"],
+  "image": "assets/IMG_4786.jpeg",
+  "images": [
+    "assets/IMG_4786.jpeg",
+    "assets/IMG_4803.jpeg"
+  ],
+  "simple": true,
+  "variant_ids": {
+    "Solo": { "Default": 12345678901234 }
+  }
+}, 
     {
   "id": "hmmwv hood mesh insert",
   "title": "HMMWV HOOD VENT INSERT MESH",
