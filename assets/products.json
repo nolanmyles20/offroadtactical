@@ -24,12 +24,13 @@
   "basePrice": 120,
   "platforms": ["Humvee"],
   "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_4799.jpeg",
+  "image": "assets/IMG_7218.jpeg",
   "images": [
     "assets/IMG_4800.jpeg",
     "assets/HUMVEE_HOOD_INSERT.PNG",
     "assets/IMG_4803.jpeg",
-    "assets/IMG_4799.jpeg"
+    "assets/IMG_4799.jpeg",
+    "assets/IMG_7218.jpeg"
   ],
   "simple": true,
   "variant_ids": {
