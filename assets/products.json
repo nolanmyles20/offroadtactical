@@ -6,8 +6,9 @@
   "basePrice": 60,
   "platforms": ["Humvee"],
   "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_4786.jpeg",
+  "image": "assets/IMG_7224.jpeg",
   "images": [
+    "assets/IMG_7224.jpeg",
     "assets/IMG_4786.jpeg",
     "assets/HUMVEE_GRILL_INSERT.PNG",
     "assets/IMG_4803.jpeg"
