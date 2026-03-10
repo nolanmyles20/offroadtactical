@@ -139,7 +139,7 @@ function formatMoney(cents) {
   return `$${(Number(cents||0)/100).toFixed(2)}`;
 }
 
-// ============== TOAST (Item Added ✓) ==============
+// ============== TOAST (Item Added â) ==============
 let __toastTimer = null;
 function ensureToastHost() {
   if (document.getElementById('toast-host')) return;
@@ -148,7 +148,7 @@ function ensureToastHost() {
   host.innerHTML = `<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
   document.body.appendChild(host);
 }
-function showToast(msg = 'Item Added To Cart ✓', ms = 1100) {
+function showToast(msg = 'Item Added To Cart â', ms = 1100) {
   ensureToastHost();
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -164,7 +164,7 @@ function setBadge(n) {
 }
 
 // NOTE: We no longer let Shopify numbers override the badge,
-// to avoid “16 items” ghost counts from cookies. Local cart is the truth.
+// to avoid â16 itemsâ ghost counts from cookies. Local cart is the truth.
 async function refreshBadge() {
   setBadgeFromLocal();
 }
@@ -236,12 +236,12 @@ function renderCart() {
         <div class="cart-variant">Variant ID: ${l.variantId}</div>
       </div>
       <div class="cart-qty">
-        <button class="qty-btn minus" aria-label="Decrease">−</button>
+        <button class="qty-btn minus" aria-label="Decrease">â</button>
         <input class="qty-input" type="number" min="1" value="${l.qty}">
         <button class="qty-btn plus" aria-label="Increase">+</button>
       </div>
       <div class="cart-price">${formatMoney((l.price_cents||0)*(l.qty||1))}</div>
-      <button class="cart-remove" aria-label="Remove">✕</button>
+      <button class="cart-remove" aria-label="Remove">â</button>
     </div>
   `).join('');
 
@@ -295,7 +295,7 @@ function sendToShopifyAndCheckout() {
   focusCartTab();
   openInCartTab(url);
   setTimeout(() => openInCartTab(`https://${SHOPIFY.shop}/checkout`), 800);
-  // Keep local cart (safer for “back” behavior); you can clear after success if desired.
+  // Keep local cart (safer for âbackâ behavior); you can clear after success if desired.
 }
 
 // ================= MOBILE NAV & SCROLL =================
@@ -330,7 +330,7 @@ function scrollToEl(el) {
 
 // ================= BOOT =================
 document.addEventListener('DOMContentLoaded', () => {
-  // Header cart links → go to YOUR cart page (local cart UI). No auto-open anywhere.
+  // Header cart links â go to YOUR cart page (local cart UI). No auto-open anywhere.
   [...document.querySelectorAll('[data-cart-link], #cart-link')].forEach(el => {
     el.setAttribute('href', '/cart.html');
     el.removeAttribute('target');
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (mq.addListener) mq.addListener((m) => { if (m.matches) closeMobileMenu(toggle, menu); });
   }
 
-  // Badge lifecycle — local cart is the truth
+  // Badge lifecycle â local cart is the truth
   setBadgeFromLocal();
   setInterval(refreshBadge, 15000);
   document.addEventListener('visibilitychange', () => {
@@ -439,7 +439,7 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${p.platforms.join(' • ')}</div>
+        <div class="badge">${p.platforms.join(' â¢ ')}</div>
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
         <p class="price dyn-price">$${(p.basePrice||0).toFixed(2)}</p>
@@ -450,11 +450,12 @@ function productCard(p) {
           </div>
         </div>
         <button class="btn add">ADD TO CART</button>
+        ${marketplaceButtons(p)}
       </div>
     </div>`;
   }
 
-  // CONFIGURABLE PRODUCT (2–3 level variant map)
+  // CONFIGURABLE PRODUCT (2â3 level variant map)
   const labels = p.option_labels || {};
   const vmap   = p.variant_ids || {};
   const opt1   = Object.keys(vmap);
@@ -475,7 +476,7 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${p.platforms.join(' • ')}</div>
+      <div class="badge">${p.platforms.join(' â¢ ')}</div>
       <h3>${p.title}</h3>
       <p>${p.desc}</p>
       <p class="price dyn-price">$${(p.basePrice||0).toFixed(2)}</p>
@@ -499,8 +500,40 @@ function productCard(p) {
         <label class="checkbox" ${p.powdercoat_variant_id ? '' : 'style="display:none"'}><input type="checkbox" class="powder"/> Powdercoat Black +$${p.powdercoat_price || 50}</label>
       </div>
       <button class="btn add">ADD TO CART</button>
+      ${marketplaceButtons(p)}
     </div>
   </div>`;
+}
+
+
+function marketplaceButtons(p) {
+  const links = [];
+
+  if (p.gunbroker_url) {
+    links.push(`
+      <a class="btn marketplace-btn gunbroker-btn"
+         href="${p.gunbroker_url}"
+         target="_blank"
+         rel="noopener noreferrer nofollow">
+         BUY ON GUNBROKER
+      </a>
+    `);
+  }
+
+  if (p.amazon_url) {
+    links.push(`
+      <a class="btn marketplace-btn amazon-btn"
+         href="${p.amazon_url}"
+         target="_blank"
+         rel="noopener noreferrer nofollow">
+         BUY ON AMAZON
+      </a>
+    `);
+  }
+
+  return links.length
+    ? `<div class="marketplace-links">${links.join('')}</div>`
+    : '';
 }
 
 // ================= WIRING =================
@@ -546,7 +579,7 @@ function wireCards(items) {
           });
         }
 
-        showToast('Item Added To Cart ✓');
+        showToast('Item Added To Cart â');
       });
       return;
     }
@@ -569,7 +602,7 @@ function wireCards(items) {
       const o1 = (o1Sel?.value || '').trim();
       let node1 = vmap[o1];
 
-      // If first-level is terminal → hide opt2/opt3
+      // If first-level is terminal â hide opt2/opt3
       if (isTerminalVariantNode(node1)) {
         if (opt2Wrap) opt2Wrap.style.display = 'none';
         if (opt3Wrap) opt3Wrap.style.display = 'none';
@@ -586,7 +619,7 @@ function wireCards(items) {
       const o2 = (o2Sel?.value || o2Keys[0] || '').trim();
       const node2 = node1 ? node1[o2] : null;
 
-      // If second-level is terminal → hide opt3
+      // If second-level is terminal â hide opt3
       if (isTerminalVariantNode(node2)) {
         if (opt3Wrap) opt3Wrap.style.display = 'none';
         const priceCents = getVariantPriceFromNode(product, node2, baseCents);
@@ -661,7 +694,7 @@ function wireCards(items) {
         });
       }
 
-      showToast('Item Added To Cart ✓');
+      showToast('Item Added To Cart â');
     });
   });
 }
