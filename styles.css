@@ -433,3 +433,25 @@ h1, h2{
   background:#e68a00;
   border-color:#e68a00;
 }
+.gunbroker-all{
+  text-align:center;
+  margin:40px 0 20px 0;
+}
+
+.gunbroker-all-btn{
+  display:inline-block;
+  padding:14px 28px;
+  font-weight:700;
+  font-size:16px;
+  text-decoration:none;
+  border-radius:6px;
+  background:#2a8f3a;   /* GunBroker green */
+  color:#ffd700;        /* yellow text */
+  border:2px solid #2a8f3a;
+  transition:all .15s ease;
+}
+
+.gunbroker-all-btn:hover{
+  background:#237a31;
+  border-color:#237a31;
+}
