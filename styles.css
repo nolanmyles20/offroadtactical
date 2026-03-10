@@ -392,3 +392,44 @@ h1, h2{
   outline:2px solid var(--fg);
   outline-offset:2px;
 }
+/* Marketplace Buttons */
+
+.marketplace-links{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+}
+
+.marketplace-btn{
+  width:100%;
+  text-align:center;
+  padding:10px;
+  font-weight:700;
+  border-radius:6px;
+  text-decoration:none;
+  transition:all .15s ease;
+}
+
+/* GunBroker button */
+.gunbroker-btn{
+  background:#2a8f3a;        /* GunBroker green */
+  color:#ffd700;             /* yellow text */
+  border:2px solid #2a8f3a;
+}
+
+.gunbroker-btn:hover{
+  background:#237a31;
+  border-color:#237a31;
+}
+
+/* Amazon button */
+.amazon-btn{
+  background:#ff9900;        /* Amazon orange */
+  color:#000;
+  border:2px solid #ff9900;
+}
+
+.amazon-btn:hover{
+  background:#e68a00;
+  border-color:#e68a00;
+}
