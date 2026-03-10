@@ -1,102 +1,147 @@
 [
-         {
-  "id": "hmmwv x door",
-  "title": "HMMWV X DOOR",
-  "desc": "Aluminum shell and stainless accent plates lasered out to fit existing hinge mounts. Skin Made from 16ga 304 Stainless.",
-  "basePrice": 1000,
-  "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_7234.jpeg",
-  "images": [
-    "assets/IMG_7234.jpeg",
-    "assets/IMG_7234.jpeg"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 12345678901234 }
-  }
-}, 
-       {
-  "id": "hmmwv grill mesh insert",
-  "title": "HMMWV GRILL INSERT MESH",
-  "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
-  "basePrice": 60,
-  "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_7224.jpeg",
-  "images": [
-    "assets/IMG_7224.jpeg",
-    "assets/IMG_4786.jpeg",
-    "assets/HUMVEE_GRILL_INSERT.PNG",
-    "assets/IMG_4803.jpeg"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 12345678901234 }
-  }
-}, 
-    {
-  "id": "hmmwv hood mesh insert",
-  "title": "HMMWV HOOD VENT INSERT MESH",
-  "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
-  "basePrice": 120,
-  "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_7218.jpeg",
-  "images": [
-    "assets/IMG_4800.jpeg",
-    "assets/HUMVEE_HOOD_INSERT.PNG",
-    "assets/IMG_4803.jpeg",
-    "assets/IMG_4799.jpeg",
-    "assets/IMG_7218.jpeg"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 123456789012 }
-  }
-},
- {
-  "id": "hmmwv hood lift rings",
-  "title": "HMMWV HOOD LIFT RINGS",
-  "desc": "Stainless plate lasered out to fit around lift rings. Made from 16ga 304 Stainless.",
-  "basePrice": 40,
-  "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_7230.jpeg",
-  "images": [
-    "assets/IMG_7230.jpeg",
-    "assets/IMG_7218.jpeg"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 1234567890123 }
-  }
-},
-{
-  "id": "hmmwv hood accent",
-  "title": "HMMWV HOOD ACCENT",
-  "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
-  "basePrice": 50,
-  "platforms": ["Humvee"],
-  "tags": ["Humvee", "Armor", "Stainless"],
-  "image": "assets/IMG_7233.jpeg",
-  "images": [
-    "assets/IMG_7233.jpeg",
-    "assets/IMG_7218.jpeg"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 12345678901 }
-  }
-},
-         
-    {
+  {
+    "id": "hmmwv x door",
+    "title": "HMMWV X DOOR",
+    "desc": "Aluminum shell and stainless accent plates lasered out to fit existing hinge mounts. Skin Made from 16ga 304 Stainless.",
+    "basePrice": 1000,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7234.jpeg",
+    "images": [
+      "assets/IMG_7234.jpeg",
+      "assets/IMG_7234.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    }
+  },
+  {
+    "id": "hmmwv grill mesh insert",
+    "title": "HMMWV GRILL INSERT MESH",
+    "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
+    "basePrice": 60,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7224.jpeg",
+    "images": [
+      "assets/IMG_7224.jpeg",
+      "assets/IMG_4786.jpeg",
+      "assets/HUMVEE_GRILL_INSERT.PNG",
+      "assets/IMG_4803.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    }
+  },
+  {
+    "id": "hmmwv hood mesh insert",
+    "title": "HMMWV HOOD VENT INSERT MESH",
+    "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
+    "basePrice": 120,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7218.jpeg",
+    "images": [
+      "assets/IMG_4800.jpeg",
+      "assets/HUMVEE_HOOD_INSERT.PNG",
+      "assets/IMG_4803.jpeg",
+      "assets/IMG_4799.jpeg",
+      "assets/IMG_7218.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 123456789012
+      }
+    }
+  },
+  {
+    "id": "hmmwv hood lift rings",
+    "title": "HMMWV HOOD LIFT RINGS",
+    "desc": "Stainless plate lasered out to fit around lift rings. Made from 16ga 304 Stainless.",
+    "basePrice": 40,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7230.jpeg",
+    "images": [
+      "assets/IMG_7230.jpeg",
+      "assets/IMG_7218.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 1234567890123
+      }
+    }
+  },
+  {
+    "id": "hmmwv hood accent",
+    "title": "HMMWV HOOD ACCENT",
+    "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
+    "basePrice": 50,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7233.jpeg",
+    "images": [
+      "assets/IMG_7233.jpeg",
+      "assets/IMG_7218.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901
+      }
+    }
+  },
+  {
     "id": "filter-adapter",
     "title": "1/2-28 to 3/8-16 Filter Adapter",
     "desc": "Solvent trap adapter.",
     "basePrice": 20,
-    "platforms": ["AR-15"],
-    "tags": ["AR-15", "Thread Adapters", "Accessory"],
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Thread Adapters",
+      "Accessory"
+    ],
     "image": "assets/IMG_4585.jpeg",
     "simple": true,
     "variant_ids": {
@@ -106,146 +151,216 @@
     }
   },
   {
-  "id": "ar15-extended-mag-release",
-  "title": "AR-15 Extended Mag Release",
-  "desc": "Extended magazine release for AR-15 — faster mag changes, textured pad for positive feel.",
-  "basePrice": 20,
-  "platforms": ["AR-15"],
-  "tags": ["AR-15", "Hardware", "Mag Release"],
-  "image": "assets/IMG_4584.jpeg",
-  "images": [
-    "assets/IMG_4586.jpeg",
-    "assets/IMG_4584.jpeg",
-    "assets/ar15-extended-mag-release-angle2.png"
-  ],
-  "simple": true,
-  "variant_ids": {
-    "Solo": { "Default": 12345678901234 }
-  }
-},
+    "id": "ar15-extended-mag-release",
+    "title": "AR-15 Extended Mag Release",
+    "desc": "Extended magazine release for AR-15 \u2014 faster mag changes, textured pad for positive feel.",
+    "basePrice": 20,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Hardware",
+      "Mag Release"
+    ],
+    "image": "assets/IMG_4584.jpeg",
+    "images": [
+      "assets/IMG_4586.jpeg",
+      "assets/IMG_4584.jpeg",
+      "assets/ar15-extended-mag-release-angle2.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    },
+    "gunbroker_url": "https://www.gunbroker.com/Item/1162251660"
+  },
   {
     "id": "molle-panel",
     "title": "MOLLE-COMPATIBLE PANEL",
-    "desc": "Universal aluminum MOLLE-compatible mounting panel — multiple sizes and thicknesses.",
+    "desc": "Universal aluminum MOLLE-compatible mounting panel \u2014 multiple sizes and thicknesses.",
     "basePrice": 20,
-    "platforms": ["Tactical Supplies"],
-    "tags": ["Tactical", "Mounts", "Molle"],
+    "platforms": [
+      "Tactical Supplies"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
     "image": "assets/16x24_molle.PNG",
-
     "option_labels": {
       "first": "Size",
       "second": "Thickness"
     },
-
     "variant_ids": {
-      "8×8":   { "1mm": "VARIANT_ID_8x8_1mm",  "2mm": "VARIANT_ID_8x8_2mm",  "3mm": "VARIANT_ID_8x8_3mm"  },
-      "8×16":  { "1mm": "VARIANT_ID_8x16_1mm", "2mm": "VARIANT_ID_8x16_2mm", "3mm": "VARIANT_ID_8x16_3mm" },
-      "8×24":  { "1mm": "VARIANT_ID_8x24_1mm", "2mm": "VARIANT_ID_8x24_2mm", "3mm": "VARIANT_ID_8x24_3mm" }
+      "8\u00d78": {
+        "1mm": "VARIANT_ID_8x8_1mm",
+        "2mm": "VARIANT_ID_8x8_2mm",
+        "3mm": "VARIANT_ID_8x8_3mm"
+      },
+      "8\u00d716": {
+        "1mm": "VARIANT_ID_8x16_1mm",
+        "2mm": "VARIANT_ID_8x16_2mm",
+        "3mm": "VARIANT_ID_8x16_3mm"
+      },
+      "8\u00d724": {
+        "1mm": "VARIANT_ID_8x24_1mm",
+        "2mm": "VARIANT_ID_8x24_2mm",
+        "3mm": "VARIANT_ID_8x24_3mm"
+      }
     }
-
-
   },
   {
-  "id": "bed_molle_panel_1",
-  "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
-  "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — SINGLE PIECE.",
-  "basePrice": 75,
-  "platforms": ["Tactical Supplies", "Jeep"],
-  "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/bed_molle_panel_1.PNG",
-  "images": [
-    "assets/bed_molle_panel_1.PNG",
-    "assets/bed_molle_panel_1_RAW.PNG"
-  ],
- "option_labels": { "first": "Finish" },
-  "variant_ids": {
-    "Raw Stainless": "VAR_RAW_STAINLESS",
-    "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    "id": "bed_molle_panel_1",
+    "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
+    "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel \u2014 SINGLE PIECE.",
+    "basePrice": 75,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/bed_molle_panel_1.PNG",
+    "images": [
+      "assets/bed_molle_panel_1.PNG",
+      "assets/bed_molle_panel_1_RAW.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "VAR_RAW_STAINLESS",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "VAR_RAW_STAINLESS": 7000,
+      "VAR_BLACK_PW_STEEL": 6000
+    }
   },
-  "variant_price_cents": {
-    "VAR_RAW_STAINLESS": 7000,
-    "VAR_BLACK_PW_STEEL": 6000
-  }
-},
- {
-  "id": "door_hinge_molle",
-  "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
-  "desc": "14ga STAINLESS MOLLE-compatible mounting panel — SINGLE PIECE. Stainless hardware and hinge spacer included.",
-  "basePrice": 30,
-  "platforms": ["Tactical Supplies", "Jeep"],
-  "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/door_hinge_molle.PNG",
-  "images": [
-    "assets/door_hinge_molle.PNG",
-    "assets/IMG_4666.jpeg"
-  ],
- "option_labels": { "first": "Finish" },
-  "variant_ids": {
-    "Raw Stainless": "47508433535131",
-    "Black Powdercoated": "47508433567899"
+  {
+    "id": "door_hinge_molle",
+    "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
+    "desc": "14ga STAINLESS MOLLE-compatible mounting panel \u2014 SINGLE PIECE. Stainless hardware and hinge spacer included.",
+    "basePrice": 30,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/door_hinge_molle.PNG",
+    "images": [
+      "assets/door_hinge_molle.PNG",
+      "assets/IMG_4666.jpeg"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "47508433535131",
+      "Black Powdercoated": "47508433567899"
+    },
+    "variant_price_cents": {
+      "47508433535131": 3000,
+      "47508433567899": 3000
+    }
   },
-  "variant_price_cents": {
-    "47508433535131": 3000,
-    "47508433567899": 3000
-  }
-},
-{
-  "id": "front_bed_molle",
-  "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
-  "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — COMES AS A FULL SET.",
-  "basePrice": 160,
-  "platforms": ["Tactical Supplies", "Jeep"],
-  "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/FRONT BED MOLLE.PNG",
-  "images": [
-    "assets/FRONT BED MOLLE.PNG",
-    "assets/FRONT BED MOLLE BLACK.PNG"
-  ],
-  "option_labels": { "first": "Finish" },
-  "variant_ids": {
-    "Raw Stainless": "47508791689371",
-    "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+  {
+    "id": "front_bed_molle",
+    "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
+    "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel \u2014 COMES AS A FULL SET.",
+    "basePrice": 160,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/FRONT BED MOLLE.PNG",
+    "images": [
+      "assets/FRONT BED MOLLE.PNG",
+      "assets/FRONT BED MOLLE BLACK.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "47508791689371",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "47508791689371": 16000,
+      "VAR_BLACK_PW_STEEL": 14000
+    }
   },
-  "variant_price_cents": {
-    "47508791689371": 16000,
-    "VAR_BLACK_PW_STEEL": 14000
-  }
-  
-},
-{
-  "id": "window_plate",
-  "title": "GLADIATOR REAR WINDOW INSERT SET",
-  "desc": "22ga STAINLESS or STEEL— COMES AS A FULL SET.",
-  "basePrice": 50,
-  "platforms": [ "Jeep"],
-  "tags": ["Tactical", "Mounts", "Molle"],
-  "image": "assets/window_plate_set.PNG",
-  "images": [
-    "assets/window_plate_set.PNG",
-    "assets/window_plate_set.PNG"
-  ],
-  "option_labels": { "first": "Finish" },
-  "variant_ids": {
-    "Raw Stainless": "VAR_RAW_STAINLESS",
-    "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+  {
+    "id": "window_plate",
+    "title": "GLADIATOR REAR WINDOW INSERT SET",
+    "desc": "22ga STAINLESS or STEEL\u2014 COMES AS A FULL SET.",
+    "basePrice": 50,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/window_plate_set.PNG",
+    "images": [
+      "assets/window_plate_set.PNG",
+      "assets/window_plate_set.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "VAR_RAW_STAINLESS",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "VAR_RAW_STAINLESS": 6000,
+      "VAR_BLACK_PW_STEEL": 5000
+    }
   },
-  "variant_price_cents": {
-    "VAR_RAW_STAINLESS": 6000,
-    "VAR_BLACK_PW_STEEL": 5000
-  }
-  
-},
   {
     "id": "hd-front-bumper",
     "title": "HD FRONT BUMPER",
     "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
     "basePrice": 899,
-    "platforms": ["Humvee", "Jeep"],
-    "tags": ["Bumper", "Armor"],
+    "platforms": [
+      "Humvee",
+      "Jeep"
+    ],
+    "tags": [
+      "Bumper",
+      "Armor"
+    ],
     "image": "assets/coming-soon-centered.png",
     "variant_ids": {
-      "Armor": { "1mm": "VARIANT_ID_A_1", "2mm": "VARIANT_ID_A_2", "3mm": "VARIANT_ID_A_3" },
-      "Stainless": { "1mm": "VARIANT_ID_S_1", "2mm": "VARIANT_ID_S_2", "3mm": "VARIANT_ID_S_3" }
+      "Armor": {
+        "1mm": "VARIANT_ID_A_1",
+        "2mm": "VARIANT_ID_A_2",
+        "3mm": "VARIANT_ID_A_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_S_1",
+        "2mm": "VARIANT_ID_S_2",
+        "3mm": "VARIANT_ID_S_3"
+      }
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50
@@ -255,12 +370,25 @@
     "title": "JK FRONT TRACK BAR",
     "desc": "ADJUSTABLE FRONT TRACK BAR FOR JEEP JK.",
     "basePrice": 169,
-    "platforms": ["Jeep"],
-    "tags": ["Armor", "Stainless"],
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Armor",
+      "Stainless"
+    ],
     "image": "assets/coming-soon-centered.png",
     "variant_ids": {
-      "Armor": { "1mm": "VARIANT_ID_JA_1", "2mm": "VARIANT_ID_JA_2", "3mm": "VARIANT_ID_JA_3" },
-      "Stainless": { "1mm": "VARIANT_ID_JS_1", "2mm": "VARIANT_ID_JS_2", "3mm": "VARIANT_ID_JS_3" }
+      "Armor": {
+        "1mm": "VARIANT_ID_JA_1",
+        "2mm": "VARIANT_ID_JA_2",
+        "3mm": "VARIANT_ID_JA_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_JS_1",
+        "2mm": "VARIANT_ID_JS_2",
+        "3mm": "VARIANT_ID_JS_3"
+      }
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50
@@ -270,12 +398,26 @@
     "title": "ROOF REINFORCEMENT KIT",
     "desc": "STIFFENS HUMVEE ROOF STRUCTURE; BOLT-ON.",
     "basePrice": 1499,
-    "platforms": ["Humvee"],
-    "tags": ["Roof", "Armor", "Stainless"],
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Roof",
+      "Armor",
+      "Stainless"
+    ],
     "image": "assets/coming-soon-centered.png",
     "variant_ids": {
-      "Armor": { "1mm": "VARIANT_ID_RA_1", "2mm": "VARIANT_ID_RA_2", "3mm": "VARIANT_ID_RA_3" },
-      "Stainless": { "1mm": "VARIANT_ID_RS_1", "2mm": "VARIANT_ID_RS_2", "3mm": "VARIANT_ID_RS_3" }
+      "Armor": {
+        "1mm": "VARIANT_ID_RA_1",
+        "2mm": "VARIANT_ID_RA_2",
+        "3mm": "VARIANT_ID_RA_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_RS_1",
+        "2mm": "VARIANT_ID_RS_2",
+        "3mm": "VARIANT_ID_RS_3"
+      }
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50
@@ -285,12 +427,25 @@
     "title": "REAR CURTAIN ASSEMBLY",
     "desc": "REPLACEMENT VINYL REAR CURTAIN WITH WINDOW.",
     "basePrice": 399,
-    "platforms": ["Humvee"],
-    "tags": ["Rear Curtain", "Windows"],
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Rear Curtain",
+      "Windows"
+    ],
     "image": "assets/coming-soon-centered.png",
     "variant_ids": {
-      "Armor": { "1mm": "VARIANT_ID_CA_1", "2mm": "VARIANT_ID_CA_2", "3mm": "VARIANT_ID_CA_3" },
-      "Stainless": { "1mm": "VARIANT_ID_CS_1", "2mm": "VARIANT_ID_CS_2", "3mm": "VARIANT_ID_CS_3" }
+      "Armor": {
+        "1mm": "VARIANT_ID_CA_1",
+        "2mm": "VARIANT_ID_CA_2",
+        "3mm": "VARIANT_ID_CA_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_CS_1",
+        "2mm": "VARIANT_ID_CS_2",
+        "3mm": "VARIANT_ID_CS_3"
+      }
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50
@@ -300,18 +455,41 @@
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "CLAYMORE",
     "basePrice": 35,
-    "platforms": ["AR-15"],
-    "tags": ["Flash Suppressors"],
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
     "image": "assets/IMG_4494.jpeg",
-    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
     "variant_ids": {
       "1/2-28": {
-        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
-        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+        "5.56": {
+          "1mm/.04\u201d": "47465968894107",
+          "2mm/.08\u201d": "47466418405531",
+          "3mm/.12\u201d": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465968926875",
+          "2mm/.08\u201d": "47466418536603",
+          "3mm/.12\u201d": "47466418569371"
+        }
       },
       "5/8-24": {
-        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
-        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+        "5.56": {
+          "1mm/.04\u201d": "47465973153947",
+          "2mm/.08\u201d": "47466418471067",
+          "3mm/.12\u201d": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465973186715",
+          "2mm/.08\u201d": "47466418602139",
+          "3mm/.12\u201d": "47466418634907"
+        }
       }
     }
   },
@@ -320,18 +498,41 @@
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "PREDATOR",
     "basePrice": 35,
-    "platforms": ["AR-15"],
-    "tags": ["Flash Suppressors"],
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
     "image": "assets/IMG_4495.jpeg",
-    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
     "variant_ids": {
       "1/2-28": {
-        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
-        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+        "5.56": {
+          "1mm/.04\u201d": "47465968894107",
+          "2mm/.08\u201d": "47466418405531",
+          "3mm/.12\u201d": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465968926875",
+          "2mm/.08\u201d": "47466418536603",
+          "3mm/.12\u201d": "47466418569371"
+        }
       },
       "5/8-24": {
-        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
-        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+        "5.56": {
+          "1mm/.04\u201d": "47465973153947",
+          "2mm/.08\u201d": "47466418471067",
+          "3mm/.12\u201d": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465973186715",
+          "2mm/.08\u201d": "47466418602139",
+          "3mm/.12\u201d": "47466418634907"
+        }
       }
     }
   },
@@ -340,18 +541,41 @@
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "ROOK",
     "basePrice": 35,
-    "platforms": ["AR-15"],
-    "tags": ["Flash Suppressors"],
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
     "image": "assets/IMG_4496.jpeg",
-    "option_labels": { "first": "Thread", "second": "Caliber" },
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
     "variant_ids": {
       "1/2-28": {
-        "5.56":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
-        "9mm":   { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+        "5.56": {
+          "1mm/.04\u201d": "47465968894107",
+          "2mm/.08\u201d": "47466418405531",
+          "3mm/.12\u201d": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465968926875",
+          "2mm/.08\u201d": "47466418536603",
+          "3mm/.12\u201d": "47466418569371"
+        }
       },
       "5/8-24": {
-        "5.56":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
-        "9mm":   { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+        "5.56": {
+          "1mm/.04\u201d": "47465973153947",
+          "2mm/.08\u201d": "47466418471067",
+          "3mm/.12\u201d": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04\u201d": "47465973186715",
+          "2mm/.08\u201d": "47466418602139",
+          "3mm/.12\u201d": "47466418634907"
+        }
       }
     }
   },
@@ -360,18 +584,43 @@
     "title": "HUMVEE REAR INSERT",
     "desc": "Humvee rear insert made from 304 Stainless Steel or Aluminum. Different surface finishes and thicknesses.",
     "basePrice": 185,
-    "platforms": ["Humvee"],
-    "tags": ["Stainless", "Armor"],
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Stainless",
+      "Armor"
+    ],
     "image": "assets/IMG_4479.jpeg",
-    "option_labels": { "first": "Item material", "second": "Color", "third": "Thickness" },
+    "option_labels": {
+      "first": "Item material",
+      "second": "Color",
+      "third": "Thickness"
+    },
     "variant_ids": {
       "Stainless steel": {
-        "Black":  { "1mm/.04”": "47465968894107", "2mm/.08”": "47466418405531", "3mm/.12”": "47466418438299" },
-        "Silver": { "1mm/.04”": "47465968926875", "2mm/.08”": "47466418536603", "3mm/.12”": "47466418569371" }
+        "Black": {
+          "1mm/.04\u201d": "47465968894107",
+          "2mm/.08\u201d": "47466418405531",
+          "3mm/.12\u201d": "47466418438299"
+        },
+        "Silver": {
+          "1mm/.04\u201d": "47465968926875",
+          "2mm/.08\u201d": "47466418536603",
+          "3mm/.12\u201d": "47466418569371"
+        }
       },
       "Aluminum": {
-        "Black":  { "1mm/.04”": "47465973153947", "2mm/.08”": "47466418471067", "3mm/.12”": "47466418503835" },
-        "Silver": { "1mm/.04”": "47465973186715", "2mm/.08”": "47466418602139", "3mm/.12”": "47466418634907" }
+        "Black": {
+          "1mm/.04\u201d": "47465973153947",
+          "2mm/.08\u201d": "47466418471067",
+          "3mm/.12\u201d": "47466418503835"
+        },
+        "Silver": {
+          "1mm/.04\u201d": "47465973186715",
+          "2mm/.08\u201d": "47466418602139",
+          "3mm/.12\u201d": "47466418634907"
+        }
       }
     },
     "powdercoat_variant_id": "",
@@ -382,10 +631,18 @@
     "title": "NM CUSTOMS JEEP VISOR",
     "desc": "LOW-PROFILE SUN VISOR FOR JEEP PLATFORMS.",
     "basePrice": 175,
-    "platforms": ["Jeep"],
-    "tags": ["Armor", "Stainless"],
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Armor",
+      "Stainless"
+    ],
     "image": "assets/visor.PNG",
-    "option_labels": { "first": "Finish", "second": "Material" },
+    "option_labels": {
+      "first": "Finish",
+      "second": "Material"
+    },
     "variant_ids": {
       "RAW": {
         "ALUMINUM": 47466418438299,
@@ -398,42 +655,56 @@
     }
   },
   {
-  "id": "jeep-door-hinge-tank-mount",
-  "title": "Door Hinge Tank Mount",
-  "desc": "Made From 14ga 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
-  "basePrice": 65,
-  "platforms": ["Jeep"],
-  "tags": ["Jeep", "Mounts", "Stainless", "Accessory"],
-  "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
-  "images": [
-    "assets/DOOR_TANK_MOUNT_1.PNG",
-    "assets/DOOR_TANK_MOUNT_2.PNG",
-    "assets/DOOR_TANK_MOUNT_DRIVER.PNG",
-    "assets/DOOR_TANK_MOUNT_PASSENGER.PNG"
-  ],
-  "option_labels": { "first": "Side", "second": "Finish" },
-  "variant_ids": {
-    "Driver": {
-      "Raw": "47487602294939",
-      "Powdercoated Wrinkle Black": "47487602360475"
+    "id": "jeep-door-hinge-tank-mount",
+    "title": "Door Hinge Tank Mount",
+    "desc": "Made From 14ga 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
+    "basePrice": 65,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Jeep",
+      "Mounts",
+      "Stainless",
+      "Accessory"
+    ],
+    "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
+    "images": [
+      "assets/DOOR_TANK_MOUNT_1.PNG",
+      "assets/DOOR_TANK_MOUNT_2.PNG",
+      "assets/DOOR_TANK_MOUNT_DRIVER.PNG",
+      "assets/DOOR_TANK_MOUNT_PASSENGER.PNG"
+    ],
+    "option_labels": {
+      "first": "Side",
+      "second": "Finish"
     },
-    "Passenger": {
-      "Raw": "47487602327707",
-      "Powdercoated Wrinkle Black": "47487602393243"
+    "variant_ids": {
+      "Driver": {
+        "Raw": "47487602294939",
+        "Powdercoated Wrinkle Black": "47487602360475"
+      },
+      "Passenger": {
+        "Raw": "47487602327707",
+        "Powdercoated Wrinkle Black": "47487602393243"
+      }
     }
-  }
-}, 
+  },
   {
     "id": "crosskart",
     "title": "CROSS-KART",
     "desc": "HIGH-PERFORMANCE CROSS-KART PLATFORM. COMING SOON.",
-    "basePrice": 6000,  
-    "platforms": ["Cross-Karts"],
+    "basePrice": 6000,
+    "platforms": [
+      "Cross-Karts"
+    ],
     "tags": [],
     "image": "assets/coming-soon-centered.png",
     "simple": true,
     "variant_ids": {
-      "Solo": { "Default": "VARIANT_ID_CK_SOLO" }
+      "Solo": {
+        "Default": "VARIANT_ID_CK_SOLO"
+      }
     }
   }
 ]
