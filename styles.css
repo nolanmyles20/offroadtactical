@@ -455,3 +455,25 @@ h1, h2{
   background:#237a31;
   border-color:#237a31;
 }
+
+/* eBay button */
+
+.ebay-btn{
+  background:#000;
+  border:2px solid #000;
+  text-decoration:none;
+}
+
+.ebay-btn span{
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.ebay-e{color:#E53238;}
+.ebay-b{color:#0064D2;}
+.ebay-a{color:#F5AF02;}
+.ebay-y{color:#86B817;}
+
+.ebay-btn:hover{
+  background:#111;
+}
