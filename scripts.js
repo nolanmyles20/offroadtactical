@@ -531,6 +531,20 @@ function marketplaceButtons(p) {
     `);
   }
 
+  if (p.ebay_url) {
+    links.push(`
+      <a class="btn marketplace-btn ebay-btn"
+         href="${p.ebay_url}"
+         target="_blank"
+         rel="noopener noreferrer nofollow">
+         BUY ON
+         <span class="ebay-logo">
+           <span class="ebay-e">E</span><span class="ebay-b">B</span><span class="ebay-a">A</span><span class="ebay-y">Y</span>
+         </span>
+      </a>
+    `);
+  }
+
   return links.length
     ? `<div class="marketplace-links">${links.join('')}</div>`
     : '';
