@@ -458,11 +458,6 @@ h1, h2{
 
 /* eBay button */
 
-.ebay-btn{
-  background:#000;
-  border:2px solid #000;
-  text-decoration:none;
-}
 
 .ebay-btn span{
   font-weight:700;
@@ -474,6 +469,18 @@ h1, h2{
 .ebay-a{color:#F5AF02;}
 .ebay-y{color:#86B817;}
 
-.ebay-btn:hover{
+
+.ebay-btn,
+.ebay-btn:visited{
+  background:#000;
+  color:#fff !important;
+  border:2px solid #000;
+  text-decoration:none;
+}
+
+.ebay-btn:hover,
+.ebay-btn:focus{
   background:#111;
+  color:#fff !important;
+  border-color:#111;
 }
