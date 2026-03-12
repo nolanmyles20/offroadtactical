@@ -170,7 +170,7 @@ body.no-scroll{ overflow:hidden; }
   }
 
   .nav-mobile-logo{
-    display:none;
+    display:none !important;
   }
 
 }
