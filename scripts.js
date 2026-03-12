@@ -93,23 +93,27 @@ function cartSubtotalCents() {
 function setBadgeFromLocal() {
   setBadge(cartCount());
 }
-function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, productId }) {
-  const c = readCart();
-  const key = String(variantId);
-  const line = c.lines.find(l => l.variantId === key);
-  if (line) {
-    line.qty = Math.max(1, (line.qty | 0) + (qty | 0));
-    line.title = title ?? line.title;
-    line.image = image ?? line.image;
-    line.price_cents = (price_cents ?? line.price_cents) | 0;
-    line.productId = productId ?? line.productId;
-  } else {
-    c.lines.push({ variantId: key, qty: Math.max(1, qty | 0), title, image, price_cents, productId });
-  }
-  writeCart(c);
-  setBadgeFromLocal();
-  return c;
-}
+
+// build readable variation text
+const variations = [
+  (o1Sel?.value || '').trim(),
+  (o2Sel?.value || '').trim(),
+  (o3Sel?.value || '').trim()
+].filter(Boolean).join(' / ');
+
+const displayTitle = variations
+  ? `${product.title} — ${variations}`
+  : product.title;
+
+addToLocalCart({
+  variantId,
+  qty: q,
+  title: displayTitle,
+  image: primaryImage(product),
+  price_cents: cents,
+  productId: product.id
+});
+
 function setLineQty(variantId, qty) {
   const c = readCart();
   const line = c.lines.find(l => l.variantId === String(variantId));
