@@ -1,17 +1,7 @@
 // ================= CONFIG =================
-const SHOPIFY    = { shop: 'tacticaloffroad.myshopify.com' };
-const CART       = `https://${SHOPIFY.shop}/cart`;
-const CART_JS    = `https://${SHOPIFY.shop}/cart.js`;
-const CART_ADD   = `https://${SHOPIFY.shop}/cart/add`;
-const CART_NAME  = 'SHOPIFY_CART';
-
 // PayPal
-const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
+const PAYPAL_CLIENT_ID = 'AcpXk73OrlgWiXKK6KYECOgZlWi7sE8y3X2hZrJaaSPxSthY8hsMyOisbtoAo_qK1SvwqWWmE-0MYg6v';
 const PAYPAL_CURRENCY  = 'USD';
-
-// (Kept for future use; not used for badge now)
-const SF_ENDPOINT = `https://${SHOPIFY.shop}/api/2025-01/graphql.json`;
-const SF_TOKEN    = '7f1d57625124831f8f9c47a088e48fb8';
 
 const DEBUG = false;
 
@@ -296,45 +286,7 @@ async function refreshBadge() {
   setBadgeFromLocal();
 }
 
-// ================= OPTIONAL (kept for compatibility; not used for badge) =================
-async function sfFetch(query, variables = {}) {
-  const r = await fetch(SF_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SF_TOKEN
-    },
-    body: JSON.stringify({ query, variables }),
-    cache: 'no-store',
-    mode: 'cors'
-  });
-  const j = await r.json();
-  if (j.errors) {
-    if (DEBUG) console.warn('SF errors', j.errors);
-    throw j.errors;
-  }
-  return j.data;
-}
-async function ensureCart() {
-  let id = localStorage.getItem('sf_cartId');
-  if (id) return id;
-  const data = await sfFetch(`mutation CreateCart { cartCreate { cart { id } } }`).catch(() => null);
-  id = data?.cartCreate?.cart?.id || '';
-  if (id) localStorage.setItem('sf_cartId', id);
-  return id;
-}
 
-// ================= ONE NAMED SHOPIFY TAB (checkout only) =================
-function focusCartTab() {
-  let w = null;
-  try {
-    w = window.open('', CART_NAME);
-  } catch {}
-  try {
-    if (w) w.focus();
-  } catch {}
-  return w;
-}
 function openInCartTab(url) {
   const a = document.createElement('a');
   a.href = url;
@@ -346,7 +298,7 @@ function openInCartTab(url) {
   a.remove();
 }
 
-// ============== CART PAGE RENDER + CHECKOUT (your page) ==============
+// ============== CART PAGE RENDER + CHECKOUT ==============
 function renderCart() {
   const root = document.getElementById('cart-root');
   if (!root) return;
@@ -387,7 +339,7 @@ function renderCart() {
       <div class="cart-actions">
         <a href="/" class="btn outline" id="continue-shopping">Continue shopping</a>
         <button id="cart-clear" class="btn outline">Clear Cart</button>
-      </div>
+        </div>
       <div class="cart-actions paypal-actions" style="margin-top:10px;">
         <div id="paypal-button-container" style="width:100%; max-width:320px;"></div>
       </div>
@@ -428,24 +380,10 @@ function renderCart() {
     clearLocalCart();
     renderCart();
   });
-  document.getElementById('cart-checkout').addEventListener('click', () => {
-    sendToShopifyAndCheckout();
-  });
 
   renderPayPalButtons();
 }
 
-function sendToShopifyAndCheckout() {
-  const c = readCart();
-  if (!c.lines.length) return;
-
-  const parts = c.lines.map(l => `${encodeURIComponent(l.variantId)}:${encodeURIComponent(l.qty)}`).join(',');
-  const url = `https://${SHOPIFY.shop}/cart/${parts}`;
-
-  focusCartTab();
-  openInCartTab(url);
-  setTimeout(() => openInCartTab(`https://${SHOPIFY.shop}/checkout`), 800);
-}
 
 // ================= MOBILE NAV & SCROLL =================
 function setNavHeightVar() {
