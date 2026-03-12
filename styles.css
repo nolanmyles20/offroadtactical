@@ -132,31 +132,47 @@ body.no-scroll{ overflow:hidden; }
 
 /* ==== Desktop ==== */
 @media (min-width:801px){
-  .links{ display:flex !important; }
-  .nav-toggle{ display:none !important; }
-  #main-menu.menu{ display:none !important; }
 
-  .logo-link{ display:none !important; }
+  .logo-link{
+    display:block !important;
+    grid-row:1;
+    grid-column:1 / -1;
+    justify-self:center;
+    margin:0;
+  }
+
+  .logo{
+    height:70px;
+  }
 
   .nav{
     display:grid;
     grid-template-rows:auto auto;
     grid-template-columns:1fr auto;
     row-gap:8px;
+    align-items:center;
+  }
+
+  .links{
+    grid-row:2;
+    grid-column:1;
+    justify-self:center;
+  }
+
+  .nav-cart{
+    grid-row:2;
+    grid-column:2;
+    justify-self:end;
   }
 
   .nav-title{
-    grid-row:1; grid-column:1 / -1;
-    justify-self:center; text-align:center;
-    font-size:clamp(28px,5vw,56px);
-    letter-spacing:.14em;
-    padding-inline:8px;
-    white-space:nowrap;
-    margin:0;
+    display:none;
   }
 
-  .links{ grid-row:2; grid-column:1; justify-self:center; }
-  .nav-cart{ grid-row:2; grid-column:2; justify-self:end; }
+  .nav-mobile-logo{
+    display:none;
+  }
+
 }
 
 /* ==== Mobile ==== */
