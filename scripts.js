@@ -94,26 +94,30 @@ function setBadgeFromLocal() {
   setBadge(cartCount());
 }
 
-// build readable variation text
-// Build readable variation string safely
-const variations = [
-  o1Sel ? (o1Sel.value || '').trim() : '',
-  o2Sel ? (o2Sel.value || '').trim() : '',
-  o3Sel ? (o3Sel.value || '').trim() : ''
-].filter(Boolean).join(' / ');
-
-const displayTitle = variations
-  ? `${product.title} — ${variations}`
-  : product.title;
-
-addToLocalCart({
-  variantId,
-  qty: q,
-  title: displayTitle,
-  image: primaryImage(product),
-  price_cents: cents,
-  productId: product.id
-});
+function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, productId }) {
+  const c = readCart();
+  const key = String(variantId);
+  const line = c.lines.find(l => l.variantId === key);
+  if (line) {
+    line.qty = Math.max(1, (line.qty | 0) + (qty | 0));
+    line.title = title ?? line.title;
+    line.image = image ?? line.image;
+    line.price_cents = (price_cents ?? line.price_cents) | 0;
+    line.productId = productId ?? line.productId;
+  } else {
+    c.lines.push({
+      variantId: key,
+      qty: Math.max(1, qty | 0),
+      title,
+      image,
+      price_cents,
+      productId
+    });
+  }
+  writeCart(c);
+  setBadgeFromLocal();
+  return c;
+}
 
 function setLineQty(variantId, qty) {
   const c = readCart();
@@ -292,16 +296,6 @@ async function refreshBadge() {
 }
 
 
-function openInCartTab(url) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.target = CART_NAME;
-  a.rel = 'noreferrer';
-  a.style.display = 'none';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
 
 // ============== CART PAGE RENDER + CHECKOUT ==============
 function renderCart() {
@@ -782,10 +776,20 @@ function wireCards(items) {
       }
       const cents = getVariantPriceFromNode(product, node, baseCents);
 
+      const variations = [
+        (o1Sel?.value || '').trim(),
+        (o2Sel?.value || '').trim(),
+        (o3Sel?.value || '').trim()
+      ].filter(Boolean).join(' / ');
+
+      const displayTitle = variations
+        ? `${product.title} — ${variations}`
+        : product.title;
+
       addToLocalCart({
         variantId,
         qty: q,
-        title: product.title,
+        title: displayTitle,
         image: primaryImage(product),
         price_cents: cents,
         productId: product.id
