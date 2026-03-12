@@ -533,4 +533,13 @@ h1, h2{
 .btn-paypal:active{
   transform:scale(.98);
 }
+.checkout-area{
+  margin-top:20px;
+  display:flex;
+  justify-content:flex-end;
+}
 
+#paypal-button-container{
+  width:320px;
+  max-width:100%;
+}
