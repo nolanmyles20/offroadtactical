@@ -513,19 +513,24 @@ h1, h2{
   margin-top:30px;
   text-align:right;
 }
-
-.paypal-btn{
+.btn-paypal{
   background:#0070ba;
-  color:#ffffff;
-  border:none;
-  padding:14px 28px;
-  font-size:16px;
-  font-weight:700;
-  border-radius:6px;
+  color:#fff;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.15);
+  padding:14px 22px;
+  font-size:15px;
+  font-weight:600;
   cursor:pointer;
-  transition:.2s;
+  transition:.15s;
+  min-width:210px;
 }
 
-.paypal-btn:hover{
+.btn-paypal:hover{
   background:#005ea6;
 }
+
+.btn-paypal:active{
+  transform:scale(.98);
+}
+
