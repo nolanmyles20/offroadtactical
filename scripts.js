@@ -1,6 +1,6 @@
 // ================= CONFIG =================
 // PayPal
-const PAYPAL_CLIENT_ID = 'AcpXk73OrlgWiXKK6KYECOgZlWi7sE8y3X2hZrJaaSPxSthY8hsMyOisbtoAo_qK1SvwqWWmE-0MYg6v';
+const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
 const PAYPAL_CURRENCY  = 'USD';
 
 const DEBUG = false;
