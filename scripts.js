@@ -244,23 +244,30 @@ function renderPayPalButtons() {
         },
 
         onApprove(data, actions) {
-         return actions.order.capture().then((details) => {
+  return actions.order.capture().then((details) => {
 
-        // clear cart
-         clearLocalCart();
+    const cart = readCart();
+    const capture = details?.purchase_units?.[0]?.payments?.captures?.[0];
 
-        // optional: store order info for thank-you page
-         localStorage.setItem("last_order", JSON.stringify({
-          orderID: data.orderID,
-          payer: details.payer?.name?.given_name || "",
-          email: details.payer?.email_address || "",
-          amount: details.purchase_units?.[0]?.amount?.value || ""
-         })); 
+    localStorage.setItem("last_order", JSON.stringify({
+      orderID: data.orderID || "",
+      transactionID: capture?.id || "",
+      payer: details?.payer?.name?.given_name || "",
+      email: details?.payer?.email_address || "",
+      amount: details?.purchase_units?.[0]?.amount?.value || "",
+      date: new Date().toISOString(),
+      items: (cart.lines || []).map(line => ({
+        title: line.title || "Item",
+        variantId: line.variantId || "",
+        qty: line.qty || 1,
+        price_cents: line.price_cents || 0
+      }))
+    }));
 
-         // redirect to order complete page
-         window.location.href = "/ordercomplete.html";
-
-      });
+    clearLocalCart();
+    window.location.href = "/ordercomplete.html";
+  });
+});
     }
   
 
@@ -280,7 +287,7 @@ function renderPayPalButtons() {
     });
 }
 
-// ============== TOAST (Item Added ✓) ==============
+// ============== TOAST (Item Added â) ==============
 let __toastTimer = null;
 function ensureToastHost() {
   if (document.getElementById('toast-host')) return;
@@ -289,7 +296,7 @@ function ensureToastHost() {
   host.innerHTML = `<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
   document.body.appendChild(host);
 }
-function showToast(msg = 'Item Added To Cart ✓', ms = 1100) {
+function showToast(msg = 'Item Added To Cart â', ms = 1100) {
   ensureToastHost();
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -333,12 +340,12 @@ function renderCart() {
         <div class="cart-variant">Variant ID: ${escapeHtml(l.variantId)}</div>
       </div>
       <div class="cart-qty">
-        <button class="qty-btn minus" aria-label="Decrease">−</button>
+        <button class="qty-btn minus" aria-label="Decrease">â</button>
         <input class="qty-input" type="number" min="1" value="${l.qty}">
         <button class="qty-btn plus" aria-label="Increase">+</button>
       </div>
       <div class="cart-price">${formatMoney((l.price_cents || 0) * (l.qty || 1))}</div>
-      <button class="cart-remove" aria-label="Remove">✕</button>
+      <button class="cart-remove" aria-label="Remove">â</button>
     </div>
   `).join('');
 
@@ -537,7 +544,7 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${p.platforms.join(' • ')}</div>
+        <div class="badge">${p.platforms.join(' â¢ ')}</div>
         <h3>${escapeHtml(p.title)}</h3>
         <p>${escapeHtml(p.desc)}</p>
         <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -571,7 +578,7 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${p.platforms.join(' • ')}</div>
+      <div class="badge">${p.platforms.join(' â¢ ')}</div>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.desc)}</p>
       <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -695,7 +702,7 @@ function wireCards(items) {
           });
         }
 
-        showToast('Item Added To Cart ✓');
+        showToast('Item Added To Cart â');
       });
       return;
     }
@@ -796,7 +803,7 @@ function wireCards(items) {
       ].filter(Boolean).join(' / ');
 
       const displayTitle = variations
-        ? `${product.title} — ${variations}`
+        ? `${product.title} â ${variations}`
         : product.title;
 
       addToLocalCart({
@@ -819,7 +826,7 @@ function wireCards(items) {
         });
       }
 
-      showToast('Item Added To Cart ✓');
+      showToast('Item Added To Cart â');
     });
   });
 }
