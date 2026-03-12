@@ -244,12 +244,25 @@ function renderPayPalButtons() {
         },
 
         onApprove(data, actions) {
-          return actions.order.capture().then(() => {
-            clearLocalCart();
-            renderCart();
-            showToast('PayPal payment completed ✓', 1800);
-          });
-        },
+         return actions.order.capture().then((details) => {
+
+        // clear cart
+         clearLocalCart();
+
+        // optional: store order info for thank-you page
+         localStorage.setItem("last_order", JSON.stringify({
+          orderID: data.orderID,
+          payer: details.payer?.name?.given_name || "",
+          email: details.payer?.email_address || "",
+          amount: details.purchase_units?.[0]?.amount?.value || ""
+         })); 
+
+         // redirect to order complete page
+         window.location.href = "/ordercomplete.html";
+
+      });
+    }
+  
 
         onError(err) {
           console.error('PayPal checkout error:', err);
