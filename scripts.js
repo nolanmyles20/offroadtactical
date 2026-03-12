@@ -244,32 +244,30 @@ function renderPayPalButtons() {
         },
 
         onApprove(data, actions) {
-  return actions.order.capture().then((details) => {
+          return actions.order.capture().then((details) => {
+            const cart = readCart();
+            const capture = details?.purchase_units?.[0]?.payments?.captures?.[0];
 
-    const cart = readCart();
-    const capture = details?.purchase_units?.[0]?.payments?.captures?.[0];
+            localStorage.setItem("last_order", JSON.stringify({
+              orderID: data.orderID || "",
+              transactionID: capture?.id || "",
+              payer: details?.payer?.name?.given_name || "",
+              email: details?.payer?.email_address || "",
+              amount: details?.purchase_units?.[0]?.amount?.value || "",
+              date: new Date().toISOString(),
+              items: (cart.lines || []).map(line => ({
+                title: line.title || "Item",
+                variantId: line.variantId || "",
+                qty: line.qty || 1,
+                price_cents: line.price_cents || 0
+              }))
+            }));
 
-    localStorage.setItem("last_order", JSON.stringify({
-      orderID: data.orderID || "",
-      transactionID: capture?.id || "",
-      payer: details?.payer?.name?.given_name || "",
-      email: details?.payer?.email_address || "",
-      amount: details?.purchase_units?.[0]?.amount?.value || "",
-      date: new Date().toISOString(),
-      items: (cart.lines || []).map(line => ({
-        title: line.title || "Item",
-        variantId: line.variantId || "",
-        qty: line.qty || 1,
-        price_cents: line.price_cents || 0
-      }))
-    }));
+            clearLocalCart();
+            window.location.href = "/ordercomplete.html";
+          });
+        },
 
-    clearLocalCart();
-    window.location.href = "/ordercomplete.html";
-  });
-});
-    }
-  
 
         onError(err) {
           console.error('PayPal checkout error:', err);
