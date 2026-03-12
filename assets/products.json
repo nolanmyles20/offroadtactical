@@ -131,9 +131,9 @@
     }
   },
   {
-    "id": "filter-adapter",
-    "title": "1/2-28 to 3/8-16 Filter Adapter",
-    "desc": "Solvent trap adapter.",
+    "id": "thread-adapter",
+    "title": "1/2-28 to 3/8-16 Thread Adapter",
+    "desc": "1/2-28 to 3/8-16 Thread Adapter",
     "basePrice": 20,
     "platforms": [
       "AR-15"
