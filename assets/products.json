@@ -151,6 +151,33 @@
       }
     }
   },
+
+    {
+    "id": "offroad-tactical-decal",
+    "title": "OFFROAD TACTICAL DECAL",
+    "desc": "OFFROAD TACTICAL DECAL",
+    "basePrice": 1,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Hardware"
+    
+    ],
+    "image": "assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png",
+    "images": [
+      "assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png"
+      
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    }
+   },
+  
   {
     "id": "ar15-extended-mag-release",
     "title": "AR-15 Extended Mag Release",
