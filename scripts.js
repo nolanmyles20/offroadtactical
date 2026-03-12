@@ -6,7 +6,7 @@ const CART_ADD   = `https://${SHOPIFY.shop}/cart/add`;
 const CART_NAME  = 'SHOPIFY_CART';
 
 // PayPal
-const PAYPAL_CLIENT_ID = 'AcpXk73OrlgWiXKK6KYECOgZlWi7sE8y3X2hZrJaaSPxSthY8hsMyOisbtoAo_qK1SvwqWWmE-0MYg6v';
+const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
 const PAYPAL_CURRENCY  = 'USD';
 
 // (Kept for future use; not used for badge now)
