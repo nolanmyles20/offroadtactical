@@ -387,7 +387,6 @@ function renderCart() {
       <div class="cart-actions">
         <a href="/" class="btn outline" id="continue-shopping">Continue shopping</a>
         <button id="cart-clear" class="btn outline">Clear Cart</button>
-        <button id="cart-checkout" class="btn primary">Checkout with Shopify</button>
       </div>
       <div class="cart-actions paypal-actions" style="margin-top:10px;">
         <div id="paypal-button-container" style="width:100%; max-width:320px;"></div>
