@@ -95,10 +95,11 @@ function setBadgeFromLocal() {
 }
 
 // build readable variation text
+// Build readable variation string safely
 const variations = [
-  (o1Sel?.value || '').trim(),
-  (o2Sel?.value || '').trim(),
-  (o3Sel?.value || '').trim()
+  o1Sel ? (o1Sel.value || '').trim() : '',
+  o2Sel ? (o2Sel.value || '').trim() : '',
+  o3Sel ? (o3Sel.value || '').trim() : ''
 ].filter(Boolean).join(' / ');
 
 const displayTitle = variations
