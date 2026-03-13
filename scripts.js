@@ -291,7 +291,7 @@ function ensureToastHost() {
   host.innerHTML = `<div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
   document.body.appendChild(host);
 }
-function showToast(msg = 'Item Added To Cart â', ms = 1100) {
+function showToast(msg = 'Item Added To Cart!', ms = 1100) {
   ensureToastHost();
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -820,7 +820,7 @@ function wireCards(items) {
         });
       }
 
-      showToast('Item Added To Cart â');
+      showToast('Item Added To Cart!');
     });
   });
 }
