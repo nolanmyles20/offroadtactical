@@ -1,326 +1,518 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ORDER COMPLETE</title>
+  <link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="scripts.js"></script>
+  <style>
+    .order-wrap{
+      max-width:920px;
+      margin:0 auto;
+      padding:12px 0 28px;
+    }
+    .order-hero{
+      display:flex;
+      justify-content:center;
+      margin:6px 0 18px;
+    }
+    .order-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:#d3d4d6;
+      color:#000;
+      border:2px solid #000;
+      padding:10px 18px;
+      clip-path:polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%);
+      font-size:14px;
+      letter-spacing:1.2px;
+    }
+    .order-card{
+      background:rgba(255,255,255,.96);
+      border:2px solid var(--border);
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 10px 26px rgba(0,0,0,.12);
+    }
+    .order-top{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px;
+      align-items:start;
+      margin-bottom:18px;
+    }
+    .order-top h1{
+      margin:0;
+    }
+    .order-status{
+      min-width:180px;
+      text-align:center;
+      padding:16px 18px;
+      border:2px solid #000;
+      border-radius:14px;
+      background:#111;
+      color:#fff;
+      font-size:14px;
+    }
+    .order-status .big{
+      display:block;
+      font-size:22px;
+      margin-top:6px;
+      color:#8fd18f;
+    }
+    .order-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin:20px 0;
+    }
+    .info-box{
+      background:#f6f7f8;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px 16px;
+    }
+    .info-box .label{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .info-box .value{
+      word-break:break-word;
+      font-size:15px;
+    }
+    .receipt-box{
+      margin-top:18px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+    }
+    .receipt-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+      background:#eef0f1;
+    }
+    .receipt-title{
+      font-size:16px;
+    }
+    .receipt-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+    }
+    .receipt-table th,
+    .receipt-table td{
+      padding:12px 16px;
+      border-bottom:1px solid #ddd;
+      text-align:left;
+      vertical-align:top;
+    }
+    .receipt-table th:last-child,
+    .receipt-table td:last-child{
+      text-align:right;
+      white-space:nowrap;
+    }
+    .receipt-table tfoot td{
+      font-weight:700;
+      background:#fafafa;
+    }
+    .order-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .clean-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:210px;
+      padding:12px 16px;
+      border:2px solid #000;
+      border-radius:10px;
+      background:#d3d4d6;
+      color:#000;
+      cursor:pointer;
+      font:inherit;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      text-decoration:none;
+    }
+    .clean-btn:hover{
+      background:#111;
+      color:#fff;
+    }
+    .clean-btn.primary{
+      background:#111;
+      color:#fff;
+    }
+    .clean-btn.primary:hover{
+      background:#2b2b2b;
+    }
+    .empty-state{
+      text-align:center;
+      padding:24px 10px 8px;
+    }
+    .empty-state p{
+      max-width:620px;
+      margin:10px auto;
+    }
 
-<title>ORDER COMPLETE</title>
+    @media (max-width:800px){
+      .order-top{
+        grid-template-columns:1fr;
+      }
+      .order-grid{
+        grid-template-columns:1fr;
+      }
+      .receipt-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .receipt-table{
+        font-size:13px;
+      }
+      .receipt-table th,
+      .receipt-table td{
+        padding:10px 12px;
+      }
+      .clean-btn{
+        width:100%;
+      }
+    }
 
-<link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
-<link rel="stylesheet" href="styles.css">
-<script defer src="scripts.js"></script>
+    @media print {
+      body{
+        background:#fff !important;
+      }
 
-<style>
+      .nav,
+      .menu,
+      .footer,
+      .order-actions,
+      .nav-toggle,
+      .nav-cart,
+      .links,
+      .nav-mobile-logo{
+        display:none !important;
+      }
 
-.order-card{
-background:#fff;
-border:2px solid var(--border);
-border-radius:14px;
-padding:24px;
-max-width:900px;
-margin:20px auto;
-box-shadow:0 6px 20px rgba(0,0,0,.12);
-}
+      .container,
+      .order-wrap,
+      .order-card{
+        max-width:100% !important;
+        width:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+        box-shadow:none !important;
+        border:none !important;
+        background:#fff !important;
+      }
 
-.order-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px;
-margin-top:20px;
-}
+      .order-pill{
+        border:2px solid #000 !important;
+        background:#fff !important;
+      }
 
-.info-box{
-background:#f6f7f8;
-border:1px solid var(--border);
-border-radius:10px;
-padding:12px;
-}
-
-.label{
-font-size:12px;
-color:var(--muted);
-margin-bottom:4px;
-display:block;
-}
-
-.value{
-font-size:15px;
-}
-
-.receipt-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-.receipt-table th,
-.receipt-table td{
-padding:10px;
-border-bottom:1px solid #ddd;
-}
-
-.receipt-table th{
-text-align:left;
-}
-
-.receipt-table td:last-child,
-.receipt-table th:last-child{
-text-align:right;
-}
-
-.receipt-table tfoot td{
-font-weight:700;
-}
-
-.order-actions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:20px;
-}
-
-.clean-btn{
-padding:12px 16px;
-border:2px solid #000;
-border-radius:10px;
-background:#d3d4d6;
-cursor:pointer;
-text-decoration:none;
-color:#000;
-}
-
-.clean-btn:hover{
-background:#000;
-color:#fff;
-}
-
-.clean-btn.primary{
-background:#000;
-color:#fff;
-}
-
-.clean-btn.primary:hover{
-background:#333;
-}
-
-@media (max-width:800px){
-.order-grid{
-grid-template-columns:1fr;
-}
-}
-
-</style>
+      .receipt-box,
+      .info-box{
+        break-inside:avoid;
+        page-break-inside:avoid;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <nav class="nav">
+    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
 
-<nav class="nav">
+    <span class="nav-title"></span>
 
-<a href="/" class="logo-link">
-<img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" class="logo">
-</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
 
-<span class="nav-title"></span>
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
 
-<button class="nav-toggle" aria-expanded="false">
-<span class="bar"></span>
-<span class="bar"></span>
-<span class="bar"></span>
-</button>
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
 
-<img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png">
+    <a id="cart-link" class="nav-cart" href="/cart.html" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
+  </nav>
 
-<div class="links">
-<a class="tab nav-tab" href="/">HOME</a>
-<a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
-<a class="tab nav-tab" href="/jeep.html">JEEP</a>
-<a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
-<a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
-<a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
-<a class="tab nav-tab" href="/contact.html">CONTACT</a>
-</div>
+  <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+    <a class="tab nav-tab" href="/">HOME</a>
+    <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+    <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+    <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+    <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+    <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+  </div>
 
-<a id="cart-link" class="nav-cart" href="/cart.html">
-<img src="assets/cart-icon.svg" class="cart-icon">
-CART <span id="cart-count">0</span>
-</a>
+  <main class="container">
+    <div class="order-wrap">
+      <div class="order-hero">
+        <div class="order-pill">PAYMENT RECEIVED</div>
+      </div>
 
-</nav>
+      <div class="order-card" id="order-card">
+        <div class="empty-state">
+          <h1>ORDER COMPLETE</h1>
+          <p>We are loading your receipt details now.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
-<div id="main-menu" class="menu">
-<a class="tab nav-tab" href="/">HOME</a>
-<a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
-<a class="tab nav-tab" href="/jeep.html">JEEP</a>
-<a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
-<a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
-<a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
-<a class="tab nav-tab" href="/contact.html">CONTACT</a>
-</div>
+  <footer class="footer">© 2026 OFFROAD TACTICAL — HUMVEE • JEEP • AR-15 • CROSS-KARTS</footer>
 
-<main class="container">
+  <script>
+    function moneyFromString(v){
+      const n = Number(v || 0);
+      return '$' + n.toFixed(2);
+    }
 
-<div class="order-card" id="order-card">
+    function moneyFromCents(v){
+      return '$' + (Number(v || 0) / 100).toFixed(2);
+    }
 
-<h1>ORDER COMPLETE</h1>
-<p>Your PayPal payment has been received.</p>
+    function esc(s){
+      return String(s ?? '').replace(/[&<>"']/g, m => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m]));
+    }
 
-<div class="order-grid">
+    function getStoredOrder(){
+      try { return JSON.parse(localStorage.getItem('last_order') || '{}'); }
+      catch { return {}; }
+    }
 
-<div class="info-box">
-<span class="label">ORDER ID</span>
-<div class="value" id="order-id"></div>
-</div>
+    function downloadReceiptPdf(){
+      document.body.classList.add('printing-receipt');
+      window.print();
+      setTimeout(() => {
+        document.body.classList.remove('printing-receipt');
+      }, 500);
+    }
 
-<div class="info-box">
-<span class="label">PAYPAL TRANSACTION</span>
-<div class="value" id="transaction-id"></div>
-</div>
+    function bindReceiptButton(){
+      const btn = document.getElementById('download-receipt-btn');
+      if (btn) btn.addEventListener('click', downloadReceiptPdf);
+    }
 
-<div class="info-box">
-<span class="label">CUSTOMER</span>
-<div class="value" id="payer-name"></div>
-</div>
+    function renderBlankOrderPage(){
+      const card = document.getElementById('order-card');
+      card.innerHTML = `
+        <div class="order-top">
+          <div>
+            <h1>ORDER COMPLETE</h1>
+            <p>No saved order details were found in this browser.</p>
+          </div>
+          <div class="order-status">
+            STATUS
+            <span class="big" style="color:#ccc;">NO DATA</span>
+          </div>
+        </div>
 
-<div class="info-box">
-<span class="label">EMAIL</span>
-<div class="value" id="payer-email"></div>
-</div>
+        <div class="order-grid">
+          <div class="info-box">
+            <span class="label">ORDER ID</span>
+            <div class="value">N/A</div>
+          </div>
+          <div class="info-box">
+            <span class="label">PAYPAL TRANSACTION ID</span>
+            <div class="value">N/A</div>
+          </div>
+          <div class="info-box">
+            <span class="label">CUSTOMER</span>
+            <div class="value">N/A</div>
+          </div>
+          <div class="info-box">
+            <span class="label">EMAIL</span>
+            <div class="value">N/A</div>
+          </div>
+          <div class="info-box">
+            <span class="label">ORDER DATE</span>
+            <div class="value">${esc(new Date().toLocaleString())}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">TOTAL PAID</span>
+            <div class="value">$0.00</div>
+          </div>
+        </div>
 
-<div class="info-box">
-<span class="label">DATE</span>
-<div class="value" id="order-date"></div>
-</div>
+        <div class="receipt-box">
+          <div class="receipt-head">
+            <div class="receipt-title">Receipt Summary</div>
+            <div>Total: <strong>$0.00</strong></div>
+          </div>
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Line Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4">No order items available.</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">Total Paid</td>
+                <td>$0.00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
 
-<div class="info-box">
-<span class="label">TOTAL</span>
-<div class="value" id="order-total"></div>
-</div>
+        <div class="order-actions">
+          <button type="button" class="clean-btn primary" id="download-receipt-btn">Download PDF Receipt</button>
+          <a class="clean-btn" href="/">Continue Shopping</a>
+          <a class="clean-btn" href="/contact.html">Contact Us</a>
+        </div>
+      `;
+      bindReceiptButton();
+    }
 
-</div>
+    function renderOrderPage(){
+      const order = getStoredOrder();
+      const card = document.getElementById('order-card');
 
-<table class="receipt-table">
+      if (!order || !order.orderID) {
+        renderBlankOrderPage();
+        return;
+      }
 
-<thead>
-<tr>
-<th>Item</th>
-<th>Qty</th>
-<th>Unit</th>
-<th>Total</th>
-</tr>
-</thead>
+      const items = Array.isArray(order.items) ? order.items : [];
+      const rows = items.map(item => {
+        const qty = Number(item.qty || 1);
+        const lineTotal = Number(item.price_cents || 0) * qty;
+        return `
+          <tr>
+            <td>
+              <strong>${esc(item.title || 'Item')}</strong><br>
+              <span style="color:var(--muted); font-size:12px;">SKU / VARIANT ID: ${esc(item.variantId || '')}</span>
+            </td>
+            <td>${qty}</td>
+            <td>${moneyFromCents(item.price_cents || 0)}</td>
+            <td>${moneyFromCents(lineTotal)}</td>
+          </tr>
+        `;
+      }).join('');
 
-<tbody id="receipt-items"></tbody>
+      const friendlyDate = order.date
+        ? new Date(order.date).toLocaleString()
+        : new Date().toLocaleString();
 
-<tfoot>
-<tr>
-<td colspan="3">Total Paid</td>
-<td id="receipt-total"></td>
-</tr>
-</tfoot>
+      card.innerHTML = `
+        <div class="order-top">
+          <div>
+            <h1>ORDER COMPLETE</h1>
+            <p>Thank you${order.payer ? ', ' + esc(order.payer) : ''}. Your PayPal payment has been captured successfully.</p>
+          </div>
+          <div class="order-status">
+            STATUS
+            <span class="big">PAID</span>
+          </div>
+        </div>
 
-</table>
+        <div class="order-grid">
+          <div class="info-box">
+            <span class="label">ORDER ID</span>
+            <div class="value">${esc(order.orderID || '')}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">PAYPAL TRANSACTION ID</span>
+            <div class="value">${esc(order.transactionID || '')}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">CUSTOMER</span>
+            <div class="value">${esc(order.payer || '')}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">EMAIL</span>
+            <div class="value">${esc(order.email || '')}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">ORDER DATE</span>
+            <div class="value">${esc(friendlyDate)}</div>
+          </div>
+          <div class="info-box">
+            <span class="label">TOTAL PAID</span>
+            <div class="value">${moneyFromString(order.amount || 0)}</div>
+          </div>
+        </div>
 
-<div class="order-actions">
+        <div class="receipt-box">
+          <div class="receipt-head">
+            <div class="receipt-title">Receipt Summary</div>
+            <div>Total: <strong>${moneyFromString(order.amount || 0)}</strong></div>
+          </div>
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th>Line Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows || '<tr><td colspan="4">No items found for this receipt.</td></tr>'}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">Total Paid</td>
+                <td>${moneyFromString(order.amount || 0)}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
 
-<button class="clean-btn primary" id="download-receipt">
-Download Receipt
-</button>
+        <div class="order-actions">
+          <button type="button" class="clean-btn primary" id="download-receipt-btn">Download PDF Receipt</button>
+          <a class="clean-btn" href="/">Continue Shopping</a>
+          <a class="clean-btn" href="/contact.html">Contact Us</a>
+        </div>
+      `;
 
-<a class="clean-btn" href="/">Continue Shopping</a>
+      bindReceiptButton();
+    }
 
-</div>
-
-</div>
-
-</main>
-
-<footer class="footer">
-© 2026 OFFROAD TACTICAL — HUMVEE • JEEP • AR-15 • CROSS-KARTS
-</footer>
-
-<script>
-
-function money(v){
-return "$" + Number(v).toFixed(2)
-}
-
-function moneyCents(v){
-return "$" + (v/100).toFixed(2)
-}
-
-function loadOrder(){
-
-const order = JSON.parse(localStorage.getItem("last_order") || "{}")
-
-if(!order.orderID) return
-
-document.getElementById("order-id").textContent = order.orderID
-document.getElementById("transaction-id").textContent = order.transactionID
-document.getElementById("payer-name").textContent = order.payer
-document.getElementById("payer-email").textContent = order.email
-document.getElementById("order-date").textContent = new Date(order.date).toLocaleString()
-document.getElementById("order-total").textContent = money(order.amount)
-document.getElementById("receipt-total").textContent = money(order.amount)
-
-const body = document.getElementById("receipt-items")
-
-order.items.forEach(item=>{
-
-const row = document.createElement("tr")
-
-row.innerHTML = `
-<td>
-<strong>${item.title}</strong><br>
-<span style="font-size:12px;color:var(--muted)">
-SKU: ${item.variantId}
-</span>
-</td>
-<td>${item.qty}</td>
-<td>${moneyCents(item.price_cents)}</td>
-<td>${moneyCents(item.price_cents * item.qty)}</td>
-`
-
-body.appendChild(row)
-
-})
-
-}
-
-function downloadReceipt(){
-
-const order = JSON.parse(localStorage.getItem("last_order") || "{}")
-
-let text = "OFFROAD TACTICAL RECEIPT\n\n"
-text += "Order ID: " + order.orderID + "\n"
-text += "Transaction ID: " + order.transactionID + "\n"
-text += "Customer: " + order.payer + "\n"
-text += "Email: " + order.email + "\n\n"
-
-order.items.forEach(item=>{
-text += item.title + "\n"
-text += "SKU: " + item.variantId + "\n"
-text += "Qty: " + item.qty + "\n\n"
-})
-
-text += "Total: $" + order.amount
-
-const blob = new Blob([text],{type:"text/plain"})
-const url = URL.createObjectURL(blob)
-
-const a = document.createElement("a")
-a.href = url
-a.download = "offroad-tactical-receipt.txt"
-a.click()
-
-URL.revokeObjectURL(url)
-
-}
-
-document.getElementById("download-receipt").onclick = downloadReceipt
-
-loadOrder()
-
-</script>
-
+    renderOrderPage();
+  </script>
 </body>
 </html>
