@@ -696,7 +696,7 @@ function wireCards(items) {
           });
         }
 
-        showToast('Item Added To Cart â');
+        showToast('Item Added To Cart!');
       });
       return;
     }
