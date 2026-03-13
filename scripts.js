@@ -337,7 +337,7 @@ function renderCart() {
         <button class="qty-btn plus" aria-label="Increase">+</button>
       </div>
       <div class="cart-price">${formatMoney((l.price_cents || 0) * (l.qty || 1))}</div>
-      <button class="cart-remove" aria-label="Remove">Ã</button>
+      <button class="cart-remove" aria-label="Remove">X</button>
     </div>
   `).join('');
 
