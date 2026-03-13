@@ -1,7 +1,7 @@
 // ================= CONFIG =================
 // PayPal
 const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
-const PAYPAL_CURRENCY  = 'USD';
+const PAYPAL_CURRENCY = 'USD';
 
 const DEBUG = false;
 
@@ -93,7 +93,6 @@ function cartSubtotalCents() {
 function setBadgeFromLocal() {
   setBadge(cartCount());
 }
-
 function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, productId }) {
   const c = readCart();
   const key = String(variantId);
@@ -118,7 +117,6 @@ function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, pro
   setBadgeFromLocal();
   return c;
 }
-
 function setLineQty(variantId, qty) {
   const c = readCart();
   const line = c.lines.find(l => l.variantId === String(variantId));
@@ -188,7 +186,7 @@ function getPayPalItemsFromCart() {
     quantity: String(Math.max(1, l.qty | 0)),
     unit_amount: {
       currency_code: PAYPAL_CURRENCY,
-      value: ((Number(l.price_cents || 0)) / 100).toFixed(2)
+      value: (Number(l.price_cents || 0) / 100).toFixed(2)
     }
   }));
 }
@@ -248,26 +246,25 @@ function renderPayPalButtons() {
             const cart = readCart();
             const capture = details?.purchase_units?.[0]?.payments?.captures?.[0];
 
-            localStorage.setItem("last_order", JSON.stringify({
-              orderID: data.orderID || "",
-              transactionID: capture?.id || "",
-              payer: details?.payer?.name?.given_name || "",
-              email: details?.payer?.email_address || "",
-              amount: details?.purchase_units?.[0]?.amount?.value || "",
+            localStorage.setItem('last_order', JSON.stringify({
+              orderID: data.orderID || '',
+              transactionID: capture?.id || '',
+              payer: details?.payer?.name?.given_name || '',
+              email: details?.payer?.email_address || '',
+              amount: details?.purchase_units?.[0]?.amount?.value || '',
               date: new Date().toISOString(),
               items: (cart.lines || []).map(line => ({
-                title: line.title || "Item",
-                variantId: line.variantId || "",
+                title: line.title || 'Item',
+                variantId: line.variantId || '',
                 qty: line.qty || 1,
                 price_cents: line.price_cents || 0
               }))
             }));
 
             clearLocalCart();
-            window.location.href = "/ordercomplete.html";
+            window.location.href = '/ordercomplete.html';
           });
         },
-
 
         onError(err) {
           console.error('PayPal checkout error:', err);
@@ -285,7 +282,7 @@ function renderPayPalButtons() {
     });
 }
 
-// ============== TOAST (Item Added â) ==============
+// ============== TOAST (Item Added) ==============
 let __toastTimer = null;
 function ensureToastHost() {
   if (document.getElementById('toast-host')) return;
@@ -308,12 +305,9 @@ function setBadge(n) {
   const el = document.getElementById('cart-count');
   if (el) el.textContent = String(n ?? 0);
 }
-
 async function refreshBadge() {
   setBadgeFromLocal();
 }
-
-
 
 // ============== CART PAGE RENDER + CHECKOUT ==============
 function renderCart() {
@@ -338,12 +332,12 @@ function renderCart() {
         <div class="cart-variant">Variant ID: ${escapeHtml(l.variantId)}</div>
       </div>
       <div class="cart-qty">
-        <button class="qty-btn minus" aria-label="Decrease">â</button>
+        <button class="qty-btn minus" aria-label="Decrease">-</button>
         <input class="qty-input" type="number" min="1" value="${l.qty}">
         <button class="qty-btn plus" aria-label="Increase">+</button>
       </div>
       <div class="cart-price">${formatMoney((l.price_cents || 0) * (l.qty || 1))}</div>
-      <button class="cart-remove" aria-label="Remove">â</button>
+      <button class="cart-remove" aria-label="Remove">Ã</button>
     </div>
   `).join('');
 
@@ -356,7 +350,7 @@ function renderCart() {
       <div class="cart-actions">
         <a href="/" class="btn outline" id="continue-shopping">Continue shopping</a>
         <button id="cart-clear" class="btn outline">Clear Cart</button>
-        </div>
+      </div>
       <div class="cart-actions paypal-actions" style="margin-top:10px;">
         <div id="paypal-button-container" style="width:100%; max-width:320px;"></div>
       </div>
@@ -400,7 +394,6 @@ function renderCart() {
 
   renderPayPalButtons();
 }
-
 
 // ================= MOBILE NAV & SCROLL =================
 function setNavHeightVar() {
@@ -470,8 +463,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const mq = window.matchMedia('(min-width: 801px)');
-    if (mq.addEventListener) mq.addEventListener('change', (m) => { if (m.matches) closeMobileMenu(toggle, menu); });
-    else if (mq.addListener) mq.addListener((m) => { if (m.matches) closeMobileMenu(toggle, menu); });
+    if (mq.addEventListener) {
+      mq.addEventListener('change', (m) => { if (m.matches) closeMobileMenu(toggle, menu); });
+    } else if (mq.addListener) {
+      mq.addListener((m) => { if (m.matches) closeMobileMenu(toggle, menu); });
+    }
   }
 
   setBadgeFromLocal();
@@ -488,8 +484,8 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (e) {
     if (DEBUG) console.warn('initFilters error', e);
   }
-  loadProducts().catch(err => console.error('loadProducts failed:', err));
 
+  loadProducts().catch(err => console.error('loadProducts failed:', err));
   renderCart();
 });
 
@@ -801,7 +797,7 @@ function wireCards(items) {
       ].filter(Boolean).join(' / ');
 
       const displayTitle = variations
-        ? `${product.title} â ${variations}`
+        ? `${product.title} - ${variations}`
         : product.title;
 
       addToLocalCart({
