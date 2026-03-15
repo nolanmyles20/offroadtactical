@@ -21,7 +21,7 @@
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Mini Pry Bar"],
-    "images": ["assets/mini-pry-bar.png"],
+    "images": ["assets/coming-soon.svg"],
     "variant_id": "22222222222222",
     "inventory": 0
   },
@@ -34,7 +34,7 @@
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Mini Sledge"],
-    "images": ["assets/mini-sledge.png"],
+    "images": ["assets/coming-soon.svg"],
     "variant_id": "33333333333333",
     "inventory": 0
   },
@@ -47,7 +47,7 @@
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Tactical Hammer"],
-    "images": ["assets/tactical-hammer.png"],
+    "images": ["assets/coming-soon.svg"],
     "variant_id": "44444444444444",
     "inventory": 0
   }
