@@ -1,0 +1,98 @@
+[
+  {
+    "id": "seatbelt-delete-tool",
+    "title": "SEAT BELT DELETE EDC TOOL",
+    "desc": "Compact seat belt insert style EDC tool with tactical styling, bottle opener feature, and OT branding concept.",
+    "basePrice": 25,
+    "platforms": [
+      "EDC"
+    ],
+    "tags": [
+      "EDC",
+      "Bottle Opener",
+      "Tactical"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "images": [
+      "assets/coming-soon-centered.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": "VAR_EDC_SEATBELT_DELETE"
+      }
+    }
+  },
+  {
+    "id": "mini-pry-bar",
+    "title": "MINI PRY BAR",
+    "desc": "Compact tactical pry bar for everyday carry with skeletonized styling and utility-focused form.",
+    "basePrice": 22,
+    "platforms": [
+      "EDC"
+    ],
+    "tags": [
+      "EDC",
+      "Pry Bar",
+      "Tactical"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "images": [
+      "assets/coming-soon-centered.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": "VAR_EDC_MINI_PRY_BAR"
+      }
+    }
+  },
+  {
+    "id": "mini-sledge",
+    "title": "MINI SLEDGE",
+    "desc": "Compact mini sledge concept for offroad, shop, and emergency kit use with rugged tactical styling.",
+    "basePrice": 79,
+    "platforms": [
+      "EDC"
+    ],
+    "tags": [
+      "EDC",
+      "Hammer",
+      "Tool"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "images": [
+      "assets/coming-soon-centered.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": "VAR_EDC_MINI_SLEDGE"
+      }
+    }
+  },
+  {
+    "id": "tactical-hammer",
+    "title": "TACTICAL HAMMER",
+    "desc": "Full-size tactical hammer concept with aggressive utility styling for shop, camp, and recovery use.",
+    "basePrice": 129,
+    "platforms": [
+      "EDC"
+    ],
+    "tags": [
+      "EDC",
+      "Hammer",
+      "Tactical"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "images": [
+      "assets/coming-soon-centered.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": "VAR_EDC_TACTICAL_HAMMER"
+      }
+    }
+  }
+]
