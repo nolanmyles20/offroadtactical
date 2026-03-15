@@ -640,3 +640,14 @@ h1, h2{
   }
 
 }
+.stock-note{
+  margin: 6px 0 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #b22222;
+  text-transform: uppercase;
+}
+
+.backorder-btn{
+  opacity: 1;
+}
