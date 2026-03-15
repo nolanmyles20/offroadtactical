@@ -4,6 +4,7 @@ const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7
 const PAYPAL_CURRENCY = 'USD';
 
 const DEBUG = false;
+const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
 
 // Pending scroll target if hotspot clicked before products render
 let __pendingScrollSel = null;
@@ -491,9 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ================= DATA LOAD =================
 async function loadProducts() {
-  const res = await fetch('assets/products.json', { cache: 'no-store' });
+  const res = await fetch(PRODUCTS_JSON_PATH, { cache: 'no-store' });
   if (!res.ok) {
-    console.error('products.json fetch failed:', res.status, res.statusText);
+    console.error('Product JSON fetch failed:', res.status, res.statusText, PRODUCTS_JSON_PATH);
     return;
   }
   const items = await res.json();
@@ -502,15 +503,15 @@ async function loadProducts() {
     const cat = grid.getAttribute('data-category');
     const activeTags = getActiveTags();
     const subset = items
-      .filter(p => p.platforms.includes(cat))
-      .filter(p => activeTags.length === 0 || activeTags.every(t => p.tags.includes(t)));
+      .filter(p => Array.isArray(p.platforms) && p.platforms.includes(cat))
+      .filter(p => activeTags.length === 0 || activeTags.every(t => Array.isArray(p.tags) && p.tags.includes(t)));
     grid.innerHTML = subset.map(p => productCard(p)).join('') || '<p>No products match those filters.</p>';
   });
 
   const fg = document.getElementById('featured-grid');
   if (fg) {
     const platforms = ['Humvee', 'Jeep', 'AR-15', 'Cross-Karts'];
-    const picks = platforms.map(pl => items.find(p => p.platforms.includes(pl))).filter(Boolean);
+    const picks = platforms.map(pl => items.find(p => Array.isArray(p.platforms) && p.platforms.includes(pl))).filter(Boolean);
     fg.innerHTML = picks.map(p => productCard(p)).join('');
   }
 
@@ -538,7 +539,7 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${p.platforms.join(' â¢ ')}</div>
+        <div class="badge">${p.platforms.join(' • ')}</div>
         <h3>${escapeHtml(p.title)}</h3>
         <p>${escapeHtml(p.desc)}</p>
         <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -572,7 +573,7 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${p.platforms.join(' â¢ ')}</div>
+      <div class="badge">${p.platforms.join(' • ')}</div>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.desc)}</p>
       <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
