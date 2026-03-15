@@ -1,98 +1,54 @@
 [
   {
-    "id": "seatbelt-delete-tool",
-    "title": "SEAT BELT DELETE EDC TOOL",
-    "desc": "Compact seat belt insert style EDC tool with tactical styling, bottle opener feature, and OT branding concept.",
-    "basePrice": 25,
-    "platforms": [
-      "EDC"
-    ],
-    "tags": [
-      "EDC",
-      "Bottle Opener",
-      "Tactical"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "images": [
-      "assets/4A06852E-279D-49C0-88F4-3D715B272DFE.png"
-    ],
+    "id": "seatbelt-device",
+    "title": "Seat Belt Device",
+    "desc": "Tactical seat belt insert tool with Offroad Tactical styling.",
+    "basePrice": 24.99,
     "simple": true,
-    "variant_ids": {
-      "Solo": {
-        "Default": "VAR_EDC_SEATBELT_DELETE"
-      }
-    }
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Seat Belt Device"],
+    "images": ["assets/seatbelt-device.png"],
+    "variant_id": "11111111111111",
+    "inventory": 2
   },
   {
     "id": "mini-pry-bar",
-    "title": "MINI PRY BAR",
-    "desc": "Compact tactical pry bar for everyday carry with skeletonized styling and utility-focused form.",
-    "basePrice": 22,
-    "platforms": [
-      "EDC"
-    ],
-    "tags": [
-      "EDC",
-      "Pry Bar",
-      "Tactical"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "images": [
-      "assets/coming-soon-centered.png"
-    ],
+    "title": "Mini Pry Bar",
+    "desc": "Compact everyday carry pry tool built for utility and durability.",
+    "basePrice": 19.99,
     "simple": true,
-    "variant_ids": {
-      "Solo": {
-        "Default": "VAR_EDC_MINI_PRY_BAR"
-      }
-    }
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Mini Pry Bar"],
+    "images": ["assets/mini-pry-bar.png"],
+    "variant_id": "22222222222222",
+    "inventory": 8
   },
   {
     "id": "mini-sledge",
-    "title": "MINI SLEDGE",
-    "desc": "Compact mini sledge concept for offroad, shop, and emergency kit use with rugged tactical styling.",
-    "basePrice": 79,
-    "platforms": [
-      "EDC"
-    ],
-    "tags": [
-      "EDC",
-      "Hammer",
-      "Tool"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "images": [
-      "assets/coming-soon-centered.png"
-    ],
+    "title": "Mini Sledge",
+    "desc": "Small tactical sledge concept for compact carry and field use.",
+    "basePrice": 59.99,
     "simple": true,
-    "variant_ids": {
-      "Solo": {
-        "Default": "VAR_EDC_MINI_SLEDGE"
-      }
-    }
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Mini Sledge"],
+    "images": ["assets/mini-sledge.png"],
+    "variant_id": "33333333333333",
+    "inventory": 0
   },
   {
     "id": "tactical-hammer",
-    "title": "TACTICAL HAMMER",
-    "desc": "Full-size tactical hammer concept with aggressive utility styling for shop, camp, and recovery use.",
-    "basePrice": 129,
-    "platforms": [
-      "EDC"
-    ],
-    "tags": [
-      "EDC",
-      "Hammer",
-      "Tactical"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "images": [
-      "assets/coming-soon-centered.png"
-    ],
+    "title": "Tactical Hammer",
+    "desc": "Modern tactical hammer design for utility, carry, and light field work.",
+    "basePrice": 79.99,
     "simple": true,
-    "variant_ids": {
-      "Solo": {
-        "Default": "VAR_EDC_TACTICAL_HAMMER"
-      }
-    }
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Tactical Hammer"],
+    "images": ["assets/tactical-hammer.png"],
+    "variant_id": "44444444444444",
+    "inventory": 0
   }
 ]
