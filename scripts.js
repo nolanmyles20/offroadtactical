@@ -1,15 +1,13 @@
 // ================= CONFIG =================
-// PayPal
 const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
 const PAYPAL_CURRENCY = 'USD';
 
 const DEBUG = false;
 const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
 
-// Pending scroll target if hotspot clicked before products render
 let __pendingScrollSel = null;
 
-// Shadow (legacy helper kept for back-compat; not needed when using local cart)
+// ================= SHADOW CART HELPERS =================
 function getShadowQty() {
   return Number(localStorage.getItem('shadowCartQty') || 0) || 0;
 }
@@ -20,7 +18,7 @@ function bumpShadow(q) {
   setShadowQty(getShadowQty() + Math.max(1, Number(q) || 1));
 }
 
-// ============== IMAGE HELPERS ==============
+// ================= IMAGE HELPERS =================
 function primaryImage(p) {
   if (Array.isArray(p.images) && p.images.length) return p.images[0];
   return p.image || 'assets/placeholder.png';
@@ -30,7 +28,7 @@ function allImages(p) {
   return p.image ? [p.image] : ['assets/placeholder.png'];
 }
 
-// ============== SIMPLE VARIANT HELPER ==============
+// ================= SIMPLE VARIANT HELPERS =================
 function defaultSimpleVariantId(p) {
   const idFromMap = p?.variant_ids?.Solo?.Default;
   if (idFromMap != null) return String(idFromMap);
@@ -41,7 +39,7 @@ function defaultSimpleVariantId(p) {
   return null;
 }
 
-// ============== VARIANT NODE HELPERS ==============
+// ================= VARIANT NODE HELPERS =================
 function isTerminalVariantNode(node) {
   if (typeof node === 'string' || typeof node === 'number') return true;
   if (node && typeof node === 'object') {
@@ -67,7 +65,7 @@ function getVariantPriceFromNode(p, node, fallbackCents) {
   return fallbackCents | 0;
 }
 
-// ============== LOCAL CART (source of truth) ==============
+// ================= LOCAL CART =================
 const LS_CART_KEY = 'headless_cart_v1';
 
 function readCart() {
@@ -143,7 +141,7 @@ function formatMoney(cents) {
   return `$${(Number(cents || 0) / 100).toFixed(2)}`;
 }
 
-// ============== GENERAL HELPERS ==============
+// ================= GENERAL HELPERS =================
 function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, s => ({
     '&': '&amp;',
@@ -154,7 +152,7 @@ function escapeHtml(str) {
   }[s]));
 }
 
-// ============== PAYPAL HELPERS ==============
+// ================= PAYPAL HELPERS =================
 function ensurePayPalSdk() {
   return new Promise((resolve, reject) => {
     if (window.paypal && typeof window.paypal.Buttons === 'function') {
@@ -283,7 +281,7 @@ function renderPayPalButtons() {
     });
 }
 
-// ============== TOAST (Item Added) ==============
+// ================= TOAST =================
 let __toastTimer = null;
 function ensureToastHost() {
   if (document.getElementById('toast-host')) return;
@@ -305,12 +303,15 @@ function showToast(msg = 'Item Added To Cart!', ms = 1100) {
 function setBadge(n) {
   const el = document.getElementById('cart-count');
   if (el) el.textContent = String(n ?? 0);
+
+  const el2 = document.getElementById('cartCount');
+  if (el2) el2.textContent = String(n ?? 0);
 }
 async function refreshBadge() {
   setBadgeFromLocal();
 }
 
-// ============== CART PAGE RENDER + CHECKOUT ==============
+// ================= CART PAGE =================
 function renderCart() {
   const root = document.getElementById('cart-root');
   if (!root) return;
@@ -396,7 +397,7 @@ function renderCart() {
   renderPayPalButtons();
 }
 
-// ================= MOBILE NAV & SCROLL =================
+// ================= NAV =================
 function setNavHeightVar() {
   const nav = document.querySelector('.nav');
   if (!nav) return;
@@ -497,21 +498,48 @@ async function loadProducts() {
     console.error('Product JSON fetch failed:', res.status, res.statusText, PRODUCTS_JSON_PATH);
     return;
   }
+
   const items = await res.json();
 
   document.querySelectorAll('#product-grid').forEach(grid => {
-    const cat = grid.getAttribute('data-category');
+    const cat = (grid.getAttribute('data-category') || '').trim();
     const activeTags = getActiveTags();
-    const subset = items
-      .filter(p => Array.isArray(p.platforms) && p.platforms.includes(cat))
-      .filter(p => activeTags.length === 0 || activeTags.every(t => Array.isArray(p.tags) && p.tags.includes(t)));
+
+    const subset = items.filter(p => {
+      const platforms = Array.isArray(p.platforms)
+        ? p.platforms
+        : (p.platform ? [p.platform] : []);
+
+      const category = (p.category || '').trim();
+
+      const matchesCategory =
+        !cat ||
+        platforms.includes(cat) ||
+        category === cat;
+
+      const tags = Array.isArray(p.tags) ? p.tags : [];
+      const matchesTags =
+        activeTags.length === 0 ||
+        activeTags.every(t => tags.includes(t));
+
+      return matchesCategory && matchesTags;
+    });
+
     grid.innerHTML = subset.map(p => productCard(p)).join('') || '<p>No products match those filters.</p>';
   });
 
   const fg = document.getElementById('featured-grid');
   if (fg) {
-    const platforms = ['Humvee', 'Jeep', 'AR-15', 'Cross-Karts'];
-    const picks = platforms.map(pl => items.find(p => Array.isArray(p.platforms) && p.platforms.includes(pl))).filter(Boolean);
+    const platformsWanted = ['Humvee', 'Jeep', 'AR-15', 'Cross-Karts'];
+    const picks = platformsWanted
+      .map(pl => items.find(p => {
+        const platforms = Array.isArray(p.platforms)
+          ? p.platforms
+          : (p.platform ? [p.platform] : []);
+        return platforms.includes(pl) || p.category === pl;
+      }))
+      .filter(Boolean);
+
     fg.innerHTML = picks.map(p => productCard(p)).join('');
   }
 
@@ -527,6 +555,8 @@ async function loadProducts() {
 // ================= RENDER =================
 function productCard(p) {
   const imgs = allImages(p);
+  const inventory = Number(p.inventory ?? 0);
+  const ctaText = inventory <= 0 ? 'BACKORDER' : 'ADD TO CART';
 
   if (p.simple) {
     return `
@@ -539,17 +569,18 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${p.platforms.join(' • ')}</div>
+        <div class="badge">${(p.platforms || []).join(' • ')}</div>
         <h3>${escapeHtml(p.title)}</h3>
         <p>${escapeHtml(p.desc)}</p>
         <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
+        ${inventory <= 0 ? `<p class="stock-note">Backorder</p>` : ``}
         <div class="controls">
           <div>
             <label>Qty</label>
             <input type="number" class="qty" min="1" value="1"/>
           </div>
         </div>
-        <button class="btn add">ADD TO CART</button>
+        <button class="btn add ${inventory <= 0 ? 'backorder-btn' : ''}">${ctaText}</button>
         ${marketplaceButtons(p)}
       </div>
     </div>`;
@@ -573,10 +604,11 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${p.platforms.join(' • ')}</div>
+      <div class="badge">${(p.platforms || []).join(' • ')}</div>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.desc)}</p>
       <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
+      ${inventory <= 0 ? `<p class="stock-note">Backorder</p>` : ``}
       <div class="controls">
         <div ${opt1.length <= 1 ? 'style="display:none"' : ''}>
           <label>${escapeHtml(labels.first || 'Option 1')}</label>
@@ -596,7 +628,7 @@ function productCard(p) {
         </div>
         <label class="checkbox" ${p.powdercoat_variant_id ? '' : 'style="display:none"'}><input type="checkbox" class="powder"/> Powdercoat Black +$${p.powdercoat_price || 50}</label>
       </div>
-      <button class="btn add">ADD TO CART</button>
+      <button class="btn add ${inventory <= 0 ? 'backorder-btn' : ''}">${ctaText}</button>
       ${marketplaceButtons(p)}
     </div>
   </div>`;
@@ -646,7 +678,7 @@ function marketplaceButtons(p) {
     : '';
 }
 
-// ================= WIRING =================
+// ================= WIRE CARDS =================
 function wireCards(items) {
   document.querySelectorAll('.card').forEach(card => {
     const product = items.find(x => x.id === card.dataset.id);
@@ -697,7 +729,7 @@ function wireCards(items) {
           });
         }
 
-        showToast('Item Added To Cart!');
+        showToast(Number(product.inventory ?? 0) <= 0 ? 'Added To Cart - Backorder' : 'Item Added To Cart!');
       });
       return;
     }
@@ -821,7 +853,7 @@ function wireCards(items) {
         });
       }
 
-      showToast('Item Added To Cart!');
+      showToast(Number(product.inventory ?? 0) <= 0 ? 'Added To Cart - Backorder' : 'Item Added To Cart!');
     });
   });
 }
@@ -835,6 +867,7 @@ function initFilters() {
       loadProducts();
     });
   });
+
   const params = new URLSearchParams(window.location.search);
   const tags = params.getAll('tag');
   if (tags.length) {
@@ -854,7 +887,7 @@ function updateUrlFromFilters() {
   history.replaceState({}, '', newUrl);
 }
 
-// ================= HOTSPOTS (Humvee + Jeep) =================
+// ================= HOTSPOTS =================
 document.addEventListener('click', (e) => {
   const spot = e.target.closest('.hotspot');
   if (!spot) return;
