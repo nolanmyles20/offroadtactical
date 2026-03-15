@@ -13,6 +13,19 @@
     "inventory": 2
   },
   {
+    "id": "seatbelt-device",
+    "title": "Seat Belt Device",
+    "desc": "Tactical seat belt insert tool with Offroad Tactical styling.",
+    "basePrice": 24.99,
+    "simple": true,
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Seat Belt Device"],
+    "images": ["assets/296ED9E4-92D0-49EE-A3A5-27292921CBBB.png"],
+    "variant_id": "11111111111111",
+    "inventory": 2
+  },
+  {
     "id": "mini-pry-bar",
     "title": "Mini Pry Bar",
     "desc": "Compact everyday carry pry tool built for utility and durability.",
