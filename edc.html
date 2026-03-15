@@ -1,139 +1,78 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EDC GEAR</title>
-
 <link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
 <link rel="stylesheet" href="styles.css">
-
 <script>
-/* Tell scripts.js to use the EDC product file */
-window.PRODUCTS_JSON_PATH = "assets/products_edc.json";
+  window.PRODUCTS_JSON_PATH = "assets/products_edc.json";
 </script>
-
 <script defer src="scripts.js"></script>
 </head>
 
 <body>
-
 <nav class="nav">
+    <!-- Logo (shown on desktop, hidden on mobile via CSS) -->
+    <a href="/" class="logo-link" aria-label="OFFROAD TACTICAL — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
 
-  <!-- Logo -->
-  <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
-    <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
-  </a>
+    <!-- Site Title -->
+    <span class="nav-title"></span>
 
-  <!-- Site Title -->
-  <div class="site-title">
-   OFFROAD TACTICAL
-  </div>
+    <!-- Mobile toggle -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
 
-  <!-- Mobile Menu -->
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <!-- Mobile logo -->
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
 
-  <!-- Navigation -->
-  <div class="nav-links" id="navLinks">
+    <!-- Desktop links -->
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+      <a class="tab nav-tab" href="/EDC.html">EDC</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
 
-    <a href="index.html">HOME</a>
-    <a href="ar15.html">GUN PARTS</a>
-    <a href="jeep.html">JEEP</a>
-    <a href="humvee.html">HUMVEE</a>
-    <a href="EDC.html" class="active">EDC</a>
-    <a href="contact.html">CONTACT</a>
-
-  </div>
-
-  <!-- Cart -->
-  <div class="cart-icon" onclick="openCart()">
-    🛒
-    <span id="cartCount">0</span>
-  </div>
-
+    <!-- Cart -->
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
 </nav>
 
-
-
-<!-- Page Header -->
-<section class="page-header">
-<h1>EVERYDAY CARRY</h1>
-<p>Tactical tools designed for daily carry and real-world use.</p>
-</section>
-
-
-
-<!-- Products Grid -->
-<section class="products">
-
-<div
-class="product-grid"
-data-category="EDC">
+<!-- MOBILE-only menu -->
+<div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+  <a class="tab nav-tab" href="/">HOME</a>
+  <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+  <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+  <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+  <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+  <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+  <a class="tab nav-tab" href="/EDC.html">EDC</a>
+  <a class="tab nav-tab" href="/contact.html">CONTACT</a>
 </div>
 
-</section>
+<main class="container">
+  <div class="product-header"><h1>EDC</h1></div>
 
+  <div class="filters">
+    <div class="toggle" data-tag="Seat Belt Device">Seat Belt Device</div>
+    <div class="toggle" data-tag="Mini Pry Bar">Mini Pry Bar</div>
+    <div class="toggle" data-tag="Mini Sledge">Mini Sledge</div>
+    <div class="toggle" data-tag="Tactical Hammer">Tactical Hammer</div>
+  </div>
 
+  <div id="product-grid" class="grid" data-category="EDC"></div>
+</main>
 
-<!-- Cart Panel -->
-<div id="cartPanel" class="cart-panel">
-
-<div class="cart-header">
-<h2>YOUR CART</h2>
-<button onclick="closeCart()">✕</button>
-</div>
-
-<div id="cartItems"></div>
-
-<div class="cart-footer">
-
-<div class="cart-total">
-Total:
-<span id="cartTotal">$0.00</span>
-</div>
-
-<button class="checkout-button" onclick="checkoutShopify()">
-Checkout
-</button>
-
-</div>
-
-</div>
-
-
-
-<footer class="footer">
-
-<div class="footer-inner">
-
-<div class="footer-logo">
-OFFROAD TACTICAL
-</div>
-
-<div class="footer-links">
-<a href="contact.html">Contact</a>
-<a href="#">Terms</a>
-<a href="#">Privacy</a>
-</div>
-
-<div class="footer-copy">
-© 2026 OFFROAD TACTICAL
-</div>
-
-</div>
-
-</footer>
-
-
-
-<script>
-
-function toggleMenu(){
-  document.getElementById("navLinks").classList.toggle("open")
-}
-
-</script>
-
-</body>
-</html>
+<footer class="footer">© 2026 OFFROAD TACTICAL — HUMVEE • JEEP • GUN PARTS • CROSS-KARTS • EDC</footer>
+</body></html>
