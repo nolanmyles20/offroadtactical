@@ -1,0 +1,211 @@
+[
+  {
+    "id": "thread-adapter",
+    "title": "1/2-28 to 3/8-16 Thread Adapter",
+    "desc": "1/2-28 to 3/8-16 Thread Adapter",
+    "basePrice": 20,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Thread Adapters",
+      "Accessory"
+    ],
+    "image": "assets/IMG_4585.jpeg",
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    },
+    "inventory": 2
+  },
+  {
+    "id": "offroad-tactical-decal",
+    "title": "OFFROAD TACTICAL DECAL",
+    "desc": "OFFROAD TACTICAL DECAL",
+    "basePrice": 1,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Hardware"
+    ],
+    "image": "assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png",
+    "images": [
+      "assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    },
+    "inventory": 0
+  },
+  {
+    "id": "ar15-extended-mag-release",
+    "title": "AR-15 Extended Mag Release",
+    "desc": "Extended magazine release for AR-15 — faster mag changes, textured pad for positive feel.",
+    "basePrice": 20,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "AR-15",
+      "Hardware",
+      "Mag Release"
+    ],
+    "image": "assets/IMG_4584.jpeg",
+    "images": [
+      "assets/IMG_4586.jpeg",
+      "assets/IMG_4584.jpeg",
+      "assets/ar15-extended-mag-release-angle2.png"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901234
+      }
+    },
+    "gunbroker_url": "https://www.gunbroker.com/Item/1162251660",
+    "inventory": 2
+  },
+  {
+    "id": "ar-flash-suppressor",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "CLAYMORE",
+    "basePrice": 35,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
+    "image": "assets/IMG_4494.jpeg",
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56": {
+          "1mm/.04”": "47465968894107",
+          "2mm/.08”": "47466418405531",
+          "3mm/.12”": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04”": "47465968926875",
+          "2mm/.08”": "47466418536603",
+          "3mm/.12”": "47466418569371"
+        }
+      },
+      "5/8-24": {
+        "5.56": {
+          "1mm/.04”": "47465973153947",
+          "2mm/.08”": "47466418471067",
+          "3mm/.12”": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04”": "47465973186715",
+          "2mm/.08”": "47466418602139",
+          "3mm/.12”": "47466418634907"
+        }
+      }
+    },
+    "ebay_url": "https://ebay.us/m/C1mzAB",
+    "inventory": 2
+  },
+  {
+    "id": "ar15-flash-2",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "PREDATOR",
+    "basePrice": 35,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
+    "image": "assets/IMG_4495.jpeg",
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56": {
+          "1mm/.04”": "47465968894107",
+          "2mm/.08”": "47466418405531",
+          "3mm/.12”": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04”": "47465968926875",
+          "2mm/.08”": "47466418536603",
+          "3mm/.12”": "47466418569371"
+        }
+      },
+      "5/8-24": {
+        "5.56": {
+          "1mm/.04”": "47465973153947",
+          "2mm/.08”": "47466418471067",
+          "3mm/.12”": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04”": "47465973186715",
+          "2mm/.08”": "47466418602139",
+          "3mm/.12”": "47466418634907"
+        }
+      }
+    },
+    "ebay_url": "https://ebay.us/m/C1mzAB",
+    "inventory": 2
+  },
+  {
+    "id": "ar15-flash-3",
+    "title": "NM CUSTOMS FLASH SUPPRESSOR",
+    "desc": "ROOK",
+    "basePrice": 35,
+    "platforms": [
+      "AR-15"
+    ],
+    "tags": [
+      "Flash Suppressors"
+    ],
+    "image": "assets/IMG_4496.jpeg",
+    "option_labels": {
+      "first": "Thread",
+      "second": "Caliber"
+    },
+    "variant_ids": {
+      "1/2-28": {
+        "5.56": {
+          "1mm/.04”": "47465968894107",
+          "2mm/.08”": "47466418405531",
+          "3mm/.12”": "47466418438299"
+        },
+        "9mm": {
+          "1mm/.04”": "47465968926875",
+          "2mm/.08”": "47466418536603",
+          "3mm/.12”": "47466418569371"
+        }
+      },
+      "5/8-24": {
+        "5.56": {
+          "1mm/.04”": "47465973153947",
+          "2mm/.08”": "47466418471067",
+          "3mm/.12”": "47466418503835"
+        },
+        "9mm": {
+          "1mm/.04”": "47465973186715",
+          "2mm/.08”": "47466418602139",
+          "3mm/.12”": "47466418634907"
+        }
+      }
+    },
+    "ebay_url": "https://ebay.us/m/C1mzAB",
+    "inventory": 2
+  }
+]
