@@ -1,5 +1,18 @@
 [
   {
+    "id": "shift-knob-adapter",
+    "title": "Shift Knob Adapter to 3/8-16 Thread",
+    "desc": "Shift knob adapter to fit aftermarket 3/8-16 threaded knobs to stock Gladiator.",
+    "basePrice": 14.99,
+    "simple": true,
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Mounts"],
+    "images": ["assets/IMG_7445.jpeg","assets/IMG_7448.jpeg","assets/IMG_7447.jpeg","assets/IMG_7449.jpeg","assets/IMG_7452.jpeg"],
+    "variant_id": "11111111111113",
+    "inventory": 2
+  },
+  {
     "id": "bed_molle_panel_1",
     "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
     "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — SINGLE PIECE.",
