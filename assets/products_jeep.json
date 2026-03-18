@@ -1,0 +1,254 @@
+[
+  {
+    "id": "bed_molle_panel_1",
+    "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
+    "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — SINGLE PIECE.",
+    "basePrice": 75,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/bed_molle_panel_1.PNG",
+    "images": [
+      "assets/bed_molle_panel_1.PNG",
+      "assets/bed_molle_panel_1_RAW.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "VAR_RAW_STAINLESS",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "VAR_RAW_STAINLESS": 7000,
+      "VAR_BLACK_PW_STEEL": 6000
+    },
+    "inventory": 0
+  },
+  {
+    "id": "door_hinge_molle",
+    "title": "GLADIATOR DOOR HINGE MOLLE-COMPATIBLE PANEL FRONT/REAR LEFT/RIGHT",
+    "desc": "14ga STAINLESS MOLLE-compatible mounting panel — SINGLE PIECE. Stainless hardware and hinge spacer included.",
+    "basePrice": 30,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/door_hinge_molle.PNG",
+    "images": [
+      "assets/door_hinge_molle.PNG",
+      "assets/IMG_4666.jpeg"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "47508433535131",
+      "Black Powdercoated": "47508433567899"
+    },
+    "variant_price_cents": {
+      "47508433535131": 3000,
+      "47508433567899": 3000
+    },
+    "inventory": 2
+  },
+  {
+    "id": "front_bed_molle",
+    "title": "GLADIATOR BED FRONT MOLLE PANEL SET",
+    "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — COMES AS A FULL SET.",
+    "basePrice": 160,
+    "platforms": [
+      "Tactical Supplies",
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/FRONT BED MOLLE.PNG",
+    "images": [
+      "assets/FRONT BED MOLLE.PNG",
+      "assets/FRONT BED MOLLE BLACK.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "47508791689371",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "47508791689371": 16000,
+      "VAR_BLACK_PW_STEEL": 14000
+    },
+    "inventory": 1
+  },
+  {
+    "id": "window_plate",
+    "title": "GLADIATOR REAR WINDOW INSERT SET",
+    "desc": "22ga STAINLESS or STEEL— COMES AS A FULL SET.",
+    "basePrice": 50,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Tactical",
+      "Mounts",
+      "Molle"
+    ],
+    "image": "assets/window_plate_set.PNG",
+    "images": [
+      "assets/window_plate_set.PNG",
+      "assets/window_plate_set.PNG"
+    ],
+    "option_labels": {
+      "first": "Finish"
+    },
+    "variant_ids": {
+      "Raw Stainless": "VAR_RAW_STAINLESS",
+      "Black Powdercoated Steel": "VAR_BLACK_PW_STEEL"
+    },
+    "variant_price_cents": {
+      "VAR_RAW_STAINLESS": 6000,
+      "VAR_BLACK_PW_STEEL": 5000
+    },
+    "inventory": 0
+  },
+  {
+    "id": "hd-front-bumper",
+    "title": "HD FRONT BUMPER",
+    "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
+    "basePrice": 899,
+    "platforms": [
+      "Humvee",
+      "Jeep"
+    ],
+    "tags": [
+      "Bumper",
+      "Armor"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": {
+        "1mm": "VARIANT_ID_A_1",
+        "2mm": "VARIANT_ID_A_2",
+        "3mm": "VARIANT_ID_A_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_S_1",
+        "2mm": "VARIANT_ID_S_2",
+        "3mm": "VARIANT_ID_S_3"
+      }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50,
+    "inventory": 0
+  },
+  {
+    "id": "jk-trackbar",
+    "title": "JK FRONT TRACK BAR",
+    "desc": "ADJUSTABLE FRONT TRACK BAR FOR JEEP JK.",
+    "basePrice": 169,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/coming-soon-centered.png",
+    "variant_ids": {
+      "Armor": {
+        "1mm": "VARIANT_ID_JA_1",
+        "2mm": "VARIANT_ID_JA_2",
+        "3mm": "VARIANT_ID_JA_3"
+      },
+      "Stainless": {
+        "1mm": "VARIANT_ID_JS_1",
+        "2mm": "VARIANT_ID_JS_2",
+        "3mm": "VARIANT_ID_JS_3"
+      }
+    },
+    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
+    "powdercoat_price": 50,
+    "inventory": 0
+  },
+  {
+    "id": "jeep-visor",
+    "title": "NM CUSTOMS JEEP VISOR",
+    "desc": "LOW-PROFILE SUN VISOR FOR JEEP PLATFORMS.",
+    "basePrice": 175,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/visor.PNG",
+    "option_labels": {
+      "first": "Finish",
+      "second": "Material"
+    },
+    "variant_ids": {
+      "RAW": {
+        "ALUMINUM": 47466418438299,
+        "STAINLESS": 47466418569371
+      },
+      "BLACK POWDERCOAT": {
+        "ALUMINUM": 47466418503835,
+        "STAINLESS": 47466418634907
+      }
+    },
+    "inventory": 0
+  },
+  {
+    "id": "jeep-door-hinge-tank-mount",
+    "title": "Door Hinge Tank Mount",
+    "desc": "Made From 14ga 304 Stainless Steel. Powdercoated wrinkle black or Raw.",
+    "basePrice": 65,
+    "platforms": [
+      "Jeep"
+    ],
+    "tags": [
+      "Jeep",
+      "Mounts",
+      "Stainless",
+      "Accessory"
+    ],
+    "image": "assets/DOOR_TANK_MOUNT_1.jpeg",
+    "images": [
+      "assets/DOOR_TANK_MOUNT_1.PNG",
+      "assets/DOOR_TANK_MOUNT_2.PNG",
+      "assets/DOOR_TANK_MOUNT_DRIVER.PNG",
+      "assets/DOOR_TANK_MOUNT_PASSENGER.PNG"
+    ],
+    "option_labels": {
+      "first": "Side",
+      "second": "Finish"
+    },
+    "variant_ids": {
+      "Driver": {
+        "Raw": "47487602294939",
+        "Powdercoated Wrinkle Black": "47487602360475"
+      },
+      "Passenger": {
+        "Raw": "47487602327707",
+        "Powdercoated Wrinkle Black": "47487602393243"
+      }
+    },
+    "inventory": 2
+  }
+]
