@@ -530,17 +530,10 @@ async function loadProducts() {
 
   const fg = document.getElementById('featured-grid');
   if (fg) {
-    const platformsWanted = ['Humvee', 'Jeep', 'AR-15', 'Cross-Karts'];
-    const picks = platformsWanted
-      .map(pl => items.find(p => {
-        const platforms = Array.isArray(p.platforms)
-          ? p.platforms
-          : (p.platform ? [p.platform] : []);
-        return platforms.includes(pl) || p.category === pl;
-      }))
-      .filter(Boolean);
-
-    fg.innerHTML = picks.map(p => productCard(p)).join('');
+    const picks = items.filter(p => p.featured === true);
+    fg.innerHTML = picks.length
+      ? picks.map(p => productCard(p)).join('')
+      : '<p>No featured products yet.</p>';
   }
 
   wireCards(items);
