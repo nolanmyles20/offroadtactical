@@ -4,6 +4,12 @@ const PAYPAL_CURRENCY = 'USD';
 
 const DEBUG = false;
 const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
+const FEATURED_PRODUCTS_JSON_PATHS = window.FEATURED_PRODUCTS_JSON_PATHS || [
+  'assets/products_humvee.json',
+  'assets/products_jeep.json',
+  'assets/products_ar-15.json',
+  'assets/products_edc.json'
+];
 
 let __pendingScrollSel = null;
 
@@ -150,6 +156,33 @@ function escapeHtml(str) {
     '"': '&quot;',
     "'": '&#39;'
   }[s]));
+}
+
+async function fetchJsonArray(path) {
+  try {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (!res.ok) {
+      console.warn('Product JSON fetch failed:', res.status, res.statusText, path);
+      return [];
+    }
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.warn('Product JSON load error:', path, err);
+    return [];
+  }
+}
+
+function dedupeProductsById(items) {
+  const seen = new Set();
+  const out = [];
+  for (const item of items) {
+    const key = String(item?.id || '');
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
 }
 
 // ================= PAYPAL HELPERS =================
@@ -493,13 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ================= DATA LOAD =================
 async function loadProducts() {
-  const res = await fetch(PRODUCTS_JSON_PATH, { cache: 'no-store' });
-  if (!res.ok) {
-    console.error('Product JSON fetch failed:', res.status, res.statusText, PRODUCTS_JSON_PATH);
-    return;
-  }
-
-  const items = await res.json();
+  const items = await fetchJsonArray(PRODUCTS_JSON_PATH);
 
   document.querySelectorAll('#product-grid').forEach(grid => {
     const cat = (grid.getAttribute('data-category') || '').trim();
@@ -530,13 +557,23 @@ async function loadProducts() {
 
   const fg = document.getElementById('featured-grid');
   if (fg) {
-    const picks = items.filter(p => p.featured === true);
-    fg.innerHTML = picks.length
-      ? picks.map(p => productCard(p)).join('')
-      : '<p>No featured products yet.</p>';
-  }
+    const featuredArrays = await Promise.all(
+      FEATURED_PRODUCTS_JSON_PATHS.map(path => fetchJsonArray(path))
+    );
 
-  wireCards(items);
+    const featuredItems = dedupeProductsById(
+      featuredArrays.flat().filter(p => p && p.featured === true)
+    );
+
+    fg.innerHTML = featuredItems.length
+      ? featuredItems.map(p => productCard(p)).join('')
+      : '<p>No featured products yet.</p>';
+
+    const combinedItems = dedupeProductsById([...items, ...featuredItems]);
+    wireCards(combinedItems);
+  } else {
+    wireCards(items);
+  }
 
   if (__pendingScrollSel) {
     const el = document.querySelector(__pendingScrollSel);
