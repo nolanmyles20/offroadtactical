@@ -5,11 +5,11 @@
     "desc": "Tactical seat belt cover with Offroad Tactical styling.",
     "basePrice": 19.99,
     "simple": true,
-    "platforms": ["EDC"],
-    "category": "EDC",
-    "tags": ["Multi-Tool"],
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Tactical"],
     "images": ["assets/BF7AD002-9C0D-40BF-9D26-0C9956D47AFE.jpeg"],
-    "variant_id": "11111111111111",
+    "variant_id": "11111111111114",
     "inventory": 2
   },
   {
