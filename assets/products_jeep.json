@@ -41,6 +41,19 @@
     "inventory": 2
   },
   {
+    "id": "2wd-4wd-shift-knob",
+    "title": "2WD/4WD Shifter Knob",
+    "desc": "Shift knob adapter to fit aftermarket 3/8-16 threaded knobs to stock Gladiator.",
+    "basePrice": 149.99,
+    "simple": true,
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Mounts"],
+    "images": ["assets/IMG_7498.jpeg"],
+    "variant_id": "11111111111115",
+    "inventory": 2
+  },
+  {
     "id": "bed_molle_panel_1",
     "title": "GLADIATOR BED MOLLE-COMPATIBLE PANEL REAR LEFT OR RIGHT",
     "desc": "16ga STAINLESS or STEEL MOLLE-compatible mounting panel — SINGLE PIECE.",
