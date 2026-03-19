@@ -52,7 +52,8 @@
         "Default": 12345678901234
       }
     },
-    "inventory": 1
+    "inventory": 1,
+    "featured": true
   },
   {
     "id": "hmmwv hood mesh insert",
