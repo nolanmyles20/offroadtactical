@@ -10,7 +10,8 @@
     "tags": ["Tactical"],
     "images": ["assets/BF7AD002-9C0D-40BF-9D26-0C9956D47AFE.jpeg"],
     "variant_id": "11111111111114",
-    "inventory": 2
+    "inventory": 2,
+    "featured": true
   },
   {
     "id": "seatbelt-device",
@@ -23,7 +24,8 @@
     "tags": ["Multi-Tool"],
     "images": ["assets/IMG_7445.jpeg","assets/IMG_7448.jpeg","assets/IMG_7447.jpeg","assets/IMG_7449.jpeg","assets/IMG_7452.jpeg"],
     "variant_id": "11111111111111",
-    "inventory": 2
+    "inventory": 2,
+    "featured": true
   },
   {
     "id": "shift-knob-adapter",
@@ -100,7 +102,8 @@
       "47508433535131": 3000,
       "47508433567899": 3000
     },
-    "inventory": 2
+    "inventory": 2,
+    "featured": true
   },
   {
     "id": "front_bed_molle",
