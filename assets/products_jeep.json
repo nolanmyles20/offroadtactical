@@ -13,6 +13,19 @@
     "inventory": 2
   },
   {
+    "id": "seatbelt-device",
+    "title": "Seat Belt Device Multi Tool",
+    "desc": "Tactical seat belt insert tool with Offroad Tactical styling.",
+    "basePrice": 14.99,
+    "simple": true,
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Multi-Tool"],
+    "images": ["assets/IMG_7445.jpeg","assets/IMG_7448.jpeg","assets/IMG_7447.jpeg","assets/IMG_7449.jpeg","assets/IMG_7452.jpeg"],
+    "variant_id": "11111111111111",
+    "inventory": 2
+  },
+  {
     "id": "shift-knob-adapter",
     "title": "Shift Knob Adapter to 3/8-16 Thread",
     "desc": "Shift knob adapter to fit aftermarket 3/8-16 threaded knobs to stock Gladiator.",
