@@ -77,7 +77,7 @@
     "id": "ar-flash-suppressor",
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "CLAYMORE",
-    "basePrice": 35,
+    "basePrice": 24.99,
     "platforms": [
       "AR-15"
     ],
@@ -122,7 +122,7 @@
     "id": "ar15-flash-2",
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "PREDATOR",
-    "basePrice": 35,
+    "basePrice": 29.99,
     "platforms": [
       "AR-15"
     ],
@@ -167,7 +167,7 @@
     "id": "ar15-flash-3",
     "title": "NM CUSTOMS FLASH SUPPRESSOR",
     "desc": "ROOK",
-    "basePrice": 35,
+    "basePrice": 24.99,
     "platforms": [
       "AR-15"
     ],
