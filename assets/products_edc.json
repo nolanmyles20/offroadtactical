@@ -26,6 +26,19 @@
     "inventory": 2
   },
   {
+    "id": "tactical-keychain",
+    "title": "Tactical Keychain",
+    "desc": "Compact everyday tactical keychain for utility and durability.",
+    "basePrice": 12.50,
+    "simple": true,
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Keychain"],
+    "images": ["assets/coming-soon.svg"],
+    "variant_id": "22222222222224",
+    "inventory": 10
+  },
+  {
     "id": "mini-pry-bar",
     "title": "Mini Pry Bar",
     "desc": "Compact everyday carry pry tool built for utility and durability.",
