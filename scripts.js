@@ -48,27 +48,69 @@ function defaultSimpleVariantId(p) {
 // ================= VARIANT NODE HELPERS =================
 function isTerminalVariantNode(node) {
   if (typeof node === 'string' || typeof node === 'number') return true;
+
   if (node && typeof node === 'object') {
+    if ('Default' in node && (typeof node.Default === 'string' || typeof node.Default === 'number')) {
+      return true;
+    }
+
     const keys = Object.keys(node);
-    const nonMeta = keys.filter(k => !['id', 'variant', 'price_cents'].includes(k));
+    const nonMeta = keys.filter(k => !['id', 'variant', 'price_cents', 'Default'].includes(k));
     return nonMeta.length === 0;
   }
+
   return false;
 }
+
 function getVariantIdFromNode(node) {
   if (typeof node === 'string' || typeof node === 'number') return String(node);
-  if (node && typeof node === 'object') return String(node.id || node.variant || '');
+
+  if (node && typeof node === 'object') {
+    if (node.Default != null) return String(node.Default);
+    if (node.id != null) return String(node.id);
+    if (node.variant != null) return String(node.variant);
+  }
+
   return '';
 }
+
 function getVariantPriceFromNode(p, node, fallbackCents) {
   if (node && typeof node === 'object' && Number.isFinite(node.price_cents)) {
     return node.price_cents | 0;
   }
+
   const vid = getVariantIdFromNode(node);
   if (vid && p.variant_price_cents && p.variant_price_cents[vid] != null) {
     return p.variant_price_cents[vid] | 0;
   }
+
   return fallbackCents | 0;
+}
+
+function getVisibleNonMetaKeys(node) {
+  if (!node || typeof node !== 'object') return [];
+  return Object.keys(node).filter(k => !['id', 'variant', 'price_cents', 'Default'].includes(k));
+}
+
+function getFirstLeafNode(node) {
+  if (!node) return null;
+  if (isTerminalVariantNode(node)) return node;
+
+  const keys = getVisibleNonMetaKeys(node);
+  if (!keys.length) return null;
+
+  return getFirstLeafNode(node[keys[0]]);
+}
+
+function walkVariantNode(vmap, selections) {
+  let node = vmap;
+
+  for (const sel of selections) {
+    if (!node || isTerminalVariantNode(node)) break;
+    node = node[sel];
+  }
+
+  return node;
 }
 
 // ================= LOCAL CART =================
@@ -618,11 +660,15 @@ function productCard(p) {
 
   const labels = p.option_labels || {};
   const vmap = p.variant_ids || {};
-  const opt1 = Object.keys(vmap);
+  const opt1 = getVisibleNonMetaKeys(vmap);
   const firstKey = opt1[0] || '';
   const nodeForFirst = firstKey ? vmap[firstKey] : null;
   const opt2Keys = (nodeForFirst && typeof nodeForFirst === 'object' && !isTerminalVariantNode(nodeForFirst))
-    ? Object.keys(nodeForFirst) : [];
+    ? getVisibleNonMetaKeys(nodeForFirst) : [];
+  const firstOpt2 = opt2Keys[0] || '';
+  const nodeForSecond = firstOpt2 ? nodeForFirst?.[firstOpt2] : null;
+  const opt3Keys = (nodeForSecond && typeof nodeForSecond === 'object' && !isTerminalVariantNode(nodeForSecond))
+    ? getVisibleNonMetaKeys(nodeForSecond) : [];
 
   return `
   <div class="card" data-id="${p.id}" id="product-${p.id}">
@@ -648,15 +694,17 @@ function productCard(p) {
           <label>${escapeHtml(labels.second || 'Option 2')}</label>
           <select class="select opt2">${opt2Keys.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('')}</select>
         </div>
-        <div class="opt3-wrap" style="display:none">
+        <div class="opt3-wrap" ${opt3Keys.length <= 1 ? 'style="display:none"' : ''}>
           <label>${escapeHtml(labels.third || 'Option 3')}</label>
-          <select class="select opt3"></select>
+          <select class="select opt3">${opt3Keys.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('')}</select>
         </div>
         <div>
           <label>Qty</label>
           <input type="number" class="qty" min="1" value="1"/>
         </div>
-        <label class="checkbox" ${p.powdercoat_variant_id ? '' : 'style="display:none"'}><input type="checkbox" class="powder"/> Powdercoat Black +$${p.powdercoat_price || 50}</label>
+        <label class="checkbox" ${p.powdercoat_variant_id ? '' : 'style="display:none"'}>
+          <input type="checkbox" class="powder"/> Powdercoat Black +$${p.powdercoat_price || 50}
+        </label>
       </div>
       <button class="btn add ${inventory <= 0 ? 'backorder-btn' : ''}">${ctaText}</button>
       ${marketplaceButtons(p)}
@@ -776,82 +824,137 @@ function wireCards(items) {
       priceEl.textContent = `$${(Number(cents || 0) / 100).toFixed(2)}`;
     }
 
-    function rebuildDownstream() {
+    function ensureSelectOptions(selectEl, keys) {
+      if (!selectEl) return;
+      const current = selectEl.value;
+      const html = keys.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+      selectEl.innerHTML = html;
+      if (keys.includes(current)) selectEl.value = current;
+      else if (keys.length) selectEl.value = keys[0];
+    }
+
+    function rebuildDownstream(changedLevel = 1) {
       const baseCents = Math.round((product.basePrice || 0) * 100);
-      const o1 = (o1Sel?.value || '').trim();
-      const node1 = vmap[o1];
+
+      const o1Keys = getVisibleNonMetaKeys(vmap);
+      if (o1Sel && o1Keys.length) {
+        ensureSelectOptions(o1Sel, o1Keys);
+      }
+
+      const o1 = (o1Sel?.value || o1Keys[0] || '').trim();
+      let node1 = vmap[o1];
+
+      if (!node1) {
+        const fallbackLeaf = getFirstLeafNode(vmap);
+        setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
+        if (opt2Wrap) opt2Wrap.style.display = 'none';
+        if (opt3Wrap) opt3Wrap.style.display = 'none';
+        return;
+      }
 
       if (isTerminalVariantNode(node1)) {
         if (opt2Wrap) opt2Wrap.style.display = 'none';
         if (opt3Wrap) opt3Wrap.style.display = 'none';
-        const priceCents = getVariantPriceFromNode(product, node1, baseCents);
-        setPrice(priceCents);
+        setPrice(getVariantPriceFromNode(product, node1, baseCents));
         return;
       }
 
-      const o2Keys = Object.keys(node1 || {});
-      if (o2Sel) o2Sel.innerHTML = o2Keys.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+      const o2Keys = getVisibleNonMetaKeys(node1);
+      if (o2Sel) {
+        ensureSelectOptions(o2Sel, o2Keys);
+      }
       if (opt2Wrap) opt2Wrap.style.display = (o2Keys.length > 1 ? '' : 'none');
 
       const o2 = (o2Sel?.value || o2Keys[0] || '').trim();
-      const node2 = node1 ? node1[o2] : null;
+      let node2 = node1[o2];
 
-      if (isTerminalVariantNode(node2)) {
+      if (!node2) {
+        const fallbackLeaf = getFirstLeafNode(node1);
         if (opt3Wrap) opt3Wrap.style.display = 'none';
-        const priceCents = getVariantPriceFromNode(product, node2, baseCents);
-        setPrice(priceCents);
+        setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
         return;
       }
 
-      const o3Keys = Object.keys(node2 || {});
-      if (o3Sel) o3Sel.innerHTML = o3Keys.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+      if (isTerminalVariantNode(node2)) {
+        if (opt3Wrap) opt3Wrap.style.display = 'none';
+        setPrice(getVariantPriceFromNode(product, node2, baseCents));
+        return;
+      }
+
+      const o3Keys = getVisibleNonMetaKeys(node2);
+      if (o3Sel) {
+        ensureSelectOptions(o3Sel, o3Keys);
+      }
       if (opt3Wrap) opt3Wrap.style.display = (o3Keys.length > 1 ? '' : 'none');
 
       const o3 = (o3Sel?.value || o3Keys[0] || '').trim();
-      const node3 = node2 ? node2[o3] : null;
-      const priceCents = getVariantPriceFromNode(product, node3, baseCents);
-      setPrice(priceCents);
+      let node3 = node2[o3];
+
+      if (!node3) {
+        const fallbackLeaf = getFirstLeafNode(node2);
+        setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
+        return;
+      }
+
+      setPrice(getVariantPriceFromNode(product, node3, baseCents));
     }
 
     function resolveVariantIdCurrent() {
       const o1 = (o1Sel?.value || '').trim();
-      const node1 = vmap[o1];
-
-      if (isTerminalVariantNode(node1)) return getVariantIdFromNode(node1);
-
       const o2 = (o2Sel?.value || '').trim();
-      const node2 = node1 ? node1[o2] : null;
-
-      if (isTerminalVariantNode(node2)) return getVariantIdFromNode(node2);
-
       const o3 = (o3Sel?.value || '').trim();
-      const node3 = node2 ? node2[o3] : null;
-      return getVariantIdFromNode(node3);
+
+      let node = walkVariantNode(vmap, [o1, o2, o3].filter(Boolean));
+
+      if (!node || !isTerminalVariantNode(node)) {
+        const partialNode = walkVariantNode(vmap, [o1, o2].filter(Boolean));
+        if (partialNode && isTerminalVariantNode(partialNode)) node = partialNode;
+      }
+
+      if (!node || !isTerminalVariantNode(node)) {
+        const partialNode = walkVariantNode(vmap, [o1].filter(Boolean));
+        if (partialNode && isTerminalVariantNode(partialNode)) node = partialNode;
+      }
+
+      if (!node) {
+        node = getFirstLeafNode(vmap);
+      }
+
+      return getVariantIdFromNode(node);
     }
 
-    rebuildDownstream();
+    function resolveCurrentPriceCents() {
+      const baseCents = Math.round((product.basePrice || 0) * 100);
 
-    o1Sel?.addEventListener('change', rebuildDownstream);
-    o2Sel?.addEventListener('change', rebuildDownstream);
-    o3Sel?.addEventListener('change', rebuildDownstream);
+      const o1 = (o1Sel?.value || '').trim();
+      const o2 = (o2Sel?.value || '').trim();
+      const o3 = (o3Sel?.value || '').trim();
+
+      let node = walkVariantNode(vmap, [o1, o2, o3].filter(Boolean));
+
+      if (!node || !isTerminalVariantNode(node)) {
+        node = getFirstLeafNode(node || walkVariantNode(vmap, [o1, o2].filter(Boolean)) || walkVariantNode(vmap, [o1].filter(Boolean)) || vmap);
+      }
+
+      return getVariantPriceFromNode(product, node, baseCents);
+    }
+
+    rebuildDownstream(1);
+
+    o1Sel?.addEventListener('change', () => rebuildDownstream(1));
+    o2Sel?.addEventListener('change', () => rebuildDownstream(2));
+    o3Sel?.addEventListener('change', () => rebuildDownstream(3));
 
     btn.addEventListener('click', () => {
       const q = Math.max(1, parseInt(qty?.value, 10) || 1);
       const variantId = resolveVariantIdCurrent();
+
       if (!variantId) {
         showToast('Please select a valid option');
         return;
       }
 
-      const baseCents = Math.round((product.basePrice || 0) * 100);
-      let node = vmap[(o1Sel?.value || '').trim()];
-      if (!isTerminalVariantNode(node)) {
-        node = node ? node[(o2Sel?.value || '').trim()] : null;
-        if (!isTerminalVariantNode(node)) {
-          node = node ? node[(o3Sel?.value || '').trim()] : null;
-        }
-      }
-      const cents = getVariantPriceFromNode(product, node, baseCents);
+      const cents = resolveCurrentPriceCents();
 
       const variations = [
         (o1Sel?.value || '').trim(),
