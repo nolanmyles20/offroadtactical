@@ -30,12 +30,25 @@
     "title": "Tactical Keychain",
     "desc": "Compact everyday tactical keychain for utility and durability.",
     "basePrice": 12.50,
-    "simple": true,
+    "simple": false,
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Keychain"],
     "images": ["assets/IMG_7785.jpeg"],
-    "variant_id": "22222222222224",
+    "option_labels": {
+      "first": "Color"
+    },
+    "variant_ids": {
+      "Black": {
+        "Default": "22222222222224"
+      },
+      "Green": {
+        "Default": "22222222222225"
+      },
+      "FDE": {
+        "Default": "22222222222226"
+      }
+    },
     "inventory": 10
   },
   {
