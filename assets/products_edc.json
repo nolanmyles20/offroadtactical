@@ -55,25 +55,37 @@
     "id": "tactical-keychain-combo",
     "title": "Tactical Keychain With Tool",
     "desc": "Compact everyday tactical keychain for utility and durability with EDC tool.",
-    "basePrice": 22.50,
+    "basePrice": 20.00,
     "simple": false,
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Keychain"],
     "images": ["assets/IMG_7797.jpeg","assets/IMG_7798.jpeg"],
     "option_labels": {
-      "first": "Color"
+      "first": "Color",
+      "second": "Tool"
     },
     "variant_ids": {
       "Black": {
-        "Default": "22222222222214"
+        "Divot Tool": "22222222222214",
+        "Seatbelt Tool": "22222222222215"
       },
       "Green": {
-        "Default": "22222222222215"
+        "Divot Tool": "22222222222216",
+        "Seatbelt Tool": "22222222222217"
       },
       "FDE": {
-        "Default": "22222222222216"
+        "Divot Tool": "22222222222218",
+        "Seatbelt Tool": "22222222222219"
       }
+    },
+    "variant_price_cents": {
+      "22222222222214": 2000,
+      "22222222222216": 2000,
+      "22222222222218": 2000,
+      "22222222222215": 2250,
+      "22222222222217": 2250,
+      "22222222222219": 2250
     },
     "inventory": 10
   },
