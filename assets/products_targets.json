@@ -8,7 +8,7 @@
     "platforms": ["Targets"],
     "tags": ["Jack Target", ".22LR", "AR500", "Spinning Target"],
     "images": [
-      "assets/products/jack22_main.png"
+      "assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"
     ],
     "simple": true,
     "variant_ids": {
@@ -28,7 +28,7 @@
     "platforms": ["Targets"],
     "tags": ["Jack Target", "5.56", "AR500", "Spinning Target"],
     "images": [
-      "assets/products/jack556_main.png"
+      "assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"
     ],
     "simple": true,
     "variant_ids": {
