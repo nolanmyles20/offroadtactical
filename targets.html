@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TARGETS</title>
+<link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
+<link rel="stylesheet" href="styles.css">
+<script>
+  window.PRODUCTS_JSON_PATH = "assets/products_targets.json";
+</script>
+<script defer src="scripts.js"></script>
+</head>
+
+<body>
+<nav class="nav">
+    <a href="/" class="logo-link" aria-label="OFFROAD TACTICAL — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
+
+    <span class="nav-title"></span>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
+
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+      <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+      <a class="tab nav-tab" href="/edc.html">EDC</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
+
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
+</nav>
+
+<div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+  <a class="tab nav-tab" href="/">HOME</a>
+  <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+  <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+  <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+  <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+  <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+  <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+  <a class="tab nav-tab" href="/edc.html">EDC</a>
+  <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+</div>
+
+<main class="container">
+  <div class="product-header"><h1>Steel Targets</h1></div>
+
+  <div class="filters">
+    <div class="toggle" data-tag="Jack Target">Jack Target</div>
+    <div class="toggle" data-tag=".22LR">.22LR</div>
+    <div class="toggle" data-tag="AR500">AR500</div>
+    <div class="toggle" data-tag="Spinning Target">Spinning Target</div>
+  </div>
+
+  <div id="product-grid" class="grid" data-category="TARGETS"></div>
+</main>
+
+<footer class="footer">© 2026 OFFROAD TACTICAL — HUMVEE • JEEP • GUN PARTS • TARGETS • CROSS-KARTS • EDC</footer>
+</body></html>
