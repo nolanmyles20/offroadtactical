@@ -4,19 +4,12 @@
     "title": "Jack Target - .22LR",
     "desc": "Compact reactive steel jack target designed for .22LR training and fun shooting. Durable AR500 construction with high-visibility powder coat finish.",
     "basePrice": 29.99,
-    "category": "TARGETS",
-    "platforms": ["Targets"],
-    "tags": ["Jack Target", ".22LR", "AR500", "Spinning Target"],
-    "images": [
-      "assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"
-    ],
     "simple": true,
-    "variant_ids": {
-      "default": "12345678901234111"
-    },
-    "variant_price_cents": {
-      "12345678901234111": 2999
-    },
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Jack Target", ".22LR", "AR500", "Spinning Target"],
+    "images": ["assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"],
+    "variant_id": "12345678901234111",
     "inventory": 100
   },
   {
@@ -24,19 +17,12 @@
     "title": "Jack Target - 5.56",
     "desc": "Heavy-duty reactive steel jack target rated for centerfire use including 5.56. Built from AR500 steel for maximum durability and impact resistance.",
     "basePrice": 39.99,
-    "category": "TARGETS",
-    "platforms": ["Targets"],
-    "tags": ["Jack Target", "5.56", "AR500", "Spinning Target"],
-    "images": [
-      "assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"
-    ],
     "simple": true,
-    "variant_ids": {
-      "default": "2345678901234511"
-    },
-    "variant_price_cents": {
-      "2345678901234511": 3999
-    },
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Jack Target", "5.56", "AR500", "Spinning Target"],
+    "images": ["assets/products/7B2A4F6C-4268-4DA7-BAAF-755055B34DB4.png"],
+    "variant_id": "2345678901234511",
     "inventory": 100
   }
 ]
