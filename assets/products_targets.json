@@ -46,6 +46,27 @@
       "Neon Pink": "2345678901234513"
     },
     "inventory": 100
+  },
+  {
+    "id": "bowlingpin22",
+    "title": "Bowling Pin Target - .22LR",
+    "desc": "AR500 steel bowling pin target designed for .22LR shooting. Features a clean OT logo cutout and top square mount hole. High-visibility powder coat finish for easy target acquisition.",
+    "basePrice": 14.99,
+    "simple": false,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Bowling Pin", ".22LR", "AR500", "Steel Target"],
+    "images": [
+      "assets/products/bowlingpin_colors.png"
+    ],
+    "options": {
+      "Color": ["Orange", "Neon Green", "Neon Pink"]
+    },
+    "variant_ids": {
+      "Orange": "3456789012345611",
+      "Neon Green": "3456789012345612",
+      "Neon Pink": "3456789012345613"
+    },
+    "inventory": 100
   }
 ]
-
