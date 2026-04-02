@@ -68,5 +68,27 @@
       "Neon Pink": "3456789012345613"
     },
     "inventory": 100
+  },
+  {
+    "id": "prairiedog22",
+    "title": "Prairie Dog Stake Target - .22LR",
+    "desc": "Compact AR500 prairie dog steel target with integrated ground stake for easy setup. Designed for .22LR use with a high-visibility powder coat finish and OT logo cutout.",
+    "basePrice": 14.99,
+    "simple": false,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Prairie Dog", ".22LR", "AR500", "Stake Target"],
+    "images": [
+      "assets/products/prairiedog_colors.png"
+    ],
+    "options": {
+      "Color": ["Orange", "Neon Green", "Neon Pink"]
+    },
+    "variant_ids": {
+      "Orange": "4567890123456711",
+      "Neon Green": "4567890123456712",
+      "Neon Pink": "4567890123456713"
+    },
+    "inventory": 100
   }
 ]
