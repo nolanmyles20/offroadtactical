@@ -90,5 +90,71 @@
       "Neon Pink": "4567890123456713"
     },
     "inventory": 100
+  },
+  {
+    "id": "roundgong",
+    "title": "Round Gong Target",
+    "desc": "Round AR500 steel gong target with top square mount hole and high-visibility powder coat finish. Available in multiple sizes, thicknesses, and colors for pellet, .22LR, handgun, and rifle use.",
+    "basePrice": 14.99,
+    "simple": false,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Round Gong", "AR500", "Steel Target", "Hanger Target"],
+    "images": [
+      "assets/products/a_digital_product_photograph_showcases_a_round_bla.png",
+      "assets/products/a_digital_photograph_displays_three_round_steel_ta.png"
+    ],
+    "options": {
+      "Color": ["Orange", "Neon Green", "Neon Pink"],
+      "Size": ["3\"", "4\"", "6\""],
+      "Thickness": ["3/16\" 22LR-Pellet", "1/4\" Handgun", "3/8\" Rifle"]
+    },
+    "variant_ids": {},
+    "inventory": 100
+  },
+  {
+    "id": "stake24",
+    "title": "Ground Stake Hanger - 24\"",
+    "desc": "24\" ground stake hanger designed for steel targets. Heavy-duty steel construction with black powder coat finish. Single hook design.",
+    "basePrice": 29.99,
+    "simple": true,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Stake", "Hanger", "Target Stand"],
+    "images": [
+      "assets/products/stake24.png"
+    ],
+    "variant_id": "6789012345678901",
+    "inventory": 100
+  },
+  {
+    "id": "stake36",
+    "title": "Ground Stake Hanger - 36\"",
+    "desc": "36\" ground stake hanger for steel targets. Durable black powder coat finish with single hook design.",
+    "basePrice": 34.99,
+    "simple": true,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Stake", "Hanger", "Target Stand"],
+    "images": [
+      "assets/products/stake36.png"
+    ],
+    "variant_id": "6789012345678902",
+    "inventory": 100
+  },
+  {
+    "id": "stake36double",
+    "title": "Ground Stake Hanger - 36\" Double Hook",
+    "desc": "36\" double hook ground stake hanger for mounting multiple targets. Black powder coat finish for durability.",
+    "basePrice": 39.99,
+    "simple": true,
+    "platforms": ["Targets"],
+    "category": "TARGETS",
+    "tags": ["Stake", "Double Hook", "Hanger"],
+    "images": [
+      "assets/products/stake36double.png"
+    ],
+    "variant_id": "6789012345678903",
+    "inventory": 100
   }
 ]
