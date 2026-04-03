@@ -101,7 +101,7 @@
     "category": "TARGETS",
     "tags": ["Round Gong", "AR500", "Steel Target", "Hanger Target"],
     "images": [
-      "assets/products/CEE40CB9-BF69-4248-B90F-E89E305CA92B.png",
+      "assets/products/a_digital_product_photograph_showcases_a_round_bla.png",
       "assets/products/a_digital_photograph_displays_three_round_steel_ta.png"
     ],
     "options": {
@@ -109,14 +109,119 @@
       "Size": ["3\"", "4\"", "6\""],
       "Thickness": ["3/16\" 22LR-Pellet", "1/4\" Handgun", "3/8\" Rifle"]
     },
-    "variant_ids": {},
+    "variant_ids": {
+      "Orange": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": "9000000000000001",
+          "1/4\" Handgun": "9000000000000002",
+          "3/8\" Rifle": "9000000000000003"
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": "9000000000000004",
+          "1/4\" Handgun": "9000000000000005",
+          "3/8\" Rifle": "9000000000000006"
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": "9000000000000007",
+          "1/4\" Handgun": "9000000000000008",
+          "3/8\" Rifle": "9000000000000009"
+        }
+      },
+      "Neon Green": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": "9000000000000010",
+          "1/4\" Handgun": "9000000000000011",
+          "3/8\" Rifle": "9000000000000012"
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": "9000000000000013",
+          "1/4\" Handgun": "9000000000000014",
+          "3/8\" Rifle": "9000000000000015"
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": "9000000000000016",
+          "1/4\" Handgun": "9000000000000017",
+          "3/8\" Rifle": "9000000000000018"
+        }
+      },
+      "Neon Pink": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": "9000000000000019",
+          "1/4\" Handgun": "9000000000000020",
+          "3/8\" Rifle": "9000000000000021"
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": "9000000000000022",
+          "1/4\" Handgun": "9000000000000023",
+          "3/8\" Rifle": "9000000000000024"
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": "9000000000000025",
+          "1/4\" Handgun": "9000000000000026",
+          "3/8\" Rifle": "9000000000000027"
+        }
+      }
+    },
+    "variant_price_cents": {
+      "Orange": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": 1499,
+          "1/4\" Handgun": 1499,
+          "3/8\" Rifle": 1499
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": 1750,
+          "1/4\" Handgun": 1750,
+          "3/8\" Rifle": 1750
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": 1999,
+          "1/4\" Handgun": 1999,
+          "3/8\" Rifle": 1999
+        }
+      },
+      "Neon Green": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": 1499,
+          "1/4\" Handgun": 1499,
+          "3/8\" Rifle": 1499
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": 1750,
+          "1/4\" Handgun": 1750,
+          "3/8\" Rifle": 1750
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": 1999,
+          "1/4\" Handgun": 1999,
+          "3/8\" Rifle": 1999
+        }
+      },
+      "Neon Pink": {
+        "3\"": {
+          "3/16\" 22LR-Pellet": 1499,
+          "1/4\" Handgun": 1499,
+          "3/8\" Rifle": 1499
+        },
+        "4\"": {
+          "3/16\" 22LR-Pellet": 1750,
+          "1/4\" Handgun": 1750,
+          "3/8\" Rifle": 1750
+        },
+        "6\"": {
+          "3/16\" 22LR-Pellet": 1999,
+          "1/4\" Handgun": 1999,
+          "3/8\" Rifle": 1999
+        }
+      }
+    },
     "inventory": 100
   },
   {
     "id": "stake24",
     "title": "Ground Stake Hanger - 24\"",
     "desc": "24\" ground stake hanger designed for steel targets. Heavy-duty steel construction with black powder coat finish. Single hook design.",
-    "basePrice": 29.99,
+    "basePrice": 19.99,
     "simple": true,
     "platforms": ["Targets"],
     "category": "TARGETS",
@@ -131,7 +236,7 @@
     "id": "stake36",
     "title": "Ground Stake Hanger - 36\"",
     "desc": "36\" ground stake hanger for steel targets. Durable black powder coat finish with single hook design.",
-    "basePrice": 34.99,
+    "basePrice": 24.99,
     "simple": true,
     "platforms": ["Targets"],
     "category": "TARGETS",
@@ -146,7 +251,7 @@
     "id": "stake36double",
     "title": "Ground Stake Hanger - 36\" Double Hook",
     "desc": "36\" double hook ground stake hanger for mounting multiple targets. Black powder coat finish for durability.",
-    "basePrice": 39.99,
+    "basePrice": 29.99,
     "simple": true,
     "platforms": ["Targets"],
     "category": "TARGETS",
