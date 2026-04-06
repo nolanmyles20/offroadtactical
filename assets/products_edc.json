@@ -1,5 +1,18 @@
 [
   {
+    "id": "ot-patch",
+    "title": "Offroad Tactical Patch",
+    "desc": "Offroad Tactical Velcro Backed Patch.",
+    "basePrice": 11.99,
+    "simple": true,
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Multi-Tool"],
+    "images": ["assets/IMG_7445.jpeg","assets/IMG_7448.jpeg","assets/IMG_7447.jpeg","assets/IMG_7449.jpeg","assets/IMG_7452.jpeg"],
+    "variant_id": "21111111111111",
+    "inventory": 2
+  },
+  {
     "id": "seatbelt-device",
     "title": "Seat Belt Device Multi Tool",
     "desc": "Tactical seat belt insert tool with Offroad Tactical styling.",
