@@ -30,7 +30,7 @@
     "id": "hmmwv grill mesh insert",
     "title": "HMMWV GRILL INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
-    "basePrice": 60,
+    "basePrice": 47.50,
     "platforms": [
       "Humvee"
     ],
@@ -59,7 +59,7 @@
     "id": "hmmwv hood mesh insert",
     "title": "HMMWV HOOD VENT INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
-    "basePrice": 120,
+    "basePrice": 57.50,
     "platforms": [
       "Humvee"
     ],
@@ -88,7 +88,7 @@
     "id": "hmmwv hood lift rings",
     "title": "HMMWV HOOD LIFT RINGS",
     "desc": "Stainless plate lasered out to fit around lift rings. Made from 16ga 304 Stainless.",
-    "basePrice": 40,
+    "basePrice": 30,
     "platforms": [
       "Humvee"
     ],
