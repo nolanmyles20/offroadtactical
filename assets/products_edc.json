@@ -47,7 +47,7 @@
     "platforms": ["EDC"],
     "category": "EDC",
     "tags": ["Keychain"],
-    "images": ["assets/IMG_7785.jpeg","assets/IMG_7796.jpeg"],
+    "images": ["assets/IMG_7965.jpeg","assets/IMG_7785.jpeg","assets/IMG_7796.jpeg"],
     "option_labels": {
       "first": "Color"
     },
