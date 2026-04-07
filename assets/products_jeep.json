@@ -3,7 +3,7 @@
     "id": "seatbelt-cover",
     "title": "Tactical Seat Belt Cover",
     "desc": "Tactical seat belt cover with Offroad Tactical styling.",
-    "basePrice": 19.99,
+    "basePrice":24.99,
     "simple": true,
     "platforms": ["Jeep"],
     "category": "Jeep",
