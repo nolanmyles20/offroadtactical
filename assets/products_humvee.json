@@ -24,7 +24,7 @@
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 0
   },
   {
@@ -56,7 +56,7 @@
     "inventory": 1,
     "featured": true,
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID"
+    "ebay_url": "https://ebay.us/m/Pz17oU"
   },
   {
     "id": "hmmwv hood mesh insert",
@@ -86,7 +86,7 @@
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
   {
@@ -114,7 +114,7 @@
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
   {
@@ -142,7 +142,7 @@
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
   {
@@ -195,7 +195,7 @@
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 0
   },
   {
@@ -227,7 +227,7 @@
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 0
   },
   {
@@ -258,7 +258,7 @@
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 0
   },
   {
@@ -308,7 +308,7 @@
     "powdercoat_variant_id": "",
     "powdercoat_price": 50,
     "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   }
 ]
