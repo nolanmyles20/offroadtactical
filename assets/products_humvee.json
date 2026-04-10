@@ -23,7 +23,7 @@
         "Default": 12345678901234
       }
     },
-    "amazon_url": "https://www.amazon.com",
+    "amazon_url": "https://a.co/d/08Guxd89",
     "inventory": 0
   },
   {
@@ -54,6 +54,7 @@
     },
     "inventory": 1,
     "featured": true
+    "amazon_url": "https://a.co/d/08Guxd89",
   },
   {
     "id": "hmmwv hood mesh insert",
