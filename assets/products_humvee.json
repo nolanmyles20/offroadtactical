@@ -24,13 +24,14 @@
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 0
   },
   {
     "id": "hmmwv grill mesh insert",
     "title": "HMMWV GRILL INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
-    "basePrice": 60.00,
+    "basePrice": 60,
     "platforms": [
       "Humvee"
     ],
@@ -53,14 +54,15 @@
       }
     },
     "inventory": 1,
-    "featured": true
+    "featured": true,
     "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID"
   },
   {
     "id": "hmmwv hood mesh insert",
     "title": "HMMWV HOOD VENT INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
-    "basePrice": 80.00,
+    "basePrice": 80,
     "platforms": [
       "Humvee"
     ],
@@ -83,6 +85,8 @@
         "Default": 123456789012
       }
     },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 1
   },
   {
@@ -109,6 +113,8 @@
         "Default": 1234567890123
       }
     },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 1
   },
   {
@@ -135,18 +141,27 @@
         "Default": 12345678901
       }
     },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 1
   },
-    {
+  {
     "id": "seatbelt-cover",
     "title": "Tactical Seat Belt Cover",
     "desc": "Tactical seat belt cover with Offroad Tactical styling.",
-    "basePrice":24.99,
+    "basePrice": 24.99,
     "simple": true,
-    "platforms": ["Jeep"],
+    "platforms": [
+      "Jeep"
+    ],
     "category": "Jeep",
-    "tags": ["Tactical"],
-    "images": ["assets/IMG_7967.jpeg","assets/BF7AD002-9C0D-40BF-9D26-0C9956D47AFE.jpeg"],
+    "tags": [
+      "Tactical"
+    ],
+    "images": [
+      "assets/IMG_7967.jpeg",
+      "assets/BF7AD002-9C0D-40BF-9D26-0C9956D47AFE.jpeg"
+    ],
     "variant_id": "11111111111114",
     "inventory": 2,
     "featured": true
@@ -179,6 +194,8 @@
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 0
   },
   {
@@ -209,6 +226,8 @@
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 0
   },
   {
@@ -238,6 +257,8 @@
     },
     "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
     "powdercoat_price": 50,
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 0
   },
   {
@@ -286,6 +307,8 @@
     },
     "powdercoat_variant_id": "",
     "powdercoat_price": 50,
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://www.ebay.com/itm/YOUR_ITEM_ID",
     "inventory": 1
   }
 ]
