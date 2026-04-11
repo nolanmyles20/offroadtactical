@@ -1,0 +1,274 @@
+[
+  {
+    "id": "ot-structured-logo-hat",
+    "title": "OFFROAD TACTICAL Logo Hat",
+    "desc": "Structured logo hat with clean OFFROAD TACTICAL front embroidery look. Everyday wear with tactical style.",
+    "basePrice": 24.99,
+    "platforms": [
+      "Hats"
+    ],
+    "tags": [
+      "Apparel",
+      "Hat",
+      "Offroad Tactical"
+    ],
+    "image": "assets/apparel_hat_ot_logo.jpg",
+    "images": [
+      "assets/apparel_hat_ot_logo.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000001
+      },
+      "Tan": {
+        "Default": 810001000002
+      },
+      "Gray": {
+        "Default": 810001000003
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "humvee-patch-hat",
+    "title": "Humvee Patch Hat",
+    "desc": "Humvee-inspired patch hat built for shop days, trail rides, and daily wear.",
+    "basePrice": 24.99,
+    "platforms": [
+      "Hats"
+    ],
+    "tags": [
+      "Apparel",
+      "Hat",
+      "Humvee"
+    ],
+    "image": "assets/apparel_hat_humvee.jpg",
+    "images": [
+      "assets/apparel_hat_humvee.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000004
+      },
+      "Tan": {
+        "Default": 810001000005
+      },
+      "Gray": {
+        "Default": 810001000006
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "jeep-patch-hat",
+    "title": "Jeep Patch Hat",
+    "desc": "Jeep-themed hat with Offroad Tactical styling for trail, shop, and everyday use.",
+    "basePrice": 24.99,
+    "platforms": [
+      "Hats"
+    ],
+    "tags": [
+      "Apparel",
+      "Hat",
+      "Jeep"
+    ],
+    "image": "assets/apparel_hat_jeep.jpg",
+    "images": [
+      "assets/apparel_hat_jeep.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000007
+      },
+      "Tan": {
+        "Default": 810001000008
+      },
+      "Gray": {
+        "Default": 810001000009
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "tactical-script-hat",
+    "title": "Tactical Script Hat",
+    "desc": "Low-profile tactical script hat with a simple branded look and neutral color options.",
+    "basePrice": 22.99,
+    "platforms": [
+      "Hats"
+    ],
+    "tags": [
+      "Apparel",
+      "Hat",
+      "Tactical"
+    ],
+    "image": "assets/apparel_hat_tactical.jpg",
+    "images": [
+      "assets/apparel_hat_tactical.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000010
+      },
+      "Tan": {
+        "Default": 810001000011
+      },
+      "Gray": {
+        "Default": 810001000012
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "humvee-shirt",
+    "title": "Humvee Shirt",
+    "desc": "Humvee front design shirt with OFFROAD TACTICAL branding. Clean silhouette style.",
+    "basePrice": 27.99,
+    "platforms": [
+      "Shirts"
+    ],
+    "tags": [
+      "Apparel",
+      "Shirt",
+      "Humvee"
+    ],
+    "image": "assets/apparel_shirt_humvee.jpg",
+    "images": [
+      "assets/apparel_shirt_humvee.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000013
+      },
+      "Tan": {
+        "Default": 810001000014
+      },
+      "Gray": {
+        "Default": 810001000015
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "jeep-shirt",
+    "title": "Jeep Shirt",
+    "desc": "Jeep-inspired apparel with Offroad Tactical styling for trail and daily wear.",
+    "basePrice": 27.99,
+    "platforms": [
+      "Shirts"
+    ],
+    "tags": [
+      "Apparel",
+      "Shirt",
+      "Jeep"
+    ],
+    "image": "assets/apparel_shirt_jeep.jpg",
+    "images": [
+      "assets/apparel_shirt_jeep.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000016
+      },
+      "Tan": {
+        "Default": 810001000017
+      },
+      "Gray": {
+        "Default": 810001000018
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "ot-polo-shirt",
+    "title": "OFFROAD TACTICAL Polo Shirt",
+    "desc": "Clean Offroad Tactical polo for events, trade shows, range days, or shop wear.",
+    "basePrice": 34.99,
+    "platforms": [
+      "Shirts"
+    ],
+    "tags": [
+      "Apparel",
+      "Polo",
+      "Offroad Tactical"
+    ],
+    "image": "assets/apparel_shirt_polo.jpg",
+    "images": [
+      "assets/apparel_shirt_polo.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000019
+      },
+      "Tan": {
+        "Default": 810001000020
+      },
+      "Gray": {
+        "Default": 810001000021
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "ot-classic-tee",
+    "title": "OFFROAD TACTICAL T-Shirt",
+    "desc": "Classic Offroad Tactical tee with a simple branded look in your choice of black, tan, or gray.",
+    "basePrice": 24.99,
+    "platforms": [
+      "Shirts"
+    ],
+    "tags": [
+      "Apparel",
+      "T-Shirt",
+      "Offroad Tactical"
+    ],
+    "image": "assets/apparel_shirt_tee.jpg",
+    "images": [
+      "assets/apparel_shirt_tee.jpg"
+    ],
+    "simple": false,
+    "option_labels": [
+      "Color"
+    ],
+    "variant_ids": {
+      "Black": {
+        "Default": 810001000022
+      },
+      "Tan": {
+        "Default": 810001000023
+      },
+      "Gray": {
+        "Default": 810001000024
+      }
+    },
+    "inventory": 10
+  }
+]
