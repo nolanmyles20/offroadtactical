@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OFFROAD TACTICAL | APPAREL</title>
+  <link rel="icon" href="/assets/favicon_ot_white.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon_ot_white.png" sizes="256x256">
+  <link rel="apple-touch-icon" href="/assets/favicon_ot_white.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="scripts.js"></script>
+  <style>
+    .apparel-hero{
+      padding:32px 0 18px;
+    }
+    .apparel-hero h1{
+      margin:0 0 10px;
+    }
+    .apparel-hero p{
+      margin:0;
+      opacity:.9;
+    }
+    .filters-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin:18px 0 28px;
+    }
+    .filter-label{
+      font-weight:700;
+      letter-spacing:.08em;
+      font-size:.82rem;
+    }
+    .filter-group{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .filter-btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.18);
+      background:#111;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font:inherit;
+      letter-spacing:.04em;
+    }
+    .filter-btn.is-active{
+      background:#fff;
+      color:#000;
+      border-color:#fff;
+    }
+    .product-card{
+      background:#0f0f0f;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .product-card img{
+      width:100%;
+      aspect-ratio:1 / 1;
+      object-fit:cover;
+      background:#161616;
+    }
+    .product-body{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .product-title{
+      margin:0;
+      font-size:1.05rem;
+      letter-spacing:.03em;
+    }
+    .product-desc{
+      margin:0;
+      opacity:.9;
+      line-height:1.45;
+      font-size:.94rem;
+    }
+    .product-price{
+      font-weight:800;
+      font-size:1rem;
+      letter-spacing:.03em;
+    }
+    .option-row{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .option-row label{
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.9;
+    }
+    .option-row select{
+      width:100%;
+      background:#090909;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:10px;
+      padding:11px 12px;
+      font:inherit;
+    }
+    .product-actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn-apparel{
+      appearance:none;
+      border:none;
+      border-radius:12px;
+      padding:12px 16px;
+      font:inherit;
+      font-weight:800;
+      cursor:pointer;
+      letter-spacing:.04em;
+    }
+    .btn-primary{
+      background:#fff;
+      color:#000;
+    }
+    .btn-secondary{
+      background:#1b1b1b;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .empty-state{
+      padding:18px 0 8px;
+      opacity:.85;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
+
+    <span class="nav-title"></span>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
+
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+      <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
+      <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+      <a class="tab nav-tab" href="/apparel.html" aria-current="page">APPAREL</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
+
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
+  </nav>
+
+  <div class="made-banner">
+    <div class="made-banner-track">
+      <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span>
+      <span class="flag-wave">🇺🇸</span>
+
+      <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span>
+      <span class="flag-wave">🇺🇸</span>
+    </div>
+  </div>
+
+  <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+    <a class="tab nav-tab" href="/">HOME</a>
+    <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+    <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+    <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+    <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+    <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
+    <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+    <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
+    <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+  </div>
+
+  <main class="container">
+    <section class="apparel-hero">
+      <h1>APPAREL</h1>
+      <p>Offroad Tactical hats and shirts in black, tan, and gray.</p>
+
+      <div class="filters-wrap">
+        <span class="filter-label">FILTER:</span>
+        <div class="filter-group" id="type-filters">
+          <button class="filter-btn is-active" data-filter="all" type="button">ALL</button>
+          <button class="filter-btn" data-filter="Hats" type="button">HATS</button>
+          <button class="filter-btn" data-filter="Shirts" type="button">SHIRTS</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="apparel-grid" class="grid"></div>
+      <p id="empty-state" class="empty-state" hidden>No apparel matched that filter.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 OFFROAD TACTICAL — APPAREL
+    <div class="footer-links">
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/refunds.html">Refund Policy</a>
+      <a href="/shipping.html">Shipping Policy</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const APPAREL_JSON = 'assets/products_apparel.json';
+    const grid = document.getElementById('apparel-grid');
+    const emptyState = document.getElementById('empty-state');
+    const filterButtons = [...document.querySelectorAll('#type-filters .filter-btn')];
+    let products = [];
+    let activeFilter = 'all';
+
+    function formatMoney(value) {
+      const num = Number(value || 0);
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(num);
+    }
+
+    function getColorOptions(product) {
+      if (!product || !product.variant_ids) return [];
+      return Object.keys(product.variant_ids);
+    }
+
+    function getDefaultColor(product) {
+      const colors = getColorOptions(product);
+      return colors[0] || 'Black';
+    }
+
+    function getVariantId(product, color) {
+      const colorNode = product?.variant_ids?.[color];
+      if (!colorNode) return '';
+      if (typeof colorNode === 'object' && colorNode.Default) return colorNode.Default;
+      return '';
+    }
+
+    function buildCard(product) {
+      const colorOptions = getColorOptions(product);
+      const defaultColor = getDefaultColor(product);
+
+      const card = document.createElement('article');
+      card.className = 'product-card';
+      card.dataset.category = product.platforms?.[0] || '';
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <div class="product-body">
+          <h3 class="product-title">${product.title}</h3>
+          <p class="product-desc">${product.desc}</p>
+          <div class="product-price">${formatMoney(product.basePrice)}</div>
+
+          <div class="option-row">
+            <label for="color-${product.id}">Color</label>
+            <select id="color-${product.id}" data-role="color">
+              ${colorOptions.map(color => `<option value="${color}" ${color === defaultColor ? 'selected' : ''}>${color}</option>`).join('')}
+            </select>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn-apparel btn-primary" type="button" data-action="add">ADD TO CART</button>
+            <button class="btn-apparel btn-secondary" type="button" data-action="details">DETAILS</button>
+          </div>
+        </div>
+      `;
+
+      const colorSelect = card.querySelector('[data-role="color"]');
+      const addBtn = card.querySelector('[data-action="add"]');
+      const detailsBtn = card.querySelector('[data-action="details"]');
+
+      addBtn.addEventListener('click', () => {
+        const chosenColor = colorSelect.value;
+        const variantId = getVariantId(product, chosenColor);
+
+        if (!variantId) {
+          alert('Missing variant ID for this color.');
+          return;
+        }
+
+        if (typeof window.addToCart === 'function') {
+          window.addToCart(String(variantId), 1);
+          return;
+        }
+
+        if (typeof window.addItemToCart === 'function') {
+          window.addItemToCart(String(variantId), 1);
+          return;
+        }
+
+        alert(`Ready to add: ${product.title} - ${chosenColor}\nVariant ID: ${variantId}`);
+      });
+
+      detailsBtn.addEventListener('click', () => {
+        const chosenColor = colorSelect.value;
+        alert(`${product.title}\nColor: ${chosenColor}\n${product.desc}`);
+      });
+
+      return card;
+    }
+
+    function renderProducts() {
+      grid.innerHTML = '';
+
+      const filtered = products.filter(product => {
+        if (activeFilter === 'all') return true;
+        return (product.platforms?.[0] || '').toLowerCase() === activeFilter.toLowerCase();
+      });
+
+      emptyState.hidden = filtered.length !== 0;
+
+      filtered.forEach(product => {
+        grid.appendChild(buildCard(product));
+      });
+    }
+
+    async function loadProducts() {
+      try {
+        const res = await fetch(APPAREL_JSON, { cache: 'no-store' });
+        products = await res.json();
+        renderProducts();
+      } catch (err) {
+        console.error('Failed to load apparel products:', err);
+        grid.innerHTML = '<p class="empty-state">Could not load apparel products.</p>';
+      }
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        activeFilter = btn.dataset.filter;
+        renderProducts();
+      });
+    });
+
+    loadProducts();
+  </script>
+</body>
+</html>
