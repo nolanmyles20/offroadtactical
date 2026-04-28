@@ -1,11 +1,23 @@
-const headers = {
-  "Access-Control-Allow-Origin": "https://offroadtactical.com",
-  "Access-Control-Allow-Headers": "Content-Type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Content-Type": "application/json"
-};
+const allowedOrigins = [
+  "https://offroadtactical.com",
+  "https://www.offroadtactical.com"
+];
+
+function getHeaders(event) {
+  const origin = event.headers.origin || event.headers.Origin || "";
+  return {
+    "Access-Control-Allow-Origin": allowedOrigins.includes(origin)
+      ? origin
+      : "https://offroadtactical.com",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Content-Type": "application/json"
+  };
+}
 
 exports.handler = async (event) => {
+  const headers = getHeaders(event);
+
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
@@ -66,7 +78,10 @@ exports.handler = async (event) => {
           name: "OFFROAD TACTICAL Order",
           price_money: {
             amount: lines.reduce((sum, item) => {
-              return sum + (Math.max(1, Number(item.qty) || 1) * Math.max(0, Number(item.price_cents) || 0));
+              return sum + (
+                Math.max(1, Number(item.qty) || 1) *
+                Math.max(0, Number(item.price_cents) || 0)
+              );
             }, 0),
             currency: "USD"
           },
@@ -86,7 +101,9 @@ exports.handler = async (event) => {
         statusCode: response.status,
         headers,
         body: JSON.stringify({
-          error: data?.errors?.[0]?.detail || data?.errors?.[0]?.code || "Square checkout failed",
+          error: data?.errors?.[0]?.detail ||
+                 data?.errors?.[0]?.code ||
+                 "Square checkout failed",
           square: data
         })
       };
@@ -98,7 +115,10 @@ exports.handler = async (event) => {
       return {
         statusCode: 500,
         headers,
-        body: JSON.stringify({ error: "Square did not return a checkout URL", square: data })
+        body: JSON.stringify({
+          error: "Square did not return a checkout URL",
+          square: data
+        })
       };
     }
 
@@ -113,7 +133,9 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: err.message || "Checkout failed" })
+      body: JSON.stringify({
+        error: err.message || "Checkout failed"
+      })
     };
   }
 };
