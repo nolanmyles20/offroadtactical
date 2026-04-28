@@ -102,6 +102,19 @@
     },
     "inventory": 10
   },
+    {
+    "id": "ot-decal",
+    "title": "Offroad Tactical Decal",
+    "desc": "Offroad Tactical Decal.",
+    "basePrice": 1.99,
+    "simple": true,
+    "platforms": ["EDC"],
+    "category": "EDC",
+    "tags": ["Decal"],
+    "images": ["assets/products/IMG_7957.jpeg"],
+    "variant_id": "211111111111",
+    "inventory": 2
+  },
   {
     "id": "mini-pry-bar",
     "title": "Mini Pry Bar",
