@@ -1,272 +1,125 @@
 [
   {
-    "id": "ot-structured-logo-hat",
-    "title": "OFFROAD TACTICAL Logo Hat",
-    "desc": "Structured logo hat with clean OFFROAD TACTICAL front embroidery look. Everyday wear with tactical style.",
+    "id": "ot-classic-tee",
+    "title": "OFFROAD TACTICAL T-Shirt",
+    "desc": "Classic OFFROAD TACTICAL tee with left chest logo. Available in tan, military green, and dark gray.",
     "basePrice": 24.99,
-    "platforms": [
-      "Hats"
-    ],
-    "tags": [
-      "Apparel",
-      "Hat",
-      "Offroad Tactical"
-    ],
-    "image": "assets/apparel_hat_ot_logo.jpg",
+    "platforms": ["Shirts"],
+    "tags": ["Apparel", "T-Shirt", "Offroad Tactical"],
+    "image": "assets/apparel_shirt_tan.jpg",
     "images": [
-      "assets/apparel_hat_ot_logo.jpg"
+      "assets/apparel_shirt_tan.jpg",
+      "assets/apparel_shirt_military_green.jpg",
+      "assets/apparel_shirt_dark_gray.jpg"
     ],
     "simple": false,
-    "option_labels": [
-      "Color"
-    ],
+    "option_labels": ["Color", "Size"],
     "variant_ids": {
-      "Black": {
-        "Default": 810001000001
-      },
       "Tan": {
-        "Default": 810001000002
+        "S": 810001000001,
+        "M": 810001000002,
+        "L": 810001000003,
+        "XL": 810001000004,
+        "2X": 810001000005
       },
-      "Gray": {
-        "Default": 810001000003
+      "Military Green": {
+        "S": 810001000006,
+        "M": 810001000007,
+        "L": 810001000008,
+        "XL": 810001000009,
+        "2X": 810001000010
+      },
+      "Dark Gray": {
+        "S": 810001000011,
+        "M": 810001000012,
+        "L": 810001000013,
+        "XL": 810001000014,
+        "2X": 810001000015
       }
     },
     "inventory": 10
   },
   {
-    "id": "humvee-patch-hat",
-    "title": "Humvee Patch Hat",
-    "desc": "Humvee-inspired patch hat built for shop days, trail rides, and daily wear.",
+    "id": "ot-hat-heather-gray-black",
+    "title": "OFFROAD TACTICAL Heather Gray / Black Mesh Hat",
+    "desc": "Richardson-style trucker hat with heather gray front, black mesh back, and centered black vinyl OFFROAD TACTICAL logo.",
     "basePrice": 24.99,
-    "platforms": [
-      "Hats"
-    ],
-    "tags": [
-      "Apparel",
-      "Hat",
-      "Humvee"
-    ],
-    "image": "assets/apparel_hat_humvee.jpg",
-    "images": [
-      "assets/apparel_hat_humvee.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
+    "platforms": ["Hats"],
+    "tags": ["Apparel", "Hat", "Offroad Tactical"],
+    "image": "assets/apparel_hat_heather_gray_black.jpg",
+    "images": ["assets/apparel_hat_heather_gray_black.jpg"],
+    "simple": true,
     "variant_ids": {
-      "Black": {
-        "Default": 810001000004
-      },
-      "Tan": {
-        "Default": 810001000005
-      },
-      "Gray": {
-        "Default": 810001000006
-      }
-    },
-    "inventory": 10
-  },
-  {
-    "id": "jeep-patch-hat",
-    "title": "Jeep Patch Hat",
-    "desc": "Jeep-themed hat with Offroad Tactical styling for trail, shop, and everyday use.",
-    "basePrice": 24.99,
-    "platforms": [
-      "Hats"
-    ],
-    "tags": [
-      "Apparel",
-      "Hat",
-      "Jeep"
-    ],
-    "image": "assets/apparel_hat_jeep.jpg",
-    "images": [
-      "assets/apparel_hat_jeep.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
-    "variant_ids": {
-      "Black": {
-        "Default": 810001000007
-      },
-      "Tan": {
-        "Default": 810001000008
-      },
-      "Gray": {
-        "Default": 810001000009
-      }
-    },
-    "inventory": 10
-  },
-  {
-    "id": "tactical-script-hat",
-    "title": "Tactical Script Hat",
-    "desc": "Low-profile tactical script hat with a simple branded look and neutral color options.",
-    "basePrice": 22.99,
-    "platforms": [
-      "Hats"
-    ],
-    "tags": [
-      "Apparel",
-      "Hat",
-      "Tactical"
-    ],
-    "image": "assets/apparel_hat_tactical.jpg",
-    "images": [
-      "assets/apparel_hat_tactical.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
-    "variant_ids": {
-      "Black": {
-        "Default": 810001000010
-      },
-      "Tan": {
-        "Default": 810001000011
-      },
-      "Gray": {
-        "Default": 810001000012
-      }
-    },
-    "inventory": 10
-  },
-  {
-    "id": "humvee-shirt",
-    "title": "Humvee Shirt",
-    "desc": "Humvee front design shirt with OFFROAD TACTICAL branding. Clean silhouette style.",
-    "basePrice": 27.99,
-    "platforms": [
-      "Shirts"
-    ],
-    "tags": [
-      "Apparel",
-      "Shirt",
-      "Humvee"
-    ],
-    "image": "assets/apparel_shirt_humvee.jpg",
-    "images": [
-      "assets/apparel_shirt_humvee.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
-    "variant_ids": {
-      "Black": {
-        "Default": 810001000013
-      },
-      "Tan": {
-        "Default": 810001000014
-      },
-      "Gray": {
-        "Default": 810001000015
-      }
-    },
-    "inventory": 10
-  },
-  {
-    "id": "jeep-shirt",
-    "title": "Jeep Shirt",
-    "desc": "Jeep-inspired apparel with Offroad Tactical styling for trail and daily wear.",
-    "basePrice": 27.99,
-    "platforms": [
-      "Shirts"
-    ],
-    "tags": [
-      "Apparel",
-      "Shirt",
-      "Jeep"
-    ],
-    "image": "assets/apparel_shirt_jeep.jpg",
-    "images": [
-      "assets/apparel_shirt_jeep.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
-    "variant_ids": {
-      "Black": {
+      "Solo": {
         "Default": 810001000016
-      },
-      "Tan": {
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "ot-hat-olive-tan",
+    "title": "OFFROAD TACTICAL Olive / Tan Mesh Hat",
+    "desc": "Richardson-style trucker hat with olive front, tan mesh back, and centered black vinyl OFFROAD TACTICAL logo.",
+    "basePrice": 24.99,
+    "platforms": ["Hats"],
+    "tags": ["Apparel", "Hat", "Offroad Tactical"],
+    "image": "assets/apparel_hat_olive_tan.jpg",
+    "images": ["assets/apparel_hat_olive_tan.jpg"],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
         "Default": 810001000017
-      },
-      "Gray": {
+      }
+    },
+    "inventory": 10
+  },
+  {
+    "id": "ot-hat-black",
+    "title": "OFFROAD TACTICAL Black Hat",
+    "desc": "Richardson-style black trucker hat with centered OFFROAD TACTICAL logo.",
+    "basePrice": 24.99,
+    "platforms": ["Hats"],
+    "tags": ["Apparel", "Hat", "Offroad Tactical"],
+    "image": "assets/apparel_hat_black.jpg",
+    "images": ["assets/apparel_hat_black.jpg"],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
         "Default": 810001000018
       }
     },
     "inventory": 10
   },
   {
-    "id": "ot-polo-shirt",
-    "title": "OFFROAD TACTICAL Polo Shirt",
-    "desc": "Clean Offroad Tactical polo for events, trade shows, range days, or shop wear.",
-    "basePrice": 34.99,
-    "platforms": [
-      "Shirts"
-    ],
-    "tags": [
-      "Apparel",
-      "Polo",
-      "Offroad Tactical"
-    ],
-    "image": "assets/apparel_shirt_polo.jpg",
-    "images": [
-      "assets/apparel_shirt_polo.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
+    "id": "ot-hat-tan",
+    "title": "OFFROAD TACTICAL Tan Hat",
+    "desc": "Richardson-style tan trucker hat with centered OFFROAD TACTICAL logo.",
+    "basePrice": 24.99,
+    "platforms": ["Hats"],
+    "tags": ["Apparel", "Hat", "Offroad Tactical"],
+    "image": "assets/apparel_hat_tan.jpg",
+    "images": ["assets/apparel_hat_tan.jpg"],
+    "simple": true,
     "variant_ids": {
-      "Black": {
+      "Solo": {
         "Default": 810001000019
-      },
-      "Tan": {
-        "Default": 810001000020
-      },
-      "Gray": {
-        "Default": 810001000021
       }
     },
     "inventory": 10
   },
   {
-    "id": "ot-classic-tee",
-    "title": "OFFROAD TACTICAL T-Shirt",
-    "desc": "Classic Offroad Tactical tee with a simple branded look in your choice of black, tan, or gray.",
+    "id": "ot-hat-gray",
+    "title": "OFFROAD TACTICAL Gray Hat",
+    "desc": "Richardson-style gray trucker hat with centered OFFROAD TACTICAL logo.",
     "basePrice": 24.99,
-    "platforms": [
-      "Shirts"
-    ],
-    "tags": [
-      "Apparel",
-      "T-Shirt",
-      "Offroad Tactical"
-    ],
-    "image": "assets/apparel_shirt_tee.jpg",
-    "images": [
-      "assets/apparel_shirt_tee.jpg"
-    ],
-    "simple": false,
-    "option_labels": [
-      "Color"
-    ],
+    "platforms": ["Hats"],
+    "tags": ["Apparel", "Hat", "Offroad Tactical"],
+    "image": "assets/apparel_hat_gray.jpg",
+    "images": ["assets/apparel_hat_gray.jpg"],
+    "simple": true,
     "variant_ids": {
-      "Black": {
-        "Default": 810001000022
-      },
-      "Tan": {
-        "Default": 810001000023
-      },
-      "Gray": {
-        "Default": 810001000024
+      "Solo": {
+        "Default": 810001000020
       }
     },
     "inventory": 10
