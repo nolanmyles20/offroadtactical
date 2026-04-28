@@ -234,7 +234,7 @@ async function startSquareCheckout() {
   }
 
   try {
-    const res = await fetch('/.netlify/functions/create-square-checkout', {
+    const res = await fetch('https://cart.offroadtactical.com/.netlify/functions/create-square-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cart)
@@ -244,14 +244,14 @@ async function startSquareCheckout() {
 
     if (!res.ok || !data.url) {
       console.error('Square checkout error:', data);
-      alert('Checkout could not be started.');
+      alert(data.error || data.message || 'Checkout could not be started.');
       return;
     }
 
     window.location.href = data.url;
   } catch (err) {
     console.error('Square checkout failed:', err);
-    alert('Checkout could not be started.');
+    alert(err.message || 'Checkout could not be started.');
   }
 }
 
