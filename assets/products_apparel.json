@@ -97,8 +97,8 @@
     "basePrice": 24.99,
     "platforms": ["Hats"],
     "tags": ["Apparel", "Hat", "Offroad Tactical"],
-    "image": "assets/apparel_hat_tan.jpg",
-    "images": ["assets/apparel_hat_tan.jpg"],
+    "image": "assets/products/E9BAF523-69CA-473F-AD54-E2228820ED2B.png",
+    "images": ["assets/products/E9BAF523-69CA-473F-AD54-E2228820ED2B.png"],
     "simple": true,
     "variant_ids": {
       "Solo": {
