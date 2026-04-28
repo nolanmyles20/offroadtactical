@@ -47,7 +47,7 @@
     "platforms": ["Hats"],
     "tags": ["Apparel", "Hat", "Offroad Tactical"],
     "image": "assets/products/7677F1A4-3EE3-4F21-8B9D-6D6914512F63.png",
-    "images": ["assets/apparel_hat_heather_gray_black.jpg"],
+    "images": ["assets/products/7677F1A4-3EE3-4F21-8B9D-6D6914512F63.png"],
     "simple": true,
     "variant_ids": {
       "Solo": {
