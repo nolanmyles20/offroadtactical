@@ -19,11 +19,7 @@ exports.handler = async (event) => {
   const headers = getHeaders(event);
 
   if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers,
-      body: ""
-    };
+    return { statusCode: 200, headers, body: "" };
   }
 
   if (event.httpMethod !== "POST") {
@@ -49,15 +45,16 @@ exports.handler = async (event) => {
     const line_items = lines.map((item) => {
       const name = String(item.title || "OFFROAD TACTICAL Item").slice(0, 120);
       const quantity = Math.max(1, Number(item.qty) || 1).toString();
-      const amount = Math.max(1, Number(item.price_cents) || 0);
+      const amount = Math.round(Number(item.price_cents) || 0);
 
-      if (!amount) {
+      if (amount <= 0) {
         throw new Error(`Missing price for ${name}`);
       }
 
       return {
         name,
         quantity,
+        note: item.variantId ? `Variant ID: ${item.variantId}` : undefined,
         base_price_money: {
           amount,
           currency: "USD"
@@ -74,18 +71,9 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({
         idempotency_key: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        quick_pay: {
-          name: "OFFROAD TACTICAL Order",
-          price_money: {
-            amount: lines.reduce((sum, item) => {
-              return sum + (
-                Math.max(1, Number(item.qty) || 1) *
-                Math.max(0, Number(item.price_cents) || 0)
-              );
-            }, 0),
-            currency: "USD"
-          },
-          location_id: process.env.SQUARE_LOCATION_ID
+        order: {
+          location_id: process.env.SQUARE_LOCATION_ID,
+          line_items
         },
         checkout_options: {
           redirect_url: "https://offroadtactical.com/ordercomplete.html"
@@ -101,9 +89,10 @@ exports.handler = async (event) => {
         statusCode: response.status,
         headers,
         body: JSON.stringify({
-          error: data?.errors?.[0]?.detail ||
-                 data?.errors?.[0]?.code ||
-                 "Square checkout failed",
+          error:
+            data?.errors?.[0]?.detail ||
+            data?.errors?.[0]?.code ||
+            "Square checkout failed",
           square: data
         })
       };
