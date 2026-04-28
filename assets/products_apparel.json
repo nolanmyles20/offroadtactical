@@ -40,6 +40,38 @@
     "inventory": 10
   },
   {
+    "id": "hmmwv-shirt",
+    "title": "HMMWV Shirt",
+    "desc": "HMMWV front-view back graphic shirt with OFFROAD TACTICAL left chest logo on the front. Available in tan and military green.",
+    "basePrice": 27.99,
+    "platforms": ["Shirts"],
+    "tags": ["Apparel", "T-Shirt", "HMMWV", "Humvee", "Offroad Tactical"],
+    "image": "assets/products/hmmwv-shirt-tan.png",
+    "images": [
+      "assets/products/hmmwv-shirt-tan.png",
+      "assets/products/hmmwv-shirt-military-green.png"
+    ],
+    "simple": false,
+    "option_labels": ["Color", "Size"],
+    "variant_ids": {
+      "Tan": {
+        "S": 810001000021,
+        "M": 810001000022,
+        "L": 810001000023,
+        "XL": 810001000024,
+        "2X": 810001000025
+      },
+      "Military Green": {
+        "S": 810001000026,
+        "M": 810001000027,
+        "L": 810001000028,
+        "XL": 810001000029,
+        "2X": 810001000030
+      }
+    },
+    "inventory": 10
+  },
+  {
     "id": "ot-hat-heather-gray-black",
     "title": "OFFROAD TACTICAL Heather Gray / Black Mesh Hat",
     "desc": "Richardson-style trucker hat with heather gray front, black mesh back, and centered black vinyl OFFROAD TACTICAL logo.",
