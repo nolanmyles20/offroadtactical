@@ -4,7 +4,7 @@ const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
 const FEATURED_PRODUCTS_JSON_PATHS = window.FEATURED_PRODUCTS_JSON_PATHS || [
   'assets/products_humvee.json',
   'assets/products_jeep.json',
-  'assets/products_ar-15.json',
+  'assets/products_apparel.json',
   'assets/products_edc.json'
 ];
 
