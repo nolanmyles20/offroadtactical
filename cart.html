@@ -11,57 +11,58 @@
 
 <body>
   <nav class="nav">
-    <!-- Logo -->
     <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
       <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
     </a>
 
     <span class="nav-title"></span>
 
-    <!-- Mobile toggle -->
     <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="sr-only">Menu</span>
     </button>
+
     <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
-    <!-- Desktop links -->
+
     <div class="links" role="navigation" aria-label="Primary">
       <a class="tab nav-tab" href="/">HOME</a>
       <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
       <a class="tab nav-tab" href="/jeep.html">JEEP</a>
       <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
       <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
-      <a class="tab nav-tab" href="/edc.html">E.D.C.</a> 
+      <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
       <a class="tab nav-tab" href="/targets.html">TARGETS</a>
       <a class="tab nav-tab" href="/contact.html">CONTACT</a>
     </div>
 
-    <!-- Cart -->
     <a id="cart-link" class="nav-cart" href="/cart.html" aria-label="Open cart">
       <img src="assets/cart-icon.svg" class="cart-icon" alt="">
       CART <span id="cart-count" class="cart-count">0</span>
     </a>
   </nav>
 
-  <!-- Mobile menu -->
   <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
     <a class="tab nav-tab" href="/">HOME</a>
     <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
     <a class="tab nav-tab" href="/jeep.html">JEEP</a>
     <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
-    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a> 
+    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
     <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
     <a class="tab nav-tab" href="/targets.html">TARGETS</a>
     <a class="tab nav-tab" href="/contact.html">CONTACT</a>
   </div>
 
   <main class="container">
-    <div class="product-header"><h1>Your Cart</h1></div>
+    <div class="product-header">
+      <h1>Your Cart</h1>
+    </div>
+
     <div id="cart-root"></div>
+
     <div class="checkout-area">
-     <div id="paypal-button-container"></div>
+      <!-- Square checkout button is injected by scripts.js inside #cart-root -->
     </div>
   </main>
 
