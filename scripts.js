@@ -1,7 +1,4 @@
 // ================= CONFIG =================
-const PAYPAL_CLIENT_ID = 'AXYinpb02O1zxJdHLCMZMdmZF4MEYq6uGQ1kquIkqz-fyxsY6rVuN7s6atGzdpY2qEll6OYhwt_QU_Md';
-const PAYPAL_CURRENCY = 'USD';
-
 const DEBUG = false;
 const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
 const FEATURED_PRODUCTS_JSON_PATHS = window.FEATURED_PRODUCTS_JSON_PATHS || [
@@ -227,133 +224,41 @@ function dedupeProductsById(items) {
   return out;
 }
 
-// ================= PAYPAL HELPERS =================
-function ensurePayPalSdk() {
-  return new Promise((resolve, reject) => {
-    if (window.paypal && typeof window.paypal.Buttons === 'function') {
-      resolve(window.paypal);
-      return;
-    }
+// ================= SQUARE CHECKOUT =================
+async function startSquareCheckout() {
+  const cart = readCart();
 
-    const existing = document.querySelector('script[data-paypal-sdk="true"]');
-    if (existing) {
-      existing.addEventListener('load', () => resolve(window.paypal), { once: true });
-      existing.addEventListener('error', reject, { once: true });
-      return;
-    }
-
-    const s = document.createElement('script');
-    s.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(PAYPAL_CLIENT_ID)}&currency=${encodeURIComponent(PAYPAL_CURRENCY)}`;
-    s.async = true;
-    s.dataset.paypalSdk = 'true';
-    s.onload = () => resolve(window.paypal);
-    s.onerror = reject;
-    document.head.appendChild(s);
-  });
-}
-
-function getPayPalItemsFromCart() {
-  const c = readCart();
-  return (c.lines || []).map(l => ({
-    name: String(l.title || 'Item').slice(0, 127),
-    sku: String(l.variantId || '').slice(0, 127),
-    quantity: String(Math.max(1, l.qty | 0)),
-    unit_amount: {
-      currency_code: PAYPAL_CURRENCY,
-      value: (Number(l.price_cents || 0) / 100).toFixed(2)
-    }
-  }));
-}
-
-function renderPayPalButtons() {
-  const host = document.getElementById('paypal-button-container');
-  if (!host) return;
-
-  const c = readCart();
-  if (!c.lines.length) {
-    host.innerHTML = '';
+  if (!cart.lines || !cart.lines.length) {
+    showToast('Your cart is empty');
     return;
   }
 
-  host.innerHTML = '';
-
-  const subtotal = cartSubtotalCents();
-  const items = getPayPalItemsFromCart();
-  const itemTotal = (subtotal / 100).toFixed(2);
-
-  ensurePayPalSdk()
-    .then((paypal) => {
-      if (!paypal || typeof paypal.Buttons !== 'function') {
-        host.innerHTML = '<p class="muted">PayPal is unavailable right now.</p>';
-        return;
-      }
-
-      paypal.Buttons({
-        style: {
-          color: 'blue',
-          shape: 'rect',
-          label: 'paypal',
-          height: 48,
-          tagline: false
-        },
-
-        createOrder(data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                currency_code: PAYPAL_CURRENCY,
-                value: itemTotal,
-                breakdown: {
-                  item_total: {
-                    currency_code: PAYPAL_CURRENCY,
-                    value: itemTotal
-                  }
-                }
-              },
-              items
-            }]
-          });
-        },
-
-        onApprove(data, actions) {
-          return actions.order.capture().then((details) => {
-            const cart = readCart();
-            const capture = details?.purchase_units?.[0]?.payments?.captures?.[0];
-
-            localStorage.setItem('last_order', JSON.stringify({
-              orderID: data.orderID || '',
-              transactionID: capture?.id || '',
-              payer: details?.payer?.name?.given_name || '',
-              email: details?.payer?.email_address || '',
-              amount: details?.purchase_units?.[0]?.amount?.value || '',
-              date: new Date().toISOString(),
-              items: (cart.lines || []).map(line => ({
-                title: line.title || 'Item',
-                variantId: line.variantId || '',
-                qty: line.qty || 1,
-                price_cents: line.price_cents || 0
-              }))
-            }));
-
-            clearLocalCart();
-            window.location.href = '/ordercomplete.html';
-          });
-        },
-
-        onError(err) {
-          console.error('PayPal checkout error:', err);
-          alert('PayPal checkout could not be started.');
-        },
-
-        onCancel() {
-          showToast('PayPal checkout canceled', 1400);
-        }
-      }).render('#paypal-button-container');
-    })
-    .catch((err) => {
-      console.error('PayPal SDK failed to load:', err);
-      host.innerHTML = '<p class="muted">PayPal failed to load.</p>';
+  try {
+    const res = await fetch('/.netlify/functions/create-square-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(cart)
     });
+
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok || !data.url) {
+      console.error('Square checkout error:', data);
+      alert('Checkout could not be started.');
+      return;
+    }
+
+    window.location.href = data.url;
+  } catch (err) {
+    console.error('Square checkout failed:', err);
+    alert('Checkout could not be started.');
+  }
+}
+
+function wireSquareCheckoutButton() {
+  const btn = document.getElementById('square-checkout-btn');
+  if (!btn) return;
+  btn.addEventListener('click', startSquareCheckout);
 }
 
 // ================= TOAST =================
@@ -428,8 +333,10 @@ function renderCart() {
         <a href="/" class="btn outline" id="continue-shopping">Continue shopping</a>
         <button id="cart-clear" class="btn outline">Clear Cart</button>
       </div>
-      <div class="cart-actions paypal-actions" style="margin-top:10px;">
-        <div id="paypal-button-container" style="width:100%; max-width:320px;"></div>
+      <div class="cart-actions square-actions" style="margin-top:10px;">
+        <button id="square-checkout-btn" class="btn" style="width:100%; max-width:320px;">
+          CHECKOUT
+        </button>
       </div>
     </div>
   `;
@@ -469,7 +376,7 @@ function renderCart() {
     renderCart();
   });
 
-  renderPayPalButtons();
+  wireSquareCheckoutButton();
 }
 
 // ================= NAV =================
