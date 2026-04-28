@@ -1,75 +1,74 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>APPAREL</title>
-
-  <link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
-  <link rel="stylesheet" href="styles.css">
-
-  <script>
-    window.PRODUCTS_JSON_PATH = "assets/products_apparel.json";
-  </script>
-  <script defer src="scripts.js"></script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>APPAREL</title>
+<link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
+<link rel="stylesheet" href="styles.css">
+<script>
+  window.PRODUCTS_JSON_PATH = "assets/products_apparel.json";
+</script>
+<script defer src="scripts.js"></script>
 </head>
 
 <body>
-
 <nav class="nav">
-  <a href="/" class="logo-link">
-    <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" class="logo">
-  </a>
+    <a href="/" class="logo-link" aria-label="OFFROAD TACTICAL — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
 
-  <button class="nav-toggle">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
+    <span class="nav-title"></span>
 
-  <div class="links">
-    <a class="tab nav-tab" href="/">HOME</a>
-    <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
-    <a class="tab nav-tab" href="/jeep.html">JEEP</a>
-    <a class="tab nav-tab" href="/targets.html">TARGETS</a>
-    <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
-  </div>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="sr-only">Menu</span>
+    </button>
 
-  <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART">
-    <img src="assets/cart-icon.svg" class="cart-icon">
-    CART <span id="cart-count">0</span>
-  </a>
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
+
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+      <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+      <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+      <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+      <a class="tab nav-tab" href="/edc.html">EDC</a>
+      <a class="tab nav-tab" href="/apparel.html" aria-current="page">APPAREL</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    </div>
+
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
+      CART <span id="cart-count" class="cart-count">0</span>
+    </a>
 </nav>
 
-<div id="main-menu" class="menu">
-  <a href="/">HOME</a>
-  <a href="/humvee.html">HUMVEE</a>
-  <a href="/jeep.html">JEEP</a>
-  <a href="/targets.html">TARGETS</a>
-  <a href="/apparel.html">APPAREL</a>
+<div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+  <a class="tab nav-tab" href="/">HOME</a>
+  <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+  <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+  <a class="tab nav-tab" href="/ar15.html">GUN PARTS</a>
+  <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+  <a class="tab nav-tab" href="/crosskarts.html">CROSS-KARTS</a>
+  <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+  <a class="tab nav-tab" href="/edc.html">EDC</a>
+  <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
+  <a class="tab nav-tab" href="/contact.html">CONTACT</a>
 </div>
 
 <main class="container">
+  <div class="product-header"><h1>Apparel</h1></div>
 
-  <div class="product-header">
-    <h1>Apparel</h1>
-  </div>
-
-  <!-- SAME FILTER STYLE AS TARGETS -->
   <div class="filters">
     <div class="toggle" data-tag="Hat">Hats</div>
     <div class="toggle" data-tag="Shirt">Shirts</div>
     <div class="toggle" data-tag="Offroad Tactical">Offroad Tactical</div>
   </div>
 
-  <!-- IMPORTANT: NO data-category -->
   <div id="product-grid" class="grid"></div>
-
 </main>
 
-<footer class="footer">
-  © 2026 OFFROAD TACTICAL
-</footer>
-
-</body>
-</html>
+<footer class="footer">© 2026 OFFROAD TACTICAL — HUMVEE • JEEP • GUN PARTS • TARGETS • CROSS-KARTS • EDC • APPAREL</footer>
+</body></html>
