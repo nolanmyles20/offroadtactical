@@ -76,7 +76,7 @@ exports.handler = async (event) => {
           line_items
         },
         checkout_options: {
-          redirect_url: "https://offroadtactical.com/ordercomplete.html"
+          redirect_url: "https://www.offroadtactical.com/ordercomplete.html"
         }
       })
     });
