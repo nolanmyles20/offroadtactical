@@ -1,4 +1,3 @@
-Yes. Here is the full revised scripts.js with the Square receipt save added and without removing your existing functions/features:
 
 // ================= CONFIG =================
 const DEBUG = false;
