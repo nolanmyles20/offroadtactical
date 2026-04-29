@@ -1,15 +1,15 @@
+Yes. Here is the full revised scripts.js with the Square receipt save added and without removing your existing functions/features:
+
 // ================= CONFIG =================
 const DEBUG = false;
 const PRODUCTS_JSON_PATH = window.PRODUCTS_JSON_PATH || 'assets/products.json';
 const FEATURED_PRODUCTS_JSON_PATHS = window.FEATURED_PRODUCTS_JSON_PATHS || [
   'assets/products_humvee.json',
   'assets/products_jeep.json',
-  'assets/products_apparel.json',
+  'assets/products_ar-15.json',
   'assets/products_edc.json'
 ];
-
 let __pendingScrollSel = null;
-
 // ================= SHADOW CART HELPERS =================
 function getShadowQty() {
   return Number(localStorage.getItem('shadowCartQty') || 0) || 0;
@@ -20,7 +20,6 @@ function setShadowQty(n) {
 function bumpShadow(q) {
   setShadowQty(getShadowQty() + Math.max(1, Number(q) || 1));
 }
-
 // ================= IMAGE HELPERS =================
 function primaryImage(p) {
   if (Array.isArray(p.images) && p.images.length) return p.images[0];
@@ -30,7 +29,6 @@ function allImages(p) {
   if (Array.isArray(p.images) && p.images.length) return p.images.slice();
   return p.image ? [p.image] : ['assets/placeholder.png'];
 }
-
 // ================= SIMPLE VARIANT HELPERS =================
 function defaultSimpleVariantId(p) {
   const idFromMap = p?.variant_ids?.Solo?.Default;
@@ -41,78 +39,59 @@ function defaultSimpleVariantId(p) {
   }
   return null;
 }
-
 // ================= VARIANT NODE HELPERS =================
 function isTerminalVariantNode(node) {
   if (typeof node === 'string' || typeof node === 'number') return true;
-
   if (node && typeof node === 'object') {
     if ('Default' in node && (typeof node.Default === 'string' || typeof node.Default === 'number')) {
       return true;
     }
-
     const keys = Object.keys(node);
     const nonMeta = keys.filter(k => !['id', 'variant', 'price_cents', 'Default'].includes(k));
     return nonMeta.length === 0;
   }
-
   return false;
 }
-
 function getVariantIdFromNode(node) {
   if (typeof node === 'string' || typeof node === 'number') return String(node);
-
   if (node && typeof node === 'object') {
     if (node.Default != null) return String(node.Default);
     if (node.id != null) return String(node.id);
     if (node.variant != null) return String(node.variant);
   }
-
   return '';
 }
-
 function getVariantPriceFromNode(p, node, fallbackCents) {
   if (node && typeof node === 'object' && Number.isFinite(node.price_cents)) {
     return node.price_cents | 0;
   }
-
   const vid = getVariantIdFromNode(node);
   if (vid && p.variant_price_cents && p.variant_price_cents[vid] != null) {
     return p.variant_price_cents[vid] | 0;
   }
-
   return fallbackCents | 0;
 }
-
 function getVisibleNonMetaKeys(node) {
   if (!node || typeof node !== 'object') return [];
   return Object.keys(node).filter(k => !['id', 'variant', 'price_cents', 'Default'].includes(k));
 }
-
 function getFirstLeafNode(node) {
   if (!node) return null;
   if (isTerminalVariantNode(node)) return node;
-
   const keys = getVisibleNonMetaKeys(node);
   if (!keys.length) return null;
-
   return getFirstLeafNode(node[keys[0]]);
 }
-
 function walkVariantNode(vmap, selections) {
   let node = vmap;
-
   for (const sel of selections) {
     if (!node || isTerminalVariantNode(node)) break;
     node = node[sel];
   }
-
   return node;
 }
-
 // ================= LOCAL CART =================
 const LS_CART_KEY = 'headless_cart_v1';
-
 function readCart() {
   try {
     return JSON.parse(localStorage.getItem(LS_CART_KEY)) || { lines: [] };
@@ -185,7 +164,6 @@ function clearLocalCart() {
 function formatMoney(cents) {
   return `$${(Number(cents || 0) / 100).toFixed(2)}`;
 }
-
 // ================= GENERAL HELPERS =================
 function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, s => ({
@@ -196,7 +174,6 @@ function escapeHtml(str) {
     "'": '&#39;'
   }[s]));
 }
-
 async function fetchJsonArray(path) {
   try {
     const res = await fetch(path, { cache: 'no-store' });
@@ -211,7 +188,6 @@ async function fetchJsonArray(path) {
     return [];
   }
 }
-
 function dedupeProductsById(items) {
   const seen = new Set();
   const out = [];
@@ -223,44 +199,51 @@ function dedupeProductsById(items) {
   }
   return out;
 }
-
 // ================= SQUARE CHECKOUT =================
 async function startSquareCheckout() {
   const cart = readCart();
-
   if (!cart.lines || !cart.lines.length) {
     showToast('Your cart is empty');
     return;
   }
-
   try {
     const res = await fetch('https://cart.offroadtactical.com/.netlify/functions/create-square-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(cart)
     });
-
     const data = await res.json().catch(() => ({}));
-
     if (!res.ok || !data.url) {
       console.error('Square checkout error:', data);
       alert(data.error || data.message || 'Checkout could not be started.');
       return;
     }
-
+    localStorage.setItem('last_order', JSON.stringify({
+      orderID: data.paymentLinkId || data.orderId || 'Square Checkout',
+      transactionID: 'Square Payment',
+      provider: 'Square',
+      payer: '',
+      email: '',
+      amount: (cartSubtotalCents() / 100).toFixed(2),
+      date: new Date().toISOString(),
+      items: (cart.lines || []).map(line => ({
+        title: line.title || 'Item',
+        variantId: line.variantId || '',
+        qty: line.qty || 1,
+        price_cents: line.price_cents || 0
+      }))
+    }));
     window.location.href = data.url;
   } catch (err) {
     console.error('Square checkout failed:', err);
     alert(err.message || 'Checkout could not be started.');
   }
 }
-
 function wireSquareCheckoutButton() {
   const btn = document.getElementById('square-checkout-btn');
   if (!btn) return;
   btn.addEventListener('click', startSquareCheckout);
 }
-
 // ================= TOAST =================
 let __toastTimer = null;
 function ensureToastHost() {
@@ -278,24 +261,20 @@ function showToast(msg = 'Item Added To Cart!', ms = 1100) {
   clearTimeout(__toastTimer);
   __toastTimer = setTimeout(() => el.classList.remove('show'), ms);
 }
-
 // ================= BADGE =================
 function setBadge(n) {
   const el = document.getElementById('cart-count');
   if (el) el.textContent = String(n ?? 0);
-
   const el2 = document.getElementById('cartCount');
   if (el2) el2.textContent = String(n ?? 0);
 }
 async function refreshBadge() {
   setBadgeFromLocal();
 }
-
 // ================= CART PAGE =================
 function renderCart() {
   const root = document.getElementById('cart-root');
   if (!root) return;
-
   const c = readCart();
   if (!c.lines.length) {
     root.innerHTML = `
@@ -305,7 +284,6 @@ function renderCart() {
       </div>`;
     return;
   }
-
   const rows = c.lines.map(l => `
     <div class="cart-row" data-vid="${escapeHtml(l.variantId)}">
       <img class="cart-thumb" src="${escapeHtml(l.image || 'assets/placeholder.png')}" alt="">
@@ -322,7 +300,6 @@ function renderCart() {
       <button class="cart-remove" aria-label="Remove">X</button>
     </div>
   `).join('');
-
   const subtotal = cartSubtotalCents();
   root.innerHTML = `
     <div class="cart-table">${rows}</div>
@@ -340,45 +317,37 @@ function renderCart() {
       </div>
     </div>
   `;
-
   root.querySelectorAll('.cart-row').forEach(row => {
     const vid = row.getAttribute('data-vid');
     const input = row.querySelector('.qty-input');
-
     row.querySelector('.qty-btn.minus').addEventListener('click', () => {
       const n = Math.max(1, (parseInt(input.value, 10) || 1) - 1);
       input.value = n;
       setLineQty(vid, n);
       renderCart();
     });
-
     row.querySelector('.qty-btn.plus').addEventListener('click', () => {
       const n = Math.max(1, (parseInt(input.value, 10) || 1) + 1);
       input.value = n;
       setLineQty(vid, n);
       renderCart();
     });
-
     input.addEventListener('change', () => {
       const n = Math.max(1, parseInt(input.value, 10) || 1);
       setLineQty(vid, n);
       renderCart();
     });
-
     row.querySelector('.cart-remove').addEventListener('click', () => {
       removeLine(vid);
       renderCart();
     });
   });
-
   document.getElementById('cart-clear').addEventListener('click', () => {
     clearLocalCart();
     renderCart();
   });
-
   wireSquareCheckoutButton();
 }
-
 // ================= NAV =================
 function setNavHeightVar() {
   const nav = document.querySelector('.nav');
@@ -410,7 +379,6 @@ function scrollToEl(el) {
   void el.offsetWidth;
   el.classList.add('flash');
 }
-
 // ================= BOOT =================
 document.addEventListener('DOMContentLoaded', () => {
   [...document.querySelectorAll('[data-cart-link], #cart-link')].forEach(el => {
@@ -418,34 +386,27 @@ document.addEventListener('DOMContentLoaded', () => {
     el.removeAttribute('target');
     el.removeAttribute('rel');
   });
-
   const toggle = document.querySelector('.nav-toggle');
   const menu = document.getElementById('main-menu');
-
   setNavHeightVar();
   window.addEventListener('resize', setNavHeightVar);
   window.addEventListener('orientationchange', setNavHeightVar);
-
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       menu.classList.contains('is-open') ? closeMobileMenu(toggle, menu) : openMobileMenu(toggle, menu);
     });
-
     menu.addEventListener('click', (e) => {
       if (e.target.closest('a')) closeMobileMenu(toggle, menu);
     });
-
     document.addEventListener('click', (e) => {
       if (!menu.classList.contains('is-open')) return;
       const inMenu = e.target.closest('#main-menu');
       const onTgl = e.target.closest('.nav-toggle');
       if (!inMenu && !onTgl) closeMobileMenu(toggle, menu);
     });
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMobileMenu(toggle, menu);
     });
-
     const mq = window.matchMedia('(min-width: 801px)');
     if (mq.addEventListener) {
       mq.addEventListener('change', (m) => { if (m.matches) closeMobileMenu(toggle, menu); });
@@ -453,7 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mq.addListener((m) => { if (m.matches) closeMobileMenu(toggle, menu); });
     }
   }
-
   setBadgeFromLocal();
   setInterval(refreshBadge, 15000);
   document.addEventListener('visibilitychange', () => {
@@ -462,81 +422,64 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('storage', (e) => {
     if (e.key === LS_CART_KEY || e.key === '__cart_ping__') setBadgeFromLocal();
   });
-
   try {
     initFilters();
   } catch (e) {
     if (DEBUG) console.warn('initFilters error', e);
   }
-
   loadProducts().catch(err => console.error('loadProducts failed:', err));
   renderCart();
 });
-
 // ================= DATA LOAD =================
 async function loadProducts() {
   const items = await fetchJsonArray(PRODUCTS_JSON_PATH);
-
   document.querySelectorAll('#product-grid').forEach(grid => {
     const cat = (grid.getAttribute('data-category') || '').trim();
     const activeTags = getActiveTags();
-
     const subset = items.filter(p => {
       const platforms = Array.isArray(p.platforms)
         ? p.platforms
         : (p.platform ? [p.platform] : []);
-
       const category = (p.category || '').trim();
-
       const matchesCategory =
         !cat ||
         platforms.includes(cat) ||
         category === cat;
-
       const tags = Array.isArray(p.tags) ? p.tags : [];
       const matchesTags =
         activeTags.length === 0 ||
         activeTags.every(t => tags.includes(t));
-
       return matchesCategory && matchesTags;
     });
-
     grid.innerHTML = subset.map(p => productCard(p)).join('') || '<p>No products match those filters.</p>';
   });
-
   const fg = document.getElementById('featured-grid');
   if (fg) {
     const featuredArrays = await Promise.all(
       FEATURED_PRODUCTS_JSON_PATHS.map(path => fetchJsonArray(path))
     );
-
     const featuredItems = dedupeProductsById(
       featuredArrays.flat().filter(p => p && p.featured === true)
     );
-
     fg.innerHTML = featuredItems.length
       ? featuredItems.map(p => productCard(p)).join('')
       : '<p>No featured products yet.</p>';
-
     const combinedItems = dedupeProductsById([...items, ...featuredItems]);
     wireCards(combinedItems);
   } else {
     wireCards(items);
   }
-
   if (__pendingScrollSel) {
     const el = document.querySelector(__pendingScrollSel);
     if (el) scrollToEl(el);
     __pendingScrollSel = null;
   }
 }
-
 // ================= RENDER =================
 function productCard(p) {
   const imgs = allImages(p);
   const inventory = Number(p.inventory ?? 0);
   const ctaText = inventory <= 0 ? 'BACKORDER' : 'ADD TO CART';
-
   if (p.simple) {
     return `
     <div class="card" data-id="${p.id}" id="product-${p.id}">
@@ -564,7 +507,6 @@ function productCard(p) {
       </div>
     </div>`;
   }
-
   const labels = p.option_labels || {};
   const vmap = p.variant_ids || {};
   const opt1 = getVisibleNonMetaKeys(vmap);
@@ -576,7 +518,6 @@ function productCard(p) {
   const nodeForSecond = firstOpt2 ? nodeForFirst?.[firstOpt2] : null;
   const opt3Keys = (nodeForSecond && typeof nodeForSecond === 'object' && !isTerminalVariantNode(nodeForSecond))
     ? getVisibleNonMetaKeys(nodeForSecond) : [];
-
   return `
   <div class="card" data-id="${p.id}" id="product-${p.id}">
     <img class="product-img" src="${imgs[0]}" alt="${escapeHtml(p.title)}">
@@ -618,10 +559,8 @@ function productCard(p) {
     </div>
   </div>`;
 }
-
 function marketplaceButtons(p) {
   const links = [];
-
   if (p.gunbroker_url) {
     links.push(`
       <a class="btn marketplace-btn gunbroker-btn"
@@ -632,7 +571,6 @@ function marketplaceButtons(p) {
       </a>
     `);
   }
-
   if (p.amazon_url) {
     links.push(`
       <a class="btn marketplace-btn amazon-btn"
@@ -643,7 +581,6 @@ function marketplaceButtons(p) {
       </a>
     `);
   }
-
   if (p.ebay_url) {
     links.push(`
       <a class="btn marketplace-btn ebay-btn"
@@ -657,23 +594,19 @@ function marketplaceButtons(p) {
       </a>
     `);
   }
-
   return links.length
     ? `<div class="marketplace-links">${links.join('')}</div>`
     : '';
 }
-
 // ================= WIRE CARDS =================
 function wireCards(items) {
   document.querySelectorAll('.card').forEach(card => {
     const product = items.find(x => x.id === card.dataset.id);
     if (!product) return;
-
     const btn = card.querySelector('.add');
     const qty = card.querySelector('.qty');
     const coat = card.querySelector('.powder');
     const priceEl = card.querySelector('.dyn-price');
-
     const mainImg = card.querySelector('.product-img');
     card.querySelectorAll('.thumb').forEach(btnThumb => {
       btnThumb.addEventListener('click', () => {
@@ -683,7 +616,6 @@ function wireCards(items) {
         btnThumb.setAttribute('aria-pressed', 'true');
       });
     });
-
     if (product.simple) {
       btn.addEventListener('click', () => {
         const q = Math.max(1, parseInt(qty?.value, 10) || 1);
@@ -692,7 +624,6 @@ function wireCards(items) {
           showToast('Variant not found');
           return;
         }
-
         const priceCents = Math.round((product.basePrice || 0) * 100);
         addToLocalCart({
           variantId,
@@ -702,7 +633,6 @@ function wireCards(items) {
           price_cents: priceCents,
           productId: product.id
         });
-
         if (coat && coat.checked && product.powdercoat_variant_id) {
           addToLocalCart({
             variantId: product.powdercoat_variant_id,
@@ -713,24 +643,20 @@ function wireCards(items) {
             productId: product.id
           });
         }
-
         showToast(Number(product.inventory ?? 0) <= 0 ? 'Added To Cart - Backorder' : 'Item Added To Cart!');
       });
       return;
     }
-
     const vmap = product.variant_ids || {};
     const o1Sel = card.querySelector('.opt1');
     const o2Sel = card.querySelector('.opt2');
     const o3Sel = card.querySelector('.opt3');
     const opt2Wrap = card.querySelector('.opt2-wrap');
     const opt3Wrap = card.querySelector('.opt3-wrap');
-
     function setPrice(cents) {
       if (!priceEl) return;
       priceEl.textContent = `$${(Number(cents || 0) / 100).toFixed(2)}`;
     }
-
     function ensureSelectOptions(selectEl, keys) {
       if (!selectEl) return;
       const current = selectEl.value;
@@ -739,18 +665,14 @@ function wireCards(items) {
       if (keys.includes(current)) selectEl.value = current;
       else if (keys.length) selectEl.value = keys[0];
     }
-
     function rebuildDownstream(changedLevel = 1) {
       const baseCents = Math.round((product.basePrice || 0) * 100);
-
       const o1Keys = getVisibleNonMetaKeys(vmap);
       if (o1Sel && o1Keys.length) {
         ensureSelectOptions(o1Sel, o1Keys);
       }
-
       const o1 = (o1Sel?.value || o1Keys[0] || '').trim();
       let node1 = vmap[o1];
-
       if (!node1) {
         const fallbackLeaf = getFirstLeafNode(vmap);
         setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
@@ -758,121 +680,93 @@ function wireCards(items) {
         if (opt3Wrap) opt3Wrap.style.display = 'none';
         return;
       }
-
       if (isTerminalVariantNode(node1)) {
         if (opt2Wrap) opt2Wrap.style.display = 'none';
         if (opt3Wrap) opt3Wrap.style.display = 'none';
         setPrice(getVariantPriceFromNode(product, node1, baseCents));
         return;
       }
-
       const o2Keys = getVisibleNonMetaKeys(node1);
       if (o2Sel) {
         ensureSelectOptions(o2Sel, o2Keys);
       }
       if (opt2Wrap) opt2Wrap.style.display = (o2Keys.length > 1 ? '' : 'none');
-
       const o2 = (o2Sel?.value || o2Keys[0] || '').trim();
       let node2 = node1[o2];
-
       if (!node2) {
         const fallbackLeaf = getFirstLeafNode(node1);
         if (opt3Wrap) opt3Wrap.style.display = 'none';
         setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
         return;
       }
-
       if (isTerminalVariantNode(node2)) {
         if (opt3Wrap) opt3Wrap.style.display = 'none';
         setPrice(getVariantPriceFromNode(product, node2, baseCents));
         return;
       }
-
       const o3Keys = getVisibleNonMetaKeys(node2);
       if (o3Sel) {
         ensureSelectOptions(o3Sel, o3Keys);
       }
       if (opt3Wrap) opt3Wrap.style.display = (o3Keys.length > 1 ? '' : 'none');
-
       const o3 = (o3Sel?.value || o3Keys[0] || '').trim();
       let node3 = node2[o3];
-
       if (!node3) {
         const fallbackLeaf = getFirstLeafNode(node2);
         setPrice(getVariantPriceFromNode(product, fallbackLeaf, baseCents));
         return;
       }
-
       setPrice(getVariantPriceFromNode(product, node3, baseCents));
     }
-
     function resolveVariantIdCurrent() {
       const o1 = (o1Sel?.value || '').trim();
       const o2 = (o2Sel?.value || '').trim();
       const o3 = (o3Sel?.value || '').trim();
-
       let node = walkVariantNode(vmap, [o1, o2, o3].filter(Boolean));
-
       if (!node || !isTerminalVariantNode(node)) {
         const partialNode = walkVariantNode(vmap, [o1, o2].filter(Boolean));
         if (partialNode && isTerminalVariantNode(partialNode)) node = partialNode;
       }
-
       if (!node || !isTerminalVariantNode(node)) {
         const partialNode = walkVariantNode(vmap, [o1].filter(Boolean));
         if (partialNode && isTerminalVariantNode(partialNode)) node = partialNode;
       }
-
       if (!node) {
         node = getFirstLeafNode(vmap);
       }
-
       return getVariantIdFromNode(node);
     }
-
     function resolveCurrentPriceCents() {
       const baseCents = Math.round((product.basePrice || 0) * 100);
-
       const o1 = (o1Sel?.value || '').trim();
       const o2 = (o2Sel?.value || '').trim();
       const o3 = (o3Sel?.value || '').trim();
-
       let node = walkVariantNode(vmap, [o1, o2, o3].filter(Boolean));
-
       if (!node || !isTerminalVariantNode(node)) {
         node = getFirstLeafNode(node || walkVariantNode(vmap, [o1, o2].filter(Boolean)) || walkVariantNode(vmap, [o1].filter(Boolean)) || vmap);
       }
-
       return getVariantPriceFromNode(product, node, baseCents);
     }
-
     rebuildDownstream(1);
-
     o1Sel?.addEventListener('change', () => rebuildDownstream(1));
     o2Sel?.addEventListener('change', () => rebuildDownstream(2));
     o3Sel?.addEventListener('change', () => rebuildDownstream(3));
-
     btn.addEventListener('click', () => {
       const q = Math.max(1, parseInt(qty?.value, 10) || 1);
       const variantId = resolveVariantIdCurrent();
-
       if (!variantId) {
         showToast('Please select a valid option');
         return;
       }
-
       const cents = resolveCurrentPriceCents();
-
       const variations = [
         (o1Sel?.value || '').trim(),
         (o2Sel?.value || '').trim(),
         (o3Sel?.value || '').trim()
       ].filter(Boolean).join(' / ');
-
       const displayTitle = variations
         ? `${product.title} - ${variations}`
         : product.title;
-
       addToLocalCart({
         variantId,
         qty: q,
@@ -881,7 +775,6 @@ function wireCards(items) {
         price_cents: cents,
         productId: product.id
       });
-
       if (coat && coat.checked && product.powdercoat_variant_id) {
         addToLocalCart({
           variantId: product.powdercoat_variant_id,
@@ -892,12 +785,10 @@ function wireCards(items) {
           productId: product.id
         });
       }
-
       showToast(Number(product.inventory ?? 0) <= 0 ? 'Added To Cart - Backorder' : 'Item Added To Cart!');
     });
   });
 }
-
 // ================= FILTERS =================
 function initFilters() {
   document.querySelectorAll('.toggle').forEach(t => {
@@ -907,7 +798,6 @@ function initFilters() {
       loadProducts();
     });
   });
-
   const params = new URLSearchParams(window.location.search);
   const tags = params.getAll('tag');
   if (tags.length) {
@@ -926,7 +816,6 @@ function updateUrlFromFilters() {
   const newUrl = window.location.pathname + (tags.length ? ('?' + params.toString()) : '');
   history.replaceState({}, '', newUrl);
 }
-
 // ================= HOTSPOTS =================
 document.addEventListener('click', (e) => {
   const spot = e.target.closest('.hotspot');
