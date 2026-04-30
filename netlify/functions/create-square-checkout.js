@@ -33,6 +33,7 @@ exports.handler = async (event) => {
   try {
     const cart = JSON.parse(event.body || "{}");
     const lines = Array.isArray(cart.lines) ? cart.lines : [];
+    const shippingCents = Math.max(0, Math.round(Number(cart.shipping_cents) || 0));
 
     if (!lines.length) {
       return {
@@ -61,6 +62,18 @@ exports.handler = async (event) => {
         }
       };
     });
+
+    if (shippingCents > 0) {
+      line_items.push({
+        name: "Shipping",
+        quantity: "1",
+        note: "Estimated shipping from cart weight",
+        base_price_money: {
+          amount: shippingCents,
+          currency: "USD"
+        }
+      });
+    }
 
     const response = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
       method: "POST",
