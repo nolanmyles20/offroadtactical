@@ -3,6 +3,13 @@ const allowedOrigins = [
   "https://www.offroadtactical.com"
 ];
 
+const PRODUCT_URLS = [
+  "https://www.offroadtactical.com/products.json",
+  "https://www.offroadtactical.com/products_apparel.json",
+  "https://www.offroadtactical.com/products_targets.json",
+  "https://www.offroadtactical.com/products_edc.json"
+];
+
 function getHeaders(event) {
   const origin = event.headers.origin || event.headers.Origin || "";
   return {
@@ -13,6 +20,42 @@ function getHeaders(event) {
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Content-Type": "application/json"
   };
+}
+
+async function loadProducts() {
+  const all = [];
+
+  for (const url of PRODUCT_URLS) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed loading ${url}`);
+    const data = await res.json();
+    if (Array.isArray(data)) all.push(...data);
+  }
+
+  return all;
+}
+
+function getPrice(product, item) {
+  let price = Math.round(Number(product.basePrice || product.price || 0) * 100);
+
+  // handle variants
+  if (product.variant_price_cents && item.options) {
+    const key = Object.values(item.options).join(" / ");
+    if (product.variant_price_cents[key]) {
+      price = product.variant_price_cents[key];
+    }
+  }
+
+  if (price <= 0) {
+    throw new Error(`Invalid price for ${product.title || product.id}`);
+  }
+
+  return price;
+}
+
+function getShipping(subtotal) {
+  if (subtotal >= 7500) return 0;
+  return 895;
 }
 
 exports.handler = async (event) => {
@@ -31,9 +74,8 @@ exports.handler = async (event) => {
   }
 
   try {
-    const cart = JSON.parse(event.body || "{}");
-    const lines = Array.isArray(cart.lines) ? cart.lines : [];
-    const shippingCents = Math.max(0, Math.round(Number(cart.shipping_cents) || 0));
+    const body = JSON.parse(event.body || "{}");
+    const lines = Array.isArray(body.lines) ? body.lines : [];
 
     if (!lines.length) {
       return {
@@ -43,37 +85,39 @@ exports.handler = async (event) => {
       };
     }
 
-    const line_items = lines.map((item) => {
-      const name = String(item.title || "OFFROAD TACTICAL Item").slice(0, 120);
-      const quantity = Math.max(1, Number(item.qty) || 1).toString();
-      const amount = Math.round(Number(item.price_cents) || 0);
+    const products = await loadProducts();
 
-      if (amount <= 0) {
-        throw new Error(`Missing price for ${name}`);
-      }
+    let subtotal = 0;
+
+    const line_items = lines.map(item => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) throw new Error(`Invalid product: ${item.id}`);
+
+      const qty = Math.max(1, parseInt(item.qty || 1, 10));
+      const price = getPrice(product, item);
+
+      subtotal += price * qty;
 
       return {
-        name,
-        quantity,
-        note: item.variantId ? `Variant ID: ${item.variantId}` : undefined,
+        name: String(product.title || product.name || product.id).slice(0, 120),
+        quantity: qty.toString(),
         base_price_money: {
-          amount,
+          amount: price,
           currency: "USD"
         }
       };
     });
 
-    if (shippingCents > 0) {
-      line_items.push({
-        name: "Shipping",
-        quantity: "1",
-        note: "Estimated shipping from cart weight",
-        base_price_money: {
-          amount: shippingCents,
-          currency: "USD"
-        }
-      });
-    }
+    const shipping = getShipping(subtotal);
+
+    line_items.push({
+      name: shipping > 0 ? "Shipping" : "Free Shipping Applied",
+      quantity: "1",
+      base_price_money: {
+        amount: shipping,
+        currency: "USD"
+      }
+    });
 
     const response = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
       method: "POST",
@@ -97,47 +141,25 @@ exports.handler = async (event) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Square API error:", data);
       return {
         statusCode: response.status,
         headers,
-        body: JSON.stringify({
-          error:
-            data?.errors?.[0]?.detail ||
-            data?.errors?.[0]?.code ||
-            "Square checkout failed",
-          square: data
-        })
-      };
-    }
-
-    const url = data?.payment_link?.url;
-
-    if (!url) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({
-          error: "Square did not return a checkout URL",
-          square: data
-        })
+        body: JSON.stringify({ error: "Square checkout failed", square: data })
       };
     }
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ url })
+      body: JSON.stringify({ url: data.payment_link.url })
     };
 
   } catch (err) {
-    console.error("Checkout function error:", err);
+    console.error(err);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({
-        error: err.message || "Checkout failed"
-      })
+      body: JSON.stringify({ error: err.message })
     };
   }
 };
