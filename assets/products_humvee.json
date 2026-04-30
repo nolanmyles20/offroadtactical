@@ -151,6 +151,35 @@
     "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
+    {
+    "id": "hmmwv foot rest",
+    "title": "HMMWV FOOT REST",
+    "desc": "Stainless plate lasered out to fit highbeam switch bracket. Made from 14ga 304 Stainless.",
+    "basePrice": 30,
+    "weightOz": 8,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_8578.jpeg",
+    "images": [
+      "assets/IMG_8578.jpeg",
+      "assets/IMG_8575.jpeg"
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 1234567811
+      }
+    },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 10
+  },
   {
     "id": "seatbelt-cover",
     "title": "Tactical Seat Belt Cover",
