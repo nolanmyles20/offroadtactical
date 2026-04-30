@@ -1,27 +1,18 @@
 [
   {
-    "id": "hmmwv x door",
+    "id": "hmmwv-x-door",
     "title": "HMMWV X DOOR",
     "desc": "Aluminum shell and stainless accent plates lasered out to fit existing hinge mounts. Skin Made from 16ga 304 Stainless.",
     "basePrice": 1000,
     "weightOz": 1000,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/IMG_7234.jpeg",
-    "images": [
-      "assets/IMG_7234.jpeg",
-      "assets/IMG_7234.jpeg"
-    ],
+    "images": ["assets/IMG_7234.jpeg", "assets/IMG_7234.jpeg"],
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 12345678901234
+        "Default": "12345678901234"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
@@ -29,19 +20,13 @@
     "inventory": 0
   },
   {
-    "id": "hmmwv grill mesh insert",
+    "id": "hmmwv-grill-mesh-insert",
     "title": "HMMWV GRILL INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
     "basePrice": 60,
     "weightOz": 24,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/IMG_7224.jpeg",
     "images": [
       "assets/IMG_7224.jpeg",
@@ -52,7 +37,7 @@
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 12345678901234
+        "Default": "12345678901234"
       }
     },
     "inventory": 1,
@@ -61,19 +46,13 @@
     "ebay_url": "https://ebay.us/m/Pz17oU"
   },
   {
-    "id": "hmmwv hood mesh insert",
+    "id": "hmmwv-hood-mesh-insert",
     "title": "HMMWV HOOD VENT INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
     "basePrice": 80,
     "weightOz": 32,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/IMG_7218.jpeg",
     "images": [
       "assets/IMG_4800.jpeg",
@@ -85,7 +64,7 @@
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 123456789012
+        "Default": "123456789012"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
@@ -93,19 +72,13 @@
     "inventory": 1
   },
   {
-    "id": "hmmwv hood lift rings",
+    "id": "hmmwv-hood-lift-rings",
     "title": "HMMWV HOOD LIFT RINGS",
     "desc": "Stainless plate lasered out to fit around lift rings. Made from 16ga 304 Stainless.",
     "basePrice": 30,
     "weightOz": 8,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/IMG_7230.jpeg",
     "images": [
       "assets/IMG_7230.jpeg",
@@ -115,7 +88,7 @@
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 1234567890123
+        "Default": "1234567890123"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
@@ -123,263 +96,63 @@
     "inventory": 1
   },
   {
-    "id": "hmmwv hood accent",
+    "id": "hmmwv-hood-accent",
     "title": "HMMWV HOOD ACCENT",
     "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
     "basePrice": 50,
     "weightOz": 8,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/IMG_7233.jpeg",
-    "images": [
-      "assets/IMG_7233.jpeg",
-      "assets/IMG_7218.jpeg"
-    ],
+    "images": ["assets/IMG_7233.jpeg", "assets/IMG_7218.jpeg"],
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 12345678901
+        "Default": "12345678901"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
     "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
-
-    {
-    "id": "hmmwv hood side vent",
+  {
+    "id": "hmmwv-hood-side-vent",
     "title": "HMMWV HOOD SIDE MESH ACCENT",
     "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
     "basePrice": 80,
     "weightOz": 18,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/products/IMG_8580.jpeg",
-    "images": [
-      "assets/products/IMG_8580.jpeg"
-      
-    ],
+    "images": ["assets/products/IMG_8580.jpeg"],
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 12345678901213
+        "Default": "12345678901213"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
     "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
-  
-    {
-    "id": "hmmwv foot rest",
+  {
+    "id": "hmmwv-foot-rest",
     "title": "HMMWV FOOT REST",
     "desc": "Stainless plate lasered out to fit highbeam switch bracket. Made from 14ga 304 Stainless.",
     "basePrice": 30,
     "weightOz": 8,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Humvee",
-      "Armor",
-      "Stainless"
-    ],
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
     "image": "assets/products/IMG_8578.jpeg",
-    "images": [
-      "assets/products/IMG_8578.jpeg",
-      "assets/products/IMG_8575.jpeg"
-    ],
+    "images": ["assets/products/IMG_8578.jpeg", "assets/products/IMG_8575.jpeg"],
     "simple": true,
     "variant_ids": {
       "Solo": {
-        "Default": 1234567811
+        "Default": "1234567811"
       }
     },
     "amazon_url": "https://a.co/d/08Guxd89",
     "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 10
-  },
-  {
-    "id": "seatbelt-cover",
-    "title": "Tactical Seat Belt Cover",
-    "desc": "Tactical seat belt cover with Offroad Tactical styling.",
-    "basePrice": 24.99,
-    "weightOz": 8,
-    "simple": true,
-    "platforms": [
-      "Jeep"
-    ],
-    "category": "Jeep",
-    "tags": [
-      "Tactical"
-    ],
-    "images": [
-      "assets/IMG_7967.jpeg",
-      "assets/BF7AD002-9C0D-40BF-9D26-0C9956D47AFE.jpeg"
-    ],
-    "variant_id": "11111111111114",
-    "inventory": 2,
-    "featured": true
-  },
-  {
-    "id": "hd-front-bumper",
-    "title": "HD FRONT BUMPER",
-    "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
-    "basePrice": 899,
-    "weightOz": 1000,
-    "platforms": [
-      "Humvee",
-      "Jeep"
-    ],
-    "tags": [
-      "Bumper",
-      "Armor"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "variant_ids": {
-      "Armor": {
-        "1mm": "VARIANT_ID_A_1",
-        "2mm": "VARIANT_ID_A_2",
-        "3mm": "VARIANT_ID_A_3"
-      },
-      "Stainless": {
-        "1mm": "VARIANT_ID_S_1",
-        "2mm": "VARIANT_ID_S_2",
-        "3mm": "VARIANT_ID_S_3"
-      }
-    },
-    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
-    "powdercoat_price": 50,
-    "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://ebay.us/m/Pz17oU",
-    "inventory": 0
-  },
-  {
-    "id": "roof-reinforce",
-    "title": "ROOF REINFORCEMENT KIT",
-    "desc": "STIFFENS HUMVEE ROOF STRUCTURE; BOLT-ON.",
-    "basePrice": 1499,
-    "weightOz": 1000,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Roof",
-      "Armor",
-      "Stainless"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "variant_ids": {
-      "Armor": {
-        "1mm": "VARIANT_ID_RA_1",
-        "2mm": "VARIANT_ID_RA_2",
-        "3mm": "VARIANT_ID_RA_3"
-      },
-      "Stainless": {
-        "1mm": "VARIANT_ID_RS_1",
-        "2mm": "VARIANT_ID_RS_2",
-        "3mm": "VARIANT_ID_RS_3"
-      }
-    },
-    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
-    "powdercoat_price": 50,
-    "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://ebay.us/m/Pz17oU",
-    "inventory": 0
-  },
-  {
-    "id": "rear-curtain",
-    "title": "REAR CURTAIN ASSEMBLY",
-    "desc": "REPLACEMENT VINYL REAR CURTAIN WITH WINDOW.",
-    "basePrice": 399,
-    "weightOz": 1000,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Rear Curtain",
-      "Windows"
-    ],
-    "image": "assets/coming-soon-centered.png",
-    "variant_ids": {
-      "Armor": {
-        "1mm": "VARIANT_ID_CA_1",
-        "2mm": "VARIANT_ID_CA_2",
-        "3mm": "VARIANT_ID_CA_3"
-      },
-      "Stainless": {
-        "1mm": "VARIANT_ID_CS_1",
-        "2mm": "VARIANT_ID_CS_2",
-        "3mm": "VARIANT_ID_CS_3"
-      }
-    },
-    "powdercoat_variant_id": "POWDERCOAT_BLACK_TEXTURED",
-    "powdercoat_price": 50,
-    "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://ebay.us/m/Pz17oU",
-    "inventory": 0
-  },
-  {
-    "id": "humvee-rear-insert",
-    "title": "HUMVEE REAR INSERT",
-    "desc": "Humvee rear insert made from 304 Stainless Steel or Aluminum. Different surface finishes and thicknesses.",
-    "basePrice": 80,
-    "weightOz": 32,
-    "platforms": [
-      "Humvee"
-    ],
-    "tags": [
-      "Stainless",
-      "Armor"
-    ],
-    "image": "assets/products/64F6B49F-AA6B-46E5-9E01-764465E23A6A.png",
-    "option_labels": {
-      "first": "Item material",
-      "second": "Color",
-      "third": "Thickness"
-    },
-    "variant_ids": {
-      "Stainless steel": {
-        "Black": {
-          "1mm/.04”": "47465968894107",
-          "2mm/.08”": "47466418405531",
-          "3mm/.12”": "47466418438299"
-        },
-        "Silver": {
-          "1mm/.04”": "47465968926875",
-          "2mm/.08”": "47466418536603",
-          "3mm/.12”": "47466418569371"
-        }
-      },
-      "Aluminum": {
-        "Black": {
-          "1mm/.04”": "47465973153947",
-          "2mm/.08”": "47466418471067",
-          "3mm/.12”": "47466418503835"
-        },
-        "Silver": {
-          "1mm/.04”": "47465973186715",
-          "2mm/.08”": "47466418602139",
-          "3mm/.12”": "47466418634907"
-        }
-      }
-    },
-    "powdercoat_variant_id": "",
-    "powdercoat_price": 50,
-    "amazon_url": "https://a.co/d/08Guxd89",
-    "ebay_url": "https://ebay.us/m/Pz17oU",
-    "inventory": 1
   }
 ]
