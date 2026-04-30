@@ -4,10 +4,13 @@ const allowedOrigins = [
 ];
 
 const PRODUCT_URLS = [
-  "https://www.offroadtactical.com/products.json",
-  "https://www.offroadtactical.com/products_apparel.json",
-  "https://www.offroadtactical.com/products_targets.json",
-  "https://www.offroadtactical.com/products_edc.json"
+  "https://www.offroadtactical.com/assets/products.json",
+  "https://www.offroadtactical.com/assets/products_humvee.json",
+  "https://www.offroadtactical.com/assets/products_jeep.json",
+  "https://www.offroadtactical.com/assets/products_apparel.json",
+  "https://www.offroadtactical.com/assets/products_edc.json",
+  "https://www.offroadtactical.com/assets/products_targets.json",
+  "https://www.offroadtactical.com/assets/products_ar-15.json"
 ];
 
 function getHeaders(event) {
