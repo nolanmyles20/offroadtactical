@@ -98,6 +98,22 @@
     "inventory": 1
   },
   {
+    "id": "hmmwv-fwd-side-inlay-plain",
+    "title": "HMMWV BEDSIDE FWD INLAY ACCENT-PLAIN",
+    "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
+    "basePrice": 20,
+    "weightOz": 6,
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
+    "image": "assets/products/IMG_8580.jpeg",
+    "images": ["assets/products/IMG_8580.jpeg"],
+    "simple": true,
+    "variant_ids": { "Solo": { "Default": "12345678901213" } },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 1
+  },
+  {
     "id": "hmmwv-badges",
     "title": "HMMWV BADGES",
     "desc": "Stainless plate lasered out. Made from 16ga 304 Stainless.",
