@@ -756,3 +756,28 @@ h1, h2{
   object-fit: cover;
   display: block;
 }
+/* =========================
+   FREE SHIPPING BANNER
+========================= */
+.free-shipping-banner {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .2px;
+}
+
+.free-shipping-banner.qualified {
+  background: rgba(45, 255, 120, 0.15);
+  border-color: rgba(45, 255, 120, 0.4);
+  color: #7CFFB2;
+}
+
+/* optional subtle animation */
+.free-shipping-banner {
+  transition: all .25s ease;
+}
