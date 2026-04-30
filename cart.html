@@ -6,7 +6,7 @@
   <title>OFFROAD TACTICAL — CART</title>
   <link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="scripts.js"></script>
+  <script defer src="scripts.js?v=2"></script>
 </head>
 
 <body>
@@ -18,15 +18,14 @@
     <span class="nav-title"></span>
 
     <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
 
-    <div class="links" role="navigation" aria-label="Primary">
+    <div class="links">
       <a class="tab nav-tab" href="/">HOME</a>
       <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
       <a class="tab nav-tab" href="/jeep.html">JEEP</a>
@@ -37,13 +36,13 @@
       <a class="tab nav-tab" href="/contact.html">CONTACT</a>
     </div>
 
-    <a id="cart-link" class="nav-cart" href="/cart.html" aria-label="Open cart">
+    <a id="cart-link" class="nav-cart" href="/cart.html">
       <img src="assets/cart-icon.svg" class="cart-icon" alt="">
       CART <span id="cart-count" class="cart-count">0</span>
     </a>
   </nav>
 
-  <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+  <div id="main-menu" class="menu">
     <a class="tab nav-tab" href="/">HOME</a>
     <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
     <a class="tab nav-tab" href="/jeep.html">JEEP</a>
@@ -59,10 +58,32 @@
       <h1>Your Cart</h1>
     </div>
 
+    <!-- 🔥 FREE SHIPPING BANNER -->
+    <div id="freeShippingBanner" class="free-shipping-banner" style="display:none;"></div>
+
+    <!-- CART ITEMS -->
     <div id="cart-root"></div>
 
+    <!-- 🔥 ORDER SUMMARY -->
+    <div class="cart-summary-box">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">$0.00</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Shipping</span>
+        <strong id="cartShipping">$0.00</strong>
+      </div>
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+    </div>
+
     <div class="checkout-area">
-      <!-- Square checkout button is injected by scripts.js inside #cart-root -->
+      <!-- Square checkout button still injected -->
     </div>
   </main>
 
