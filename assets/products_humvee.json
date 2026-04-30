@@ -151,6 +151,37 @@
     "ebay_url": "https://ebay.us/m/Pz17oU",
     "inventory": 1
   },
+
+    {
+    "id": "hmmwv hood side vent",
+    "title": "HMMWV HOOD SIDE MESH ACCENT",
+    "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
+    "basePrice": 80,
+    "weightOz": 18,
+    "platforms": [
+      "Humvee"
+    ],
+    "tags": [
+      "Humvee",
+      "Armor",
+      "Stainless"
+    ],
+    "image": "assets/IMG_7233.jpeg",
+    "images": [
+      "assets/IMG_7233.jpeg"
+      
+    ],
+    "simple": true,
+    "variant_ids": {
+      "Solo": {
+        "Default": 12345678901
+      }
+    },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 1
+  },
+  
     {
     "id": "hmmwv foot rest",
     "title": "HMMWV FOOT REST",
