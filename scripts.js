@@ -12,6 +12,8 @@ let __pendingScrollSel = null;
 
 // ================= SHIPPING HELPERS =================
 const DEFAULT_PRODUCT_WEIGHT_OZ = 8;
+const FREE_SHIPPING_THRESHOLD_CENTS = 7500;
+const DEFAULT_SHIPPING_CENTS = 895;
 
 function cartTotalWeightOz(cart = readCart()) {
   return (cart.lines || []).reduce((sum, line) => {
@@ -22,11 +24,18 @@ function cartTotalWeightOz(cart = readCart()) {
 }
 
 function calculateShippingCents(cart = readCart()) {
+  const subtotal = (cart.lines || []).reduce((sum, line) => {
+    return sum + ((Number(line.price_cents || 0) || 0) * Math.max(1, Number(line.qty || 1)));
+  }, 0);
+
+  if (subtotal >= FREE_SHIPPING_THRESHOLD_CENTS) return 0;
+
   const oz = cartTotalWeightOz(cart);
   if (oz <= 0) return 0;
 
+  // Default shipping starts at $8.95. Keep the higher tiers for heavier carts.
   const lb = oz / 16;
-  if (lb <= 2) return 895;
+  if (lb <= 2) return DEFAULT_SHIPPING_CENTS;
   if (lb <= 5) return 1295;
   if (lb <= 15) return 1995;
   if (lb <= 35) return 3495;
@@ -268,21 +277,19 @@ async function startSquareCheckout() {
     return;
   }
 
-  try {
-    /*
-      SECURITY NOTE:
-      Do NOT send price_cents, title, image, weight, or shipping_cents to Netlify.
-      Those values are only used for the local cart display.
-      The Netlify function must load the real product JSON and calculate price/shipping server-side.
-    */
-    const payload = {
-      lines: cart.lines.map(line => ({
-        id: line.productId || line.variantId,
-        variantId: line.variantId || '',
-        qty: Math.max(1, parseInt(line.qty || 1, 10))
-      }))
-    };
+  // SECURITY: only send product id / variant id / qty to Netlify.
+  // Do not send browser-controlled prices or shipping to Square checkout.
+  const payload = {
+    lines: (cart.lines || []).map(line => ({
+      id: line.productId || line.id || '',
+      variantId: line.variantId || '',
+      qty: Math.max(1, Number(line.qty || 1))
+    }))
+  };
 
+  const shippingCents = calculateShippingCents(cart);
+
+  try {
     const res = await fetch('https://cart.offroadtactical.com/.netlify/functions/create-square-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -297,8 +304,7 @@ async function startSquareCheckout() {
       return;
     }
 
-    // Save a local receipt shell before redirect.
-    // Prices here are local display only; Square checkout total is generated securely by Netlify.
+    // Save local receipt preview before redirect. Payment totals are still controlled by Netlify/Square.
     try {
       localStorage.setItem('last_order', JSON.stringify({
         orderID: 'Square Checkout',
@@ -306,13 +312,15 @@ async function startSquareCheckout() {
         provider: 'Square',
         payer: '',
         email: '',
-        amount: '',
+        amount: ((cartSubtotalCents() + shippingCents) / 100).toFixed(2),
+        shipping_cents: shippingCents,
         date: new Date().toISOString(),
         items: (cart.lines || []).map(line => ({
           title: line.title || 'Item',
           variantId: line.variantId || '',
           productId: line.productId || '',
-          qty: line.qty || 1
+          qty: line.qty || 1,
+          price_cents: line.price_cents || 0
         }))
       }));
     } catch (e) {
@@ -397,12 +405,18 @@ function renderCart() {
   const subtotal = cartSubtotalCents();
   const shipping = calculateShippingCents(c);
   const total = subtotal + shipping;
+  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD_CENTS - subtotal);
+  const freeShippingBanner = subtotal >= FREE_SHIPPING_THRESHOLD_CENTS
+    ? `<div class="free-shipping-banner qualified">FREE SHIPPING APPLIED</div>`
+    : `<div class="free-shipping-banner">ADD ${formatMoney(remainingForFreeShipping)} MORE TO UNLOCK FREE SHIPPING</div>`;
+  const shippingText = shipping > 0 ? formatMoney(shipping) : 'FREE SHIPPING APPLIED';
 
   root.innerHTML = `
+    ${freeShippingBanner}
     <div class="cart-table">${rows}</div>
     <div class="cart-summary">
       <div class="row"><span>Subtotal</span><span>${formatMoney(subtotal)}</span></div>
-      <div class="row"><span>Shipping</span><span>${formatMoney(shipping)}</span></div>
+      <div class="row"><span>Shipping</span><span>${shippingText}</span></div>
       <div class="row cart-total"><span>Total</span><span>${formatMoney(total)}</span></div>
       <p class="muted">Taxes calculated at checkout.</p>
       <div class="cart-actions">
