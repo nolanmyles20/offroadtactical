@@ -12,18 +12,9 @@ let __pendingScrollSel = null;
 
 // ================= SHIPPING HELPERS =================
 const DEFAULT_PRODUCT_WEIGHT_OZ = 8;
-const SHIPPING_LINE_VARIANT_ID = '__shipping__';
-
-function isShippingLine(line) {
-  return String(line?.variantId || '') === SHIPPING_LINE_VARIANT_ID || line?.isShipping === true;
-}
-
-function cartProductLines(cart = readCart()) {
-  return (cart.lines || []).filter(line => !isShippingLine(line));
-}
 
 function cartTotalWeightOz(cart = readCart()) {
-  return cartProductLines(cart).reduce((sum, line) => {
+  return (cart.lines || []).reduce((sum, line) => {
     const qty = Math.max(1, Number(line.qty || 1));
     const weightOz = Math.max(0, Number(line.weightOz || DEFAULT_PRODUCT_WEIGHT_OZ));
     return sum + (weightOz * qty);
@@ -42,28 +33,15 @@ function calculateShippingCents(cart = readCart()) {
   return 4995;
 }
 
-function buildCartWithShippingLine(cart = readCart()) {
-  const productLines = cartProductLines(cart);
-  const shippingCents = calculateShippingCents({ lines: productLines });
-
+function buildCheckoutCart(cart = readCart()) {
+  const shippingCents = calculateShippingCents(cart);
   return {
     ...cart,
     shipping_cents: shippingCents,
-    lines: [
-      ...productLines,
-      ...(shippingCents > 0 ? [{
-        variantId: SHIPPING_LINE_VARIANT_ID,
-        qty: 1,
-        title: 'Shipping',
-        image: 'assets/cart-icon.svg',
-        price_cents: shippingCents,
-        productId: 'shipping',
-        weightOz: 0,
-        isShipping: true
-      }] : [])
-    ]
+    shipping_title: 'Shipping'
   };
 }
+
 
 // ================= SHADOW CART HELPERS =================
 function getShadowQty() {
@@ -183,11 +161,11 @@ function writeCart(cart) {
 }
 function cartCount() {
   const c = readCart();
-  return cartProductLines(c).reduce((n, l) => n + (l.qty | 0), 0);
+  return c.lines.reduce((n, l) => n + (l.qty | 0), 0);
 }
 function cartSubtotalCents() {
   const c = readCart();
-  return cartProductLines(c).reduce((sum, l) => sum + (l.price_cents || 0) * (l.qty | 0), 0);
+  return c.lines.reduce((sum, l) => sum + (l.price_cents || 0) * (l.qty | 0), 0);
 }
 function setBadgeFromLocal() {
   setBadge(cartCount());
@@ -284,14 +262,13 @@ function dedupeProductsById(items) {
 // ================= SQUARE CHECKOUT =================
 async function startSquareCheckout() {
   const cart = readCart();
-  const productLines = cartProductLines(cart);
 
-  if (!productLines.length) {
+  if (!cart.lines || !cart.lines.length) {
     showToast('Your cart is empty');
     return;
   }
 
-  const checkoutCart = buildCartWithShippingLine(cart);
+  const checkoutCart = buildCheckoutCart(cart);
   const shippingCents = checkoutCart.shipping_cents || 0;
 
   try {
@@ -318,13 +295,13 @@ async function startSquareCheckout() {
         payer: '',
         email: '',
         amount: ((cartSubtotalCents() + shippingCents) / 100).toFixed(2),
+        shipping_cents: shippingCents,
         date: new Date().toISOString(),
-        items: checkoutCart.lines.map(line => ({
+        items: (cart.lines || []).map(line => ({
           title: line.title || 'Item',
           variantId: line.variantId || '',
           qty: line.qty || 1,
-          price_cents: line.price_cents || 0,
-          isShipping: line.isShipping === true
+          price_cents: line.price_cents || 0
         }))
       }));
     } catch (e) {
@@ -380,9 +357,7 @@ function renderCart() {
   if (!root) return;
 
   const c = readCart();
-  const productLines = cartProductLines(c);
-
-  if (!productLines.length) {
+  if (!c.lines.length) {
     root.innerHTML = `
       <p>Your cart is empty.</p>
       <div class="cart-actions">
@@ -391,7 +366,7 @@ function renderCart() {
     return;
   }
 
-  const productRows = productLines.map(l => `
+  const rows = c.lines.map(l => `
     <div class="cart-row" data-vid="${escapeHtml(l.variantId)}">
       <img class="cart-thumb" src="${escapeHtml(l.image || 'assets/placeholder.png')}" alt="">
       <div class="cart-info">
@@ -411,21 +386,9 @@ function renderCart() {
   const subtotal = cartSubtotalCents();
   const shipping = calculateShippingCents(c);
   const total = subtotal + shipping;
-  const shippingRow = shipping > 0 ? `
-    <div class="cart-row shipping-row" data-vid="${SHIPPING_LINE_VARIANT_ID}">
-      <img class="cart-thumb" src="assets/cart-icon.svg" alt="">
-      <div class="cart-info">
-        <div class="cart-title">Shipping</div>
-        <div class="cart-variant">Estimated from cart weight: ${(cartTotalWeightOz(c) / 16).toFixed(2)} lb</div>
-      </div>
-      <div class="cart-qty">1</div>
-      <div class="cart-price">${formatMoney(shipping)}</div>
-      <span class="cart-remove" aria-hidden="true"></span>
-    </div>
-  ` : '';
 
   root.innerHTML = `
-    <div class="cart-table">${productRows}${shippingRow}</div>
+    <div class="cart-table">${rows}</div>
     <div class="cart-summary">
       <div class="row"><span>Subtotal</span><span>${formatMoney(subtotal)}</span></div>
       <div class="row"><span>Shipping</span><span>${formatMoney(shipping)}</span></div>
