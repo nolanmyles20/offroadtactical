@@ -10,6 +10,33 @@ const FEATURED_PRODUCTS_JSON_PATHS = window.FEATURED_PRODUCTS_JSON_PATHS || [
 
 let __pendingScrollSel = null;
 
+
+// ================= SHIPPING HELPERS =================
+function cartTotalWeightOz() {
+  const c = readCart();
+  return (c.lines || []).reduce((sum, l) => {
+    const w = Number(l.weightOz || 8);
+    const q = Math.max(1, Number(l.qty || 1));
+    return sum + (w * q);
+  }, 0);
+}
+
+function calculateShippingCents() {
+  const oz = cartTotalWeightOz();
+  const lb = oz / 16;
+
+  if (lb <= 0) return 0;
+  if (lb <= 2) return 895;
+  if (lb <= 5) return 1295;
+  if (lb <= 15) return 1995;
+  if (lb <= 35) return 3495;
+  return 4995;
+}
+
+function cartTotalCents() {
+  return cartSubtotalCents() + calculateShippingCents();
+}
+
 // ================= SHADOW CART HELPERS =================
 function getShadowQty() {
   return Number(localStorage.getItem('shadowCartQty') || 0) || 0;
@@ -137,7 +164,7 @@ function cartSubtotalCents() {
 function setBadgeFromLocal() {
   setBadge(cartCount());
 }
-function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, productId }) {
+function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, productId, weightOz = 8 }) {
   const c = readCart();
   const key = String(variantId);
   const line = c.lines.find(l => l.variantId === key);
@@ -147,6 +174,7 @@ function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, pro
     line.image = image ?? line.image;
     line.price_cents = (price_cents ?? line.price_cents) | 0;
     line.productId = productId ?? line.productId;
+    line.weightOz = weightOz ?? line.weightOz ?? 8;
   } else {
     c.lines.push({
       variantId: key,
@@ -154,7 +182,8 @@ function addToLocalCart({ variantId, qty = 1, title, image, price_cents = 0, pro
       title,
       image,
       price_cents,
-      productId
+      productId,
+      weightOz: weightOz || 8
     });
   }
   writeCart(c);
@@ -233,11 +262,20 @@ async function startSquareCheckout() {
     return;
   }
 
+  const shippingCents = calculateShippingCents();
+  const checkoutCart = {
+    ...cart,
+    shipping_cents: shippingCents,
+    shippingCents,
+    subtotal_cents: cartSubtotalCents(),
+    total_cents: cartSubtotalCents() + shippingCents
+  };
+
   try {
     const res = await fetch('https://cart.offroadtactical.com/.netlify/functions/create-square-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(cart)
+      body: JSON.stringify(checkoutCart)
     });
 
     const data = await res.json().catch(() => ({}));
@@ -246,6 +284,30 @@ async function startSquareCheckout() {
       console.error('Square checkout error:', data);
       alert(data.error || data.message || 'Checkout could not be started.');
       return;
+    }
+
+    // Save receipt BEFORE redirect so ordercomplete.html has local order info.
+    try {
+      localStorage.setItem('last_order', JSON.stringify({
+        orderID: 'Square Checkout',
+        transactionID: 'Square Payment',
+        provider: 'Square',
+        payer: '',
+        email: '',
+        amount: ((cartSubtotalCents() + shippingCents) / 100).toFixed(2),
+        subtotal: (cartSubtotalCents() / 100).toFixed(2),
+        shipping: (shippingCents / 100).toFixed(2),
+        date: new Date().toISOString(),
+        items: (cart.lines || []).map(line => ({
+          title: line.title || 'Item',
+          variantId: line.variantId || '',
+          qty: line.qty || 1,
+          price_cents: line.price_cents || 0,
+          weightOz: line.weightOz || 8
+        }))
+      }));
+    } catch (e) {
+      console.warn('Receipt save failed:', e);
     }
 
     window.location.href = data.url;
@@ -324,11 +386,16 @@ function renderCart() {
   `).join('');
 
   const subtotal = cartSubtotalCents();
+  const shipping = calculateShippingCents();
+  const total = subtotal + shipping;
+
   root.innerHTML = `
     <div class="cart-table">${rows}</div>
     <div class="cart-summary">
       <div class="row"><span>Subtotal</span><span>${formatMoney(subtotal)}</span></div>
-      <p class="muted">Taxes and shipping calculated at checkout.</p>
+      <div class="row"><span>Shipping</span><span>${formatMoney(shipping)}</span></div>
+      <div class="row total"><span>Total</span><span>${formatMoney(total)}</span></div>
+      <p class="muted">Taxes calculated at checkout. Shipping is estimated by cart weight.</p>
       <div class="cart-actions">
         <a href="/" class="btn outline" id="continue-shopping">Continue shopping</a>
         <button id="cart-clear" class="btn outline">Clear Cart</button>
@@ -548,7 +615,7 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${(p.platforms || []).join(' â¢ ')}</div>
+        <div class="badge">${(p.platforms || []).join(' Ã¢ÂÂ¢ ')}</div>
         <h3>${escapeHtml(p.title)}</h3>
         <p>${escapeHtml(p.desc)}</p>
         <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -587,7 +654,7 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${(p.platforms || []).join(' â¢ ')}</div>
+      <div class="badge">${(p.platforms || []).join(' Ã¢ÂÂ¢ ')}</div>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.desc)}</p>
       <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -700,7 +767,8 @@ function wireCards(items) {
           title: product.title,
           image: primaryImage(product),
           price_cents: priceCents,
-          productId: product.id
+          productId: product.id,
+          weightOz: product.weightOz || 8
         });
 
         if (coat && coat.checked && product.powdercoat_variant_id) {
@@ -710,7 +778,8 @@ function wireCards(items) {
             title: 'Powdercoat Black',
             image: primaryImage(product),
             price_cents: Math.round((product.powdercoat_price || 50) * 100),
-            productId: product.id
+            productId: product.id,
+            weightOz: 0
           });
         }
 
@@ -879,7 +948,8 @@ function wireCards(items) {
         title: displayTitle,
         image: primaryImage(product),
         price_cents: cents,
-        productId: product.id
+        productId: product.id,
+        weightOz: product.weightOz || 8
       });
 
       if (coat && coat.checked && product.powdercoat_variant_id) {
@@ -889,7 +959,8 @@ function wireCards(items) {
           title: 'Powdercoat Black',
           image: primaryImage(product),
           price_cents: Math.round((product.powdercoat_price || 50) * 100),
-          productId: product.id
+          productId: product.id,
+          weightOz: 0
         });
       }
 
