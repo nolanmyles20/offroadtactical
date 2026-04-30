@@ -4,6 +4,7 @@
     "title": "HMMWV X DOOR",
     "desc": "Aluminum shell and stainless accent plates lasered out to fit existing hinge mounts. Skin Made from 16ga 304 Stainless.",
     "basePrice": 1000,
+    "weightOz": 1000
     "platforms": [
       "Humvee"
     ],
@@ -32,6 +33,7 @@
     "title": "HMMWV GRILL INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing mounting holes. Made from 16ga 304 Stainless.",
     "basePrice": 60,
+    "weightOz": 24,
     "platforms": [
       "Humvee"
     ],
@@ -63,6 +65,7 @@
     "title": "HMMWV HOOD VENT INSERT MESH",
     "desc": "Stainless plate lasered out to fit existing holes. Made from 16ga 304 Stainless.",
     "basePrice": 80,
+    "weightOz": 32,
     "platforms": [
       "Humvee"
     ],
@@ -94,6 +97,7 @@
     "title": "HMMWV HOOD LIFT RINGS",
     "desc": "Stainless plate lasered out to fit around lift rings. Made from 16ga 304 Stainless.",
     "basePrice": 30,
+    "weightOz": 8,
     "platforms": [
       "Humvee"
     ],
@@ -123,6 +127,7 @@
     "title": "HMMWV HOOD ACCENT",
     "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
     "basePrice": 50,
+    "weightOz": 8,
     "platforms": [
       "Humvee"
     ],
@@ -151,6 +156,7 @@
     "title": "Tactical Seat Belt Cover",
     "desc": "Tactical seat belt cover with Offroad Tactical styling.",
     "basePrice": 24.99,
+    "weightOz": 8,
     "simple": true,
     "platforms": [
       "Jeep"
@@ -172,6 +178,7 @@
     "title": "HD FRONT BUMPER",
     "desc": "HEAVY-DUTY FRONT BUMPER WITH D-RING TABS AND WINCH MOUNT.",
     "basePrice": 899,
+    "weightOz": 1000,
     "platforms": [
       "Humvee",
       "Jeep"
@@ -204,6 +211,7 @@
     "title": "ROOF REINFORCEMENT KIT",
     "desc": "STIFFENS HUMVEE ROOF STRUCTURE; BOLT-ON.",
     "basePrice": 1499,
+    "weightOz": 1000,
     "platforms": [
       "Humvee"
     ],
@@ -236,6 +244,7 @@
     "title": "REAR CURTAIN ASSEMBLY",
     "desc": "REPLACEMENT VINYL REAR CURTAIN WITH WINDOW.",
     "basePrice": 399,
+    "weightOz": 1000,
     "platforms": [
       "Humvee"
     ],
@@ -266,7 +275,8 @@
     "id": "humvee-rear-insert",
     "title": "HUMVEE REAR INSERT",
     "desc": "Humvee rear insert made from 304 Stainless Steel or Aluminum. Different surface finishes and thicknesses.",
-    "basePrice": 185,
+    "basePrice": 80,
+    "weightOz": 32,
     "platforms": [
       "Humvee"
     ],
