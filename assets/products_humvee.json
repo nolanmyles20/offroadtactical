@@ -98,6 +98,22 @@
     "inventory": 1
   },
   {
+    "id": "hmmwv-badges",
+    "title": "HMMWV BADGES",
+    "desc": "Stainless plate lasered out. Made from 16ga 304 Stainless.",
+    "basePrice": 30,
+    "weightOz": 8,
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
+    "image": "assets/products/IMG_8503.jpeg",
+    "images": ["assets/products/IMG_8503.jpeg"],
+    "simple": true,
+    "variant_ids": { "Solo": { "Default": "12345678901213" } },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 1
+  },
+  {
     "id": "hmmwv-foot-rest",
     "title": "HMMWV FOOT REST",
     "desc": "Stainless plate lasered out to fit highbeam switch bracket. Made from 14ga 304 Stainless.",
