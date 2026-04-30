@@ -268,14 +268,25 @@ async function startSquareCheckout() {
     return;
   }
 
-  const checkoutCart = buildCheckoutCart(cart);
-  const shippingCents = checkoutCart.shipping_cents || 0;
-
   try {
+    /*
+      SECURITY NOTE:
+      Do NOT send price_cents, title, image, weight, or shipping_cents to Netlify.
+      Those values are only used for the local cart display.
+      The Netlify function must load the real product JSON and calculate price/shipping server-side.
+    */
+    const payload = {
+      lines: cart.lines.map(line => ({
+        id: line.productId || line.variantId,
+        variantId: line.variantId || '',
+        qty: Math.max(1, parseInt(line.qty || 1, 10))
+      }))
+    };
+
     const res = await fetch('https://cart.offroadtactical.com/.netlify/functions/create-square-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(checkoutCart)
+      body: JSON.stringify(payload)
     });
 
     const data = await res.json().catch(() => ({}));
@@ -286,7 +297,8 @@ async function startSquareCheckout() {
       return;
     }
 
-    // â Save receipt BEFORE redirect
+    // Save a local receipt shell before redirect.
+    // Prices here are local display only; Square checkout total is generated securely by Netlify.
     try {
       localStorage.setItem('last_order', JSON.stringify({
         orderID: 'Square Checkout',
@@ -294,14 +306,13 @@ async function startSquareCheckout() {
         provider: 'Square',
         payer: '',
         email: '',
-        amount: ((cartSubtotalCents() + shippingCents) / 100).toFixed(2),
-        shipping_cents: shippingCents,
+        amount: '',
         date: new Date().toISOString(),
         items: (cart.lines || []).map(line => ({
           title: line.title || 'Item',
           variantId: line.variantId || '',
-          qty: line.qty || 1,
-          price_cents: line.price_cents || 0
+          productId: line.productId || '',
+          qty: line.qty || 1
         }))
       }));
     } catch (e) {
@@ -613,7 +624,7 @@ function productCard(p) {
           </button>`).join('')}
         </div>` : ``}
       <div class="content">
-        <div class="badge">${(p.platforms || []).join(' Ã¢ÂÂ¢ ')}</div>
+        <div class="badge">${(p.platforms || []).join(' ÃÂ¢ÃÂÃÂ¢ ')}</div>
         <h3>${escapeHtml(p.title)}</h3>
         <p>${escapeHtml(p.desc)}</p>
         <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
@@ -652,7 +663,7 @@ function productCard(p) {
         </button>`).join('')}
       </div>` : ``}
     <div class="content">
-      <div class="badge">${(p.platforms || []).join(' Ã¢ÂÂ¢ ')}</div>
+      <div class="badge">${(p.platforms || []).join(' ÃÂ¢ÃÂÃÂ¢ ')}</div>
       <h3>${escapeHtml(p.title)}</h3>
       <p>${escapeHtml(p.desc)}</p>
       <p class="price dyn-price">$${(p.basePrice || 0).toFixed(2)}</p>
