@@ -35,10 +35,10 @@ function calculateShippingCents(cart = readCart()) {
 
   // Default shipping starts at $8.95. Keep the higher tiers for heavier carts.
   const lb = oz / 16;
-  if (lb <= 2) return DEFAULT_SHIPPING_CENTS;
-  if (lb <= 5) return 1295;
-  if (lb <= 15) return 1995;
-  if (lb <= 35) return 3495;
+  if (lb <= 1) return DEFAULT_SHIPPING_CENTS;
+  if (lb <= 2) return 1295;
+  if (lb <=4) return 1995;
+  if (lb <= 6) return 3495;
   return 4995;
 }
 
