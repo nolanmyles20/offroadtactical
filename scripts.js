@@ -12,7 +12,7 @@ let __pendingScrollSel = null;
 
 // ================= SHIPPING HELPERS =================
 const DEFAULT_PRODUCT_WEIGHT_OZ = 8;
-const FREE_SHIPPING_THRESHOLD_CENTS = 7500;
+const FREE_SHIPPING_THRESHOLD_CENTS = 25000;
 const DEFAULT_SHIPPING_CENTS = 895;
 
 function cartTotalWeightOz(cart = readCart()) {
