@@ -1,48 +1,160 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CONTACT</title>
 <link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
 <link rel="stylesheet" href="styles.css">
 <script defer src="scripts.js"></script>
+
+<style>
+/* CONTACT PAGE CARD */
+.contact-page{
+  display:flex;
+  justify-content:center;
+  padding-top:32px;
+  padding-bottom:48px;
+}
+
+.contact-card{
+  width:100%;
+  max-width:720px;
+  padding:28px;
+  border-radius:24px;
+  background:linear-gradient(145deg, rgba(35,35,35,.96), rgba(8,8,8,.98));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+
+.contact-head{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.contact-head h1{
+  margin:0 0 8px;
+  letter-spacing:2px;
+}
+
+.contact-head p{
+  margin:0;
+  color:rgba(255,255,255,.72);
+}
+
+.contact-form{
+  display:grid;
+  gap:16px;
+}
+
+.contact-form label{
+  display:grid;
+  gap:7px;
+  font-weight:700;
+  letter-spacing:.6px;
+  font-size:.9rem;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:none;
+  outline:none;
+  border-radius:14px;
+  padding:14px 15px;
+  background:rgba(255,255,255,.09);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
+  font:inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:rgba(255,255,255,.45);
+  background:rgba(255,255,255,.13);
+}
+
+.contact-form textarea{
+  resize:vertical;
+  min-height:140px;
+}
+
+.contact-submit{
+  margin-top:8px;
+  border:none;
+  border-radius:999px;
+  padding:15px 18px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  cursor:pointer;
+  color:#111;
+  background:linear-gradient(135deg, #fff, #bdbdbd);
+  box-shadow:0 8px 22px rgba(255,255,255,.14);
+}
+
+.contact-submit:hover{
+  transform:translateY(-1px);
+}
+
+.contact-direct{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.12);
+  text-align:center;
+  color:rgba(255,255,255,.72);
+}
+
+.contact-direct a{
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+  margin-left:6px;
+}
+
+@media(max-width:700px){
+  .contact-card{
+    padding:22px;
+    border-radius:20px;
+  }
+}
+</style>
 </head>
+
 <body>
+
 <nav class="nav">
-    <!-- Logo (shown on desktop, hidden on mobile via CSS) -->
-    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
-      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
-    </a>
+  <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+    <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+  </a>
 
-    <!-- Site Title (centered on mobile, left on desktop via CSS overrides) -->
-    <span class="nav-title"></span>
+  <span class="nav-title"></span>
 
-    <!-- Mobile toggle (hidden on desktop via CSS) -->
-    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="bar" aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
-    </button>
-    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
-    <!-- DESKTOP links (shown on ≥801px; hidden on mobile via CSS) -->
-    <div class="links" role="navigation" aria-label="Primary">
-      <a class="tab nav-tab" href="/">HOME</a>
-      <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
-      <a class="tab nav-tab" href="/jeep.html">JEEP</a>
-      <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
-      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a> 
-      <a class="tab nav-tab" href="/targets.html">TARGETS</a>
-      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
-    </div>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 
-    <!-- Cart (always visible) -->
-    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
-      <img src="assets/cart-icon.svg" class="cart-icon" alt="">
-      CART <span id="cart-count" class="cart-count">0</span>
-    </a>
-  </nav>
-<!-- MOBILE-only menu (hidden on desktop via CSS; toggled open with .is-open) -->
-<!-- MOBILE-only menu (JS toggles .is-open) -->
-<div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+  <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
+
+  <div class="links">
+    <a class="tab nav-tab" href="/">HOME</a>
+    <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+    <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+    <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
+    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a> 
+    <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+    <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+  </div>
+
+  <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART">
+    <img src="assets/cart-icon.svg" class="cart-icon">
+    CART <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
+
+<div id="main-menu" class="menu">
   <a class="tab nav-tab" href="/">HOME</a>
   <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
   <a class="tab nav-tab" href="/jeep.html">JEEP</a>
@@ -51,12 +163,80 @@
   <a class="tab nav-tab" href="/targets.html">TARGETS</a>
   <a class="tab nav-tab" href="/contact.html">CONTACT</a>
 </div>
-  
-<main class="container"><h1>CONTACT</h1>
-<p>Email: 
-  <a href="mailto:sales@offroadtactical.com?subject=Product%20Inquiry&body=Hello%2C%20I%20have%20a%20question%20about%20...">
-    sales@offroadtactical.com
-  </a>
-</p>
+
+<main class="container contact-page">
+  <section class="contact-card">
+
+    <div class="contact-head">
+      <h1>CONTACT</h1>
+      <p>Send us a message — your email app will open automatically.</p>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <label>
+        Name
+        <input type="text" id="name" required>
+      </label>
+
+      <label>
+        Email
+        <input type="email" id="email" required>
+      </label>
+
+      <label>
+        Phone
+        <input type="tel" id="phone">
+      </label>
+
+      <label>
+        Message
+        <textarea id="message" required></textarea>
+      </label>
+
+      <button type="submit" class="contact-submit">SEND MESSAGE</button>
+    </form>
+
+    <div class="contact-direct">
+      <span>Or email directly:</span>
+      <a href="mailto:sales@offroadtactical.com">sales@offroadtactical.com</a>
+    </div>
+
+  </section>
 </main>
-<footer class="footer">© 2025 OFFROAD TACTICAL — HUMVEE • JEEP • APPAREL • EDC</footer></body></html>
+
+<footer class="footer">
+  © 2025 OFFROAD TACTICAL — HUMVEE • JEEP • APPAREL • EDC
+</footer>
+
+<script>
+// MAILTO HANDLER
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    const subject = encodeURIComponent("OFFROAD TACTICAL Contact Form");
+
+    const body = encodeURIComponent(
+`Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+Message:
+${message}`
+    );
+
+    window.location.href = `mailto:sales@offroadtactical.com?subject=${subject}&body=${body}`;
+  });
+});
+</script>
+
+</body>
+</html>
