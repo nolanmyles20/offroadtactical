@@ -781,3 +781,29 @@ h1, h2{
 .free-shipping-banner {
   transition: all .25s ease;
 }
+/* =========================
+   PRIMARY ACTION BUTTONS
+   (Add to Cart + Checkout)
+========================= */
+
+.btn.primary,
+.add-to-cart-btn{
+  background:#d3d4d6;   /* light gray */
+  color:#000;           /* black text */
+  border:2px solid #000;
+  font-weight:900;
+}
+
+/* hover */
+.btn.primary:hover,
+.add-to-cart-btn:hover{
+  background:#bcbec0;
+  color:#000;
+}
+
+/* active / pressed */
+.btn.primary:active,
+.add-to-cart-btn:active{
+  background:#9fa1a3;
+  transform:scale(.98);
+}
