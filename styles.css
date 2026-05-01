@@ -781,29 +781,26 @@ h1, h2{
 .free-shipping-banner {
   transition: all .25s ease;
 }
-/* =========================
-   PRIMARY ACTION BUTTONS
-   (Add to Cart + Checkout)
-========================= */
-
-.btn.primary,
-.add-to-cart-btn{
-  background:#d3d4d6;   /* light gray */
-  color:#000;           /* black text */
-  border:2px solid #000;
+/* MATCH ADD TO CART + CHECKOUT BUTTONS */
+.btn.add,
+#square-checkout-btn{
+  background:#d3d4d6 !important;
+  color:#000 !important;
+  border:2px solid #000 !important;
   font-weight:900;
 }
 
-/* hover */
-.btn.primary:hover,
-.add-to-cart-btn:hover{
-  background:#bcbec0;
-  color:#000;
+/* Hover */
+.btn.add:hover,
+#square-checkout-btn:hover{
+  background:#bcbec0 !important;
+  color:#000 !important;
 }
 
-/* active / pressed */
-.btn.primary:active,
-.add-to-cart-btn:active{
-  background:#9fa1a3;
+/* Clicked / pressed */
+.btn.add:active,
+#square-checkout-btn:active{
+  background:#000 !important;
+  color:#fff !important;
   transform:scale(.98);
 }
