@@ -37,8 +37,9 @@ function calculateShippingCents(cart = readCart()) {
   const lb = oz / 16;
   if (lb <= 1) return DEFAULT_SHIPPING_CENTS;
   if (lb <= 2) return 1295;
-  if (lb <=4) return 1995;
-  if (lb <= 6) return 3495;
+  if (lb <=3) return 1995;
+  if (lb <=4) return 2795;
+  if (lb <= 5) return 3495;
   return 4995;
 }
 
