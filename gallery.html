@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GALLERY</title>
+<link rel="icon" type="image/png" href="assets/favicon_ot_white.ico">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+/* ===== GRID ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+  padding:12px 0 24px;
+}
+
+.gallery-card{
+  background:#fff;
+  border:2px solid #000;
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+}
+
+.gallery-card img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  display:block;
+}
+
+/* Desktop */
+@media(min-width:900px){
+  .gallery{
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .gallery-card img{
+    height:180px;
+  }
+}
+
+/* ===== MODAL ===== */
+.gallery-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+
+.gallery-modal.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.gallery-modal img{
+  max-width:95%;
+  max-height:85%;
+  border:2px solid #fff;
+  border-radius:10px;
+}
+
+/* Close */
+.gallery-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+  font-weight:900;
+}
+
+/* Arrows */
+.gallery-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:40px;
+  color:#fff;
+  cursor:pointer;
+  user-select:none;
+}
+
+.gallery-prev{ left:20px; }
+.gallery-next{ right:20px; }
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <a href="/" class="logo-link">
+    <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" class="logo">
+  </a>
+
+  <span class="nav-title">GALLERY</span>
+
+  <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png">
+
+  <div class="links">
+    <a class="tab nav-tab" href="/">HOME</a>
+    <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+    <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+    <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
+    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+    <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+    <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
+  </div>
+
+  <a id="cart-link" class="nav-cart">
+    <img src="assets/cart-icon.svg" class="cart-icon">
+    CART <span id="cart-count">0</span>
+  </a>
+</nav>
+
+<div id="main-menu" class="menu">
+  <a class="tab nav-tab" href="/">HOME</a>
+  <a class="tab nav-tab" href="/humvee.html">HUMVEE</a>
+  <a class="tab nav-tab" href="/jeep.html">JEEP</a>
+  <a class="tab nav-tab" href="/apparel.html">APPAREL</a>
+  <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
+  <a class="tab nav-tab" href="/targets.html">TARGETS</a>
+  <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
+</div>
+
+<main class="container">
+  <h1>GALLERY</h1>
+  <div class="gallery" id="gallery"></div>
+</main>
+
+<!-- MODAL -->
+<div class="gallery-modal" id="modal">
+  <div class="gallery-close" id="close">✕</div>
+  <div class="gallery-nav gallery-prev" id="prev">‹</div>
+  <img id="modalImg">
+  <div class="gallery-nav gallery-next" id="next">›</div>
+</div>
+
+<footer class="footer">
+  © 2025 OFFROAD TACTICAL — HUMVEE • JEEP • APPAREL • EDC
+</footer>
+
+<script>
+
+/* ELEMENTS */
+const galleryEl = document.getElementById('gallery');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const closeBtn = document.getElementById('close');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+
+let images = [];
+let currentIndex = 0;
+
+/* LOAD JSON */
+fetch('assets/gallery.json')
+  .then(res => res.json())
+  .then(data => {
+    images = data;
+    renderGallery();
+  })
+  .catch(err => {
+    galleryEl.innerHTML = "<p>Failed to load gallery.</p>";
+    console.error(err);
+  });
+
+function renderGallery(){
+  galleryEl.innerHTML = images.map((src, i) => `
+    <div class="gallery-card">
+      <img src="${src}" data-index="${i}">
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.gallery-card img').forEach(img => {
+    img.addEventListener('click', () => {
+      currentIndex = Number(img.dataset.index);
+      openModal();
+    });
+  });
+}
+
+/* MODAL */
+function openModal(){
+  modal.classList.add('active');
+  modalImg.src = images[currentIndex];
+}
+
+function closeModal(){
+  modal.classList.remove('active');
+}
+
+function showNext(){
+  currentIndex = (currentIndex + 1) % images.length;
+  modalImg.src = images[currentIndex];
+}
+
+function showPrev(){
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  modalImg.src = images[currentIndex];
+}
+
+closeBtn.onclick = closeModal;
+nextBtn.onclick = showNext;
+prevBtn.onclick = showPrev;
+
+/* click outside closes */
+modal.addEventListener('click', (e)=>{
+  if(e.target === modal) closeModal();
+});
+
+</script>
+
+</body>
+</html>
