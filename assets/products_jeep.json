@@ -36,7 +36,7 @@
     "platforms": ["Jeep"],
     "category": "Jeep",
     "tags": ["Tactical"],
-    "images": ["assets/products/IMG_9206.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "images": ["assets/products/IMG_9206.jpeg"], 
     "variant_id": "111111111221299",
     "inventory": 2,
     "featured": true
@@ -50,7 +50,7 @@
     "platforms": ["Jeep"],
     "category": "Jeep",
     "tags": ["Tactical"],
-    "images": ["assets/products/IMG_9203.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "images": ["assets/products/IMG_9203.jpeg"], 
     "variant_id": "11112211221299",
     "inventory": 2,
     "featured": true
@@ -64,7 +64,7 @@
     "platforms": ["Jeep"],
     "category": "Jeep",
     "tags": ["Tactical"],
-    "images": ["assets/products/IMG_9205.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "images": ["assets/products/IMG_9205.jpeg"], 
     "variant_id": "1122221221299",
     "inventory": 2,
     "featured": true
