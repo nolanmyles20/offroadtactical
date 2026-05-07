@@ -28,6 +28,48 @@
     "featured": true
   },
   {
+    "id": "jeep-gladiator-under-hood-antenna-mount",
+    "title": "Jeep Gladiator Under Hood Antenna Mount",
+    "desc": "Jeep Gladiator Underhood Antenna Mount with Offroad Tactical styling.",
+    "basePrice":19.99,
+    "simple": true,
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Tactical"],
+    "images": ["assets/products/IMG_9174.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "variant_id": "111111111221299",
+    "inventory": 2,
+    "featured": true
+  },
+  {
+    "id": "jeep-gladiator-behind-hood-antenna-mount",
+    "title": "Jeep Gladiator Behind Hood Antenna Mount",
+    "desc": "Jeep Gladiator Behind Hood Antenna Mount with Offroad Tactical styling.",
+    "basePrice":19.99,
+    "simple": true,
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Tactical"],
+    "images": ["assets/products/IMG_9174.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "variant_id": "11112211221299",
+    "inventory": 2,
+    "featured": true
+  },
+  {
+    "id": "jeep-gladiator-behind-hood-antenna-mount-z",
+    "title": "Jeep Gladiator Behind Hood Antenna Mount Z",
+    "desc": "Jeep Gladiator Underhood Antenna Mount with Offroad Tactical styling.",
+    "basePrice":19.99,
+    "simple": true,
+    "platforms": ["Jeep"],
+    "category": "Jeep",
+    "tags": ["Tactical"],
+    "images": ["assets/products/IMG_9174.jpeg","assets/products/IMG_9175.jpeg","assets/products/IMG_9176.jpeg","assets/products/IMG_9177.jpeg"], 
+    "variant_id": "1122221221299",
+    "inventory": 2,
+    "featured": true
+  },
+  {
     "id": "seatbelt-cover",
     "title": "Tactical Seat Belt Cover",
     "desc": "Tactical seat belt cover with Offroad Tactical styling.",
