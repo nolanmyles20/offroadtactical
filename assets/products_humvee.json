@@ -1,5 +1,21 @@
 
 [
+   {
+    "id": "hmmwv-stubby-bumper",
+    "title": "HMMWV OFFROAD TACTICAL STUBBY BUMPER",
+    "desc": "A-36 Structural Steel Frame and stainless accent plates. Skin Made from 16ga 304 Stainless. Nilight Pod lights. Winch available. first standard 10x4.5 winch setup.",
+    "basePrice": 699,
+    "weightOz": 1000,
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
+    "image": "assets/products/IMG_9260.jpeg",
+    "images": ["assets/products/IMG_9260.jpeg", "assets/products/IMG_9259.jpeg"],
+    "simple": true,
+    "variant_ids": { "Solo": { "Default": "12345678901234" } },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 4
+  },
   {
     "id": "hmmwv-x-door",
     "title": "HMMWV X DOOR",
