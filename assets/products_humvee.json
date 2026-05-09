@@ -82,6 +82,22 @@
     "inventory": 1
   },
   {
+    "id": "hmmwv-diesel-only",
+    "title": "HMMWV Diesel Only Tag",
+    "desc": "Stainless plate lasered out to fit near fill neck. Made from 16ga 304 Stainless.",
+    "basePrice": 10,
+    "weightOz": 3,
+    "platforms": ["Humvee"],
+    "tags": ["Humvee", "Armor", "Stainless"],
+    "image": "assets/IMG_9317.jpeg",
+    "images": ["assets/IMG_9317.jpeg"],
+    "simple": true,
+    "variant_ids": { "Solo": { "Default": "123456780123" } },
+    "amazon_url": "https://a.co/d/08Guxd89",
+    "ebay_url": "https://ebay.us/m/Pz17oU",
+    "inventory": 1
+  },  
+  {
     "id": "hmmwv-hood-accent",
     "title": "HMMWV HOOD ACCENT",
     "desc": "Stainless plate lasered out to fit hood. Made from 16ga 304 Stainless.",
