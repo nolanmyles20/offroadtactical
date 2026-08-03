@@ -5,19 +5,35 @@
   "media": [
     {
       "type": "image",
-      "src": "assets/commercials/photo-01.jpg",
-      "alt": "Offroad Tactical commercial photo"
-    },
-    {
-      "type": "video",
-      "src": "assets/commercials/video-01.mp4",
-      "muted": false
+      "src": "assets/commercials/20260723_212944893_iOS.heic"
     },
     {
       "type": "image",
-      "src": "assets/commercials/photo-02.jpg",
-      "alt": "Offroad Tactical product display",
-      "duration": 2000
+      "src": "assets/commercials/20260725_180752253_iOS.heic"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/20260726_170334523_iOS.jpg"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/20260726_170343461_iOS.jpg"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/20260728_203241639_iOS.heic"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/20260728_203307263_iOS.heic"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/20260731_205426813_iOS.heic"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/logo silver on black.jpg"
     }
   ]
 }
