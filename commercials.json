@@ -1,5 +1,5 @@
 {
-  "photoDuration": 2000,
+  "photoDuration": 2500,
   "fadeDuration": 650,
   "loop": true,
   "media": [
@@ -14,6 +14,10 @@
     {
       "type": "image",
       "src": "assets/commercials/IMG_1885.jpeg"
+    },
+    {
+      "type": "video",
+      "src": "assets/commercials/IMG_1406.MOV"
     },
     {
       "type": "image",
