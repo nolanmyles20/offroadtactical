@@ -25,6 +25,14 @@
     },
     {
       "type": "image",
+      "src": "assets/commercials/IMG_1903.jpeg"
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/IMG_1904.jpeg"
+    },
+    {
+      "type": "image",
       "src": "assets/commercials/logo silver on black.jpg"
     }
   ]
