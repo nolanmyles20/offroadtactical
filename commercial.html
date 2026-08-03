@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>OFFROAD TACTICAL — Commercial Player</title>
+
+  <link rel="icon" href="/assets/favicon_ot_white.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon_ot_white.png" sizes="256x256">
+  <link rel="apple-touch-icon" href="/assets/favicon_ot_white.png">
+
+  <link rel="stylesheet" href="commercial.css">
+  <script defer src="commercial.js"></script>
+</head>
+
+<body>
+  <main id="commercial-player" class="commercial-player" aria-label="Commercial media player">
+    <div id="media-stage" class="media-stage" aria-live="off"></div>
+
+    <div id="start-overlay" class="start-overlay" hidden>
+      <img
+        class="start-logo"
+        src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png"
+        alt="Offroad Tactical"
+      >
+      <button id="start-button" class="start-button" type="button">
+        START FULLSCREEN
+      </button>
+      <p>Press Esc at any time to leave fullscreen.</p>
+    </div>
+
+    <button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Enter fullscreen">
+      ⛶
+    </button>
+
+    <div id="player-message" class="player-message" hidden></div>
+  </main>
+</body>
+</html>
