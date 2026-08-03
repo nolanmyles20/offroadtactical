@@ -1,0 +1,23 @@
+{
+  "photoDuration": 2000,
+  "fadeDuration": 650,
+  "loop": true,
+  "media": [
+    {
+      "type": "image",
+      "src": "assets/commercials/photo-01.jpg",
+      "alt": "Offroad Tactical commercial photo"
+    },
+    {
+      "type": "video",
+      "src": "assets/commercials/video-01.mp4",
+      "muted": false
+    },
+    {
+      "type": "image",
+      "src": "assets/commercials/photo-02.jpg",
+      "alt": "Offroad Tactical product display",
+      "duration": 2000
+    }
+  ]
+}
