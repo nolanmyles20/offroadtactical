@@ -13,6 +13,24 @@
   <script defer src="commercial.js"></script>
 
   <style>
+    .commercial-player{
+      height:auto !important;
+      min-height:0 !important;
+      overflow:visible !important;
+    }
+
+    .media-stage{
+      width:100%;
+      height:auto !important;
+      max-height:calc(100vh - 90px);
+      aspect-ratio:16 / 9;
+    }
+
+    .start-overlay,
+    .fullscreen-button{
+      display:none !important;
+    }
+
     .commercial-shop-actions{
       display:grid;
       gap:10px;
@@ -52,21 +70,11 @@
          class="btn">SHOP NOW</a>
     </div>
 
-    <div id="start-overlay" class="start-overlay" hidden>
-      <img
-        class="start-logo"
-        src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png"
-        alt="Offroad Tactical"
-      >
-      <button id="start-button" class="start-button" type="button">
-        START FULLSCREEN
-      </button>
-      <p>Press Esc at any time to leave fullscreen.</p>
+    <div id="start-overlay" class="start-overlay" hidden aria-hidden="true">
+      <button id="start-button" class="start-button" type="button" tabindex="-1">START</button>
     </div>
 
-    <button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Enter fullscreen">
-      ⛶
-    </button>
+    <button id="fullscreen-button" class="fullscreen-button" type="button" tabindex="-1" hidden aria-hidden="true">⛶</button>
 
     <div id="player-message" class="player-message" hidden></div>
   </main>
