@@ -2,81 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>OFFROAD TACTICAL — Commercial Player</title>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OFFROAD TACTICAL — Commercial</title>
   <link rel="icon" href="/assets/favicon_ot_white.ico" sizes="any">
   <link rel="icon" type="image/png" href="/assets/favicon_ot_white.png" sizes="256x256">
   <link rel="apple-touch-icon" href="/assets/favicon_ot_white.png">
-
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="commercial.css">
+  <script defer src="scripts.js"></script>
   <script defer src="commercial.js"></script>
+  <script defer>
+    function keepCommercialVideosPlaying(root = document) {
+      root.querySelectorAll?.('#media-stage video').forEach((video) => {
+        video.muted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.play().catch(() => {});
+      });
+    }
 
+    window.addEventListener('load', () => {
+      const stage = document.getElementById('media-stage');
+      if (stage) {
+        new MutationObserver(() => keepCommercialVideosPlaying(stage))
+          .observe(stage, {childList:true, subtree:true});
+      }
+      window.setTimeout(() => {
+        document.getElementById('start-button')?.click();
+        keepCommercialVideosPlaying(stage);
+      }, 0);
+    });
+  </script>
   <style>
-    .commercial-player{
-      height:auto !important;
-      min-height:0 !important;
-      overflow:visible !important;
-    }
-
-    .media-stage{
-      width:100%;
-      height:auto !important;
-      max-height:calc(100vh - 90px);
-      aspect-ratio:16 / 9;
-    }
-
-    .start-overlay,
-    .fullscreen-button{
-      display:none !important;
-    }
-
-    .commercial-shop-actions{
-      display:grid;
-      gap:10px;
-      width:min(320px,calc(100% - 32px));
-      margin:14px auto 0;
-      position:relative;
-      z-index:2;
-    }
-
-    .commercial-shop-actions .btn{
-      display:block;
-      padding:12px 18px;
-      border:2px solid #111;
-      border-radius:8px;
-      background:#fff;
-      color:#111;
-      font-weight:700;
-      text-align:center;
-      text-decoration:none;
-      text-transform:uppercase;
-    }
-
-    .commercial-shop-actions .btn:hover,
-    .commercial-shop-actions .btn:focus-visible{
-      background:#111;
-      color:#fff;
-    }
+    .commercial-hero{width:100%;background:#000}
+    .commercial-player{width:100%;height:auto!important;min-height:0!important;overflow:visible!important;position:relative}
+    .media-stage{width:100%;height:auto!important;min-height:0;aspect-ratio:16/9;position:relative;overflow:hidden;background:#000}
+    .media-stage img,.media-stage video{width:100%;height:100%;object-fit:contain}
+    .start-overlay,.fullscreen-button{display:none!important}
+    .commercial-shop-actions{display:grid;gap:10px;width:min(320px,calc(100% - 32px));margin:18px auto 28px;position:relative;z-index:2}
+    .commercial-shop-actions .btn{display:block;padding:12px 18px;border:2px solid #111;border-radius:8px;background:#fff;color:#111;font-weight:700;text-align:center;text-decoration:none;text-transform:uppercase}
+    .commercial-shop-actions .btn:hover,.commercial-shop-actions .btn:focus-visible{background:#111;color:#fff}
   </style>
 </head>
-
 <body>
-  <main id="commercial-player" class="commercial-player" aria-label="Commercial media player">
-    <div id="media-stage" class="media-stage" aria-live="off"></div>
-
-    <div class="commercial-shop-actions">
-      <a href="https://offroad-tactical.square.site/s/shop?page=1&amp;limit=30&amp;sort_by=popularity_score&amp;sort_order=desc&amp;location_id=LSTMGT262XWZ2"
-         class="btn">SHOP NOW</a>
+  <nav class="nav">
+    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+      <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
+    </a>
+    <span class="nav-title"></span>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
+      <span class="bar" aria-hidden="true"></span><span class="bar" aria-hidden="true"></span><span class="bar" aria-hidden="true"></span><span class="sr-only">Menu</span>
+    </button>
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
+    <div class="links" role="navigation" aria-label="Primary">
+      <a class="tab nav-tab" href="/">HOME</a>
+      <a class="tab nav-tab" href="https://offroad-tactical.square.site/s/shop?page=1&amp;limit=30&amp;sort_by=popularity_score&amp;sort_order=desc&amp;location_id=LSTMGT262XWZ2">SHOP</a>
+      <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+      <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
     </div>
+    <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
+      <img src="assets/cart-icon.svg" class="cart-icon" alt=""> CART <span id="cart-count" class="cart-count">0</span>
+    </a>
+  </nav>
 
-    <div id="start-overlay" class="start-overlay" hidden aria-hidden="true">
-      <button id="start-button" class="start-button" type="button" tabindex="-1">START</button>
+  <div class="made-banner">
+    <div class="made-banner-track">
+      <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span><span class="flag-wave">🇺🇸</span>
+      <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span><span class="flag-wave">🇺🇸</span>
     </div>
+  </div>
 
-    <button id="fullscreen-button" class="fullscreen-button" type="button" tabindex="-1" hidden aria-hidden="true">⛶</button>
+  <section class="commercial-hero" aria-label="Offroad Tactical commercial">
+    <div id="commercial-player" class="commercial-player">
+      <div id="media-stage" class="media-stage" aria-live="off"></div>
+      <div id="start-overlay" class="start-overlay" hidden aria-hidden="true">
+        <button id="start-button" class="start-button" type="button" tabindex="-1">START</button>
+      </div>
+      <button id="fullscreen-button" class="fullscreen-button" type="button" tabindex="-1" hidden aria-hidden="true">⛶</button>
+      <div id="player-message" class="player-message" hidden></div>
+    </div>
+  </section>
 
-    <div id="player-message" class="player-message" hidden></div>
+  <div class="commercial-shop-actions">
+    <a href="https://offroad-tactical.square.site/s/shop?page=1&amp;limit=30&amp;sort_by=popularity_score&amp;sort_order=desc&amp;location_id=LSTMGT262XWZ2" class="btn">SHOP NOW</a>
+  </div>
+
+  <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
+    <a class="tab nav-tab" href="/">HOME</a>
+    <a class="tab nav-tab" href="https://offroad-tactical.square.site/s/shop?page=1&amp;limit=30&amp;sort_by=popularity_score&amp;sort_order=desc&amp;location_id=LSTMGT262XWZ2">SHOP</a>
+    <a class="tab nav-tab" href="/contact.html">CONTACT</a>
+    <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Looking for Tactical Truck Supplies or Range Supplies? We can do custom design and build!</h1>
+    </section>
   </main>
+
+  <footer class="footer">
+    © 2026 OFFROAD TACTICAL
+    <div class="footer-links">
+      <a href="/terms.html">Terms of Service</a><a href="/privacy.html">Privacy Policy</a><a href="/refunds.html">Refund Policy</a><a href="/shipping.html">Shipping Policy</a><a href="/contact.html">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>
