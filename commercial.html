@@ -11,11 +11,46 @@
 
   <link rel="stylesheet" href="commercial.css">
   <script defer src="commercial.js"></script>
+
+  <style>
+    .commercial-shop-actions{
+      display:grid;
+      gap:10px;
+      width:min(320px,calc(100% - 32px));
+      margin:14px auto 0;
+      position:relative;
+      z-index:2;
+    }
+
+    .commercial-shop-actions .btn{
+      display:block;
+      padding:12px 18px;
+      border:2px solid #111;
+      border-radius:8px;
+      background:#fff;
+      color:#111;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+      text-transform:uppercase;
+    }
+
+    .commercial-shop-actions .btn:hover,
+    .commercial-shop-actions .btn:focus-visible{
+      background:#111;
+      color:#fff;
+    }
+  </style>
 </head>
 
 <body>
   <main id="commercial-player" class="commercial-player" aria-label="Commercial media player">
     <div id="media-stage" class="media-stage" aria-live="off"></div>
+
+    <div class="commercial-shop-actions">
+      <a href="https://offroad-tactical.square.site/s/shop?page=1&amp;limit=30&amp;sort_by=popularity_score&amp;sort_order=desc&amp;location_id=LSTMGT262XWZ2"
+         class="btn">SHOP NOW</a>
+    </div>
 
     <div id="start-overlay" class="start-overlay" hidden>
       <img
