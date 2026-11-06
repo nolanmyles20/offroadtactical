@@ -1,0 +1,10 @@
+{
+  "firearms": [
+    {"id":"demo-pistol","name":"Demo Pistol","type":"pistol","price":0,"stock":true,"image":"assets/pistol.svg","opticMount":"pistol-optic","lightMount":"pistol-rail","opticPosition":{"x":48,"y":22,"width":17},"lightPosition":{"x":62,"y":62,"width":18},"note":"Illustrative placeholder, not a specific firearm model."},
+    {"id":"demo-rifle","name":"Demo Rifle","type":"rifle","price":0,"stock":true,"image":"assets/rifle.svg","opticMount":"picatinny-top","lightMount":"rifle-rail","opticPosition":{"x":47,"y":31,"width":12},"lightPosition":{"x":75,"y":51,"width":13},"note":"Illustrative placeholder, not a specific firearm model."}
+  ],
+  "accessories": [
+    {"id":"demo-osight","name":"Osight — demo listing","category":"optic","price":0,"stock":true,"image":"assets/optic.svg","compatibleMounts":["pistol-optic","picatinny-top"],"note":"Replace with exact SKU and verified mounting compatibility."},
+    {"id":"demo-olight","name":"Olight — demo listing","category":"light","price":0,"stock":true,"image":"assets/light.svg","compatibleMounts":["pistol-rail","rifle-rail"],"note":"Replace with exact SKU and verified mounting compatibility."}
+  ]
+}
