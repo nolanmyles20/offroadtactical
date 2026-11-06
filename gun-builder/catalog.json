@@ -1,0 +1,328 @@
+{
+  "firearms": [
+    {
+      "id": "psa-dagger",
+      "name": "PSA Dagger Compact",
+      "type": "pistol",
+      "price": null,
+      "stock": true,
+      "image": "assets/pistol.svg",
+      "opticMount": "pistol-optic",
+      "lightMount": "pistol-rail",
+      "opticPosition": {
+        "x": 48,
+        "y": 22,
+        "width": 17
+      },
+      "lightPosition": {
+        "x": 62,
+        "y": 62,
+        "width": 18
+      },
+      "note": "Generic silhouette for layout only; not an actual product photograph. Model variant and mounting hardware must be checked."
+    },
+    {
+      "id": "psa-pa15",
+      "name": "PSA PA-15 AR-15",
+      "type": "rifle",
+      "price": null,
+      "stock": true,
+      "image": "assets/rifle.svg",
+      "opticMount": "picatinny-top",
+      "lightMount": "rifle-rail",
+      "opticPosition": {
+        "x": 47,
+        "y": 31,
+        "width": 12
+      },
+      "lightPosition": {
+        "x": 75,
+        "y": 51,
+        "width": 13
+      },
+      "note": "Generic silhouette for layout only; not an actual product photograph. Model variant and mounting hardware must be checked."
+    }
+  ],
+  "accessories": [
+    {
+      "id": "osight-x",
+      "name": "Osight X",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-s",
+      "name": "Osight S",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-se--rmsc-variant",
+      "name": "Osight SE (RMSc variant)",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-se--mos-variant",
+      "name": "Osight SE (MOS variant)",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-se--dpp-variant",
+      "name": "Osight SE (DPP variant)",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-c",
+      "name": "Osight C",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-k",
+      "name": "Osight K",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "osight-xr",
+      "name": "Osight XR",
+      "category": "optic",
+      "price": null,
+      "stock": true,
+      "image": "assets/optic.svg",
+      "compatibleMounts": [
+        "pistol-optic",
+        "picatinny-top"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-pl-3-valkyrie",
+      "name": "Olight PL-3 Valkyrie",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-pl-3r-valkyrie",
+      "name": "Olight PL-3R Valkyrie",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-pl-mini-2-valkyrie",
+      "name": "Olight PL-Mini 2 Valkyrie",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-pl-mini-3-valkyrie",
+      "name": "Olight PL-Mini 3 Valkyrie",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-baldr-mini",
+      "name": "Olight Baldr Mini",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-baldr-s",
+      "name": "Olight Baldr S",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-baldr-pro-r",
+      "name": "Olight Baldr Pro R",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-odin",
+      "name": "Olight Odin",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-odin-mini",
+      "name": "Olight Odin Mini",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-odin-turbo",
+      "name": "Olight Odin Turbo",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-odin-s",
+      "name": "Olight Odin S",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    },
+    {
+      "id": "olight-javelot-tac",
+      "name": "Olight Javelot Tac",
+      "category": "light",
+      "price": null,
+      "stock": true,
+      "image": "assets/light.svg",
+      "compatibleMounts": [
+        "pistol-rail",
+        "rifle-rail"
+      ],
+      "fitmentVerified": false,
+      "note": "Reference catalog entry. Exact variant, mounting plate/adapter and physical fit have NOT been verified."
+    }
+  ]
+}
