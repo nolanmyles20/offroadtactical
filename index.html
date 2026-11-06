@@ -3,72 +3,78 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>OFFROAD TACTICAL</title>
-  <!-- Favicon (ICO for broad browser support) -->
+  <title>OFFROAD TACTICAL | Humvee Parts &amp; Custom Metalwork</title>
+  <meta name="description" content="Get to know Offroad Tactical, a Michigan-based business designing original Humvee parts and custom metalwork, from CAD concept to fabrication.">
   <link rel="icon" href="/assets/favicon_ot_white.ico" sizes="any">
-
-  <!-- PNG fallback (high-res); browsers will downscale -->
   <link rel="icon" type="image/png" href="/assets/favicon_ot_white.png" sizes="256x256">
-
-  <!-- Optional: Apple touch icon for iOS home screen (can reuse the PNG) -->
   <link rel="apple-touch-icon" href="/assets/favicon_ot_white.png">
   <link rel="stylesheet" href="styles.css">
   <script defer src="scripts.js"></script>
+  <style>
+    /* About Us styles are scoped to preserve the existing site styling. */
+    .ot-about {color:#eef2f5;background:#10151b;border:1px solid #2c3742;margin:32px 0 48px;overflow:hidden;scroll-margin-top:140px;font-family:Arial,Helvetica,sans-serif}
+    .ot-about * {box-sizing:border-box}
+    .ot-about .ot-intro {padding:clamp(28px,5vw,68px);max-width:900px}
+    .ot-about .ot-eyebrow {color:#82ccec;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;margin:0 0 16px}
+    .ot-about h2 {font-size:clamp(30px,4.5vw,54px);line-height:1.08;margin:0 0 22px;color:#fff;text-transform:uppercase}
+    .ot-about h3 {font-size:clamp(24px,3vw,34px);line-height:1.15;margin:0 0 20px;color:#fff}
+    .ot-about p {font-size:16px;line-height:1.8;color:#c8d2dc;margin:0 0 16px}
+    .ot-about .ot-row {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-top:1px solid #2c3742;align-items:center}
+    .ot-about .ot-copy {padding:clamp(24px,4vw,48px);min-width:0}
+    .ot-about figure {margin:0;min-width:0}
+    .ot-about img {display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+    .ot-about figcaption {padding:10px 20px;font-size:11px;line-height:1.5;color:#8e9eae}
+    .ot-about .ot-process {padding:clamp(28px,5vw,60px);border-top:1px solid #2c3742;background:#151d26}
+    .ot-about .ot-steps {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin:30px 0 0;padding:0;list-style:none}
+    .ot-about .ot-step-num {display:block;color:#82ccec;font-size:13px;letter-spacing:.12em;margin-bottom:12px}
+    .ot-about h4 {font-size:20px;color:#fff;margin:0 0 12px}
+    .ot-about .ot-cta {padding:clamp(28px,5vw,60px);border-top:1px solid #2c3742}
+    .ot-about .ot-buttons {display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .ot-about .ot-button {display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:14px 22px;background:#a7def4;color:#10151b;text-decoration:none;font-weight:700;line-height:1.3;border:1px solid #a7def4;border-radius:3px}
+    .ot-about .ot-button-secondary {background:transparent;color:#edf4fa;border-color:#586d7e}
+    .ot-about .ot-button:hover {background:#d4effa;color:#10151b}
+    .ot-about a:focus-visible {outline:3px solid #fff;outline-offset:4px}
+    @media(max-width:800px) {
+      .ot-about .ot-row,.ot-about .ot-steps {grid-template-columns:1fr}
+      .ot-about .ot-row figure {order:-1}
+      .ot-about .ot-steps {gap:22px}
+      .ot-about {margin-top:24px}
+    }
+  </style>
 </head>
-
 <body>
   <nav class="nav">
-    <!-- Logo (shown on desktop, hidden on mobile via CSS) -->
-    <a href="/" class="logo-link" aria-label="TACTICAL OFFROAD — Home">
+    <a href="/" class="logo-link" aria-label="OFFROAD TACTICAL — Home">
       <img src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="" class="logo">
     </a>
-
-    <!-- Site Title (centered on mobile, left on desktop via CSS overrides) -->
     <span class="nav-title"></span>
-
-    <!-- Mobile toggle (hidden on desktop via CSS) -->
     <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="bar" aria-hidden="true"></span>
       <span class="sr-only">Menu</span>
     </button>
-
-    <!-- MOBILE-only logo (row 2 center) -->
-    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Logo">
-
-    <!-- DESKTOP links (shown on ≥801px; hidden on mobile via CSS) -->
+    <img class="nav-mobile-logo" src="assets/3FA16524-2001-45BF-9F7D-3187CFAA1DA2.png" alt="Offroad Tactical">
     <div class="links" role="navigation" aria-label="Primary">
       <a class="tab nav-tab" href="/">HOME</a>
       <a class="tab nav-tab" href="https://offroad-tactical.square.site">SHOP</a>
-      <!-- <a class="tab nav-tab" href="/jeep.html">JEEP</a>
-      <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a>
-      <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
-      <a class="tab nav-tab" href="/targets.html">TARGETS</a>
-      <a class="tab nav-tab" href="/apparel.html">APPAREL</a> -->
+      <a class="tab nav-tab" href="/#about">ABOUT US</a>
       <a class="tab nav-tab" href="/contact.html">CONTACT</a>
       <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
-
     </div>
-
-    <!-- Cart (always visible) -->
     <a id="cart-link" class="nav-cart" data-cart-link target="SHOPIFY_CART" aria-label="Open cart">
       <img src="assets/cart-icon.svg" class="cart-icon" alt="">
       CART <span id="cart-count" class="cart-count">0</span>
     </a>
   </nav>
-
-  <!-- Made in Michigan Banner -->
   <div class="made-banner">
     <div class="made-banner-track">
       <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span>
       <span class="flag-wave">🇺🇸</span>
-
       <span>ALL PRODUCTS PROUDLY MADE IN MICHIGAN</span>
       <span class="flag-wave">🇺🇸</span>
     </div>
   </div>
-  
   <section class="hero-video">
     <video autoplay muted loop playsinline controls>
       <source src="assets/IMG_4780.mp4" type="video/mp4">
@@ -76,35 +82,73 @@
       Your browser does not support the video tag.
     </video>
   </section>
-
-  <!-- MOBILE-only menu (don’t use hidden attr; CSS/JS toggles .is-open) -->
   <div id="main-menu" class="menu" role="navigation" aria-label="Mobile">
     <a class="tab nav-tab" href="/">HOME</a>
-    <a class="tab nav-tab" href="https://offroad-tactical.square.site">SHOP</a> 
-    <!--<a class="tab nav-tab" href="/jeep.html">JEEP</a>
-    <a class="tab nav-tab" href="/tactical.html">TACTICAL SUPPLIES</a> 
-    <a class="tab nav-tab" href="/edc.html">E.D.C.</a>
-    <a class="tab nav-tab" href="/targets.html">TARGETS</a>
-    <a class="tab nav-tab" href="/apparel.html">APPAREL</a> -->
+    <a class="tab nav-tab" href="https://offroad-tactical.square.site">SHOP</a>
+    <a class="tab nav-tab" href="/#about">ABOUT US</a>
     <a class="tab nav-tab" href="/contact.html">CONTACT</a>
     <a class="tab nav-tab" href="/gallery.html">GALLERY</a>
-
   </div>
-
   <main class="container">
     <section class="hero">
       <h1>Looking for Tactical Truck Supplies or Range Supplies? We can do custom design and build!</h1>
     </section>
-
-  <!--  <section>
-      <h2>FEATURED</h2>
-      <div id="featured-grid" class="grid"></div>
+    <section id="about" class="ot-about" aria-labelledby="ot-about-title">
+      <header class="ot-intro">
+        <p class="ot-eyebrow">About Offroad Tactical · Michigan</p>
+        <h2 id="ot-about-title">Original designs.<br>Hands-on fabrication.</h2>
+        <p>Offroad Tactical is a Michigan-based business focused on Humvee parts, practical upgrades, and custom metalwork. We bring design and fabrication together to turn ideas into parts with a clear purpose.</p>
+        <p>Our approach starts with the details: what a part needs to accomplish, how it mounts, how it fits the vehicle, and how it can be manufactured. From the first concept to the finished piece, we care about both function and appearance.</p>
+      </header>
+      <div class="ot-row">
+        <figure>
+          <img src="assets/humvee-cad.png" alt="Concept illustration of a Humvee transitioning from a blue CAD wireframe to a solid model" width="1672" height="941" loading="lazy" decoding="async">
+          <figcaption>Concept artwork illustrating the CAD design process.</figcaption>
+        </figure>
+        <div class="ot-copy">
+          <p class="ot-eyebrow">01 / Design</p>
+          <h3>Designed from scratch.</h3>
+          <p>Our original parts begin with an idea and take shape through CAD design. Working digitally allows us to develop geometry, plan mounting locations, and consider material thickness, bends, and assembly before cutting metal.</p>
+          <p>We design with the finished product in mind. Access to hardware, installation space, clean edges, and the relationship between adjoining components all help shape a thoughtful design.</p>
+        </div>
+      </div>
+      <div class="ot-row">
+        <div class="ot-copy">
+          <p class="ot-eyebrow">02 / Fabrication</p>
+          <h3>From CAD to metal.</h3>
+          <p>Fabrication brings those designs into the physical world. Cutting, forming, and welding each play a role in turning flat material into a finished component.</p>
+          <p>Our hands-on approach connects what happens on the screen with what happens at the workbench. That connection helps us refine designs around the realities of fabrication and gives us a direct role in the details that define the final piece.</p>
+        </div>
+        <figure>
+          <img src="assets/stainless-welding.png" alt="Illustrative scene of TIG welding a formed stainless steel bracket" width="1672" height="941" loading="lazy" decoding="async">
+          <figcaption>Illustrative fabrication scene.</figcaption>
+        </figure>
+      </div>
+      <div class="ot-process">
+        <p class="ot-eyebrow">Purpose in every part</p>
+        <h3>Built around the Humvee.</h3>
+        <p>The Humvee’s distinctive construction creates opportunities for purposeful upgrades. Our focus includes parts that improve usability, add personal style, and complement the vehicle’s rugged character.</p>
+        <ol class="ot-steps">
+          <li><span class="ot-step-num">01 — PURPOSE</span><h4>Start with the need.</h4><p>A useful part starts with a clear goal, whether that means organizing the interior, adding a mounting point, or changing an exterior detail.</p></li>
+          <li><span class="ot-step-num">02 — DETAILS</span><h4>Consider the whole part.</h4><p>Material, shape, mounting access, and appearance all matter. Each decision contributes to how a component fits into the larger build.</p></li>
+          <li><span class="ot-step-num">03 — CRAFT</span><h4>Connect design and making.</h4><p>Understanding how a part will be cut, bent, and assembled helps turn a good concept into a practical fabrication project.</p></li>
+        </ol>
+      </div>
+      <div class="ot-cta">
+        <p class="ot-eyebrow">Your next project</p>
+        <h3>Have an idea for your build?</h3>
+        <p>We welcome conversations about custom metalwork and new product ideas. Share what you’re trying to accomplish, along with photos or measurements, and we can discuss what it would take to bring your concept to life.</p>
+        <div class="ot-buttons">
+          <a class="ot-button" href="/contact.html">Discuss a custom project</a>
+          <a class="ot-button ot-button-secondary" href="https://offroad-tactical.square.site">Shop our products</a>
+        </div>
+      </div>
     </section>
-  </main> -->
-
+  </main>
   <footer class="footer">
     © 2026 OFFROAD TACTICAL
     <div class="footer-links">
+      <a href="/#about">About Us</a>
       <a href="/terms.html">Terms of Service</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/refunds.html">Refund Policy</a>
