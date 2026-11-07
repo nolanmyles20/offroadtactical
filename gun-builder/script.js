@@ -1,6 +1,8 @@
 
 'use strict';
 
+// OFFROAD TACTICAL — GUN BUILDER
+
 const $ = id => document.getElementById(id);
 
 const money = value =>
@@ -11,51 +13,69 @@ const money = value =>
         currency: 'USD'
       }).format(value);
 
-let catalog;
+const CATEGORIES = ['optic', 'light', 'stabilizer'];
+const LAYERS = ['firearm', ...CATEGORIES];
+const STORAGE_KEY = 'offroad-builder-positions-v1';
+
+let catalog = null;
 let zoom = 1;
+let editorEnabled = false;
+let editorLayer = 'optic';
+let editorDragging = null;
+let originalPositions = {};
 
 const state = {
   firearm: '',
-  optic: '',
-  light: '',
-  lightColor: 'black'
+  optic: 'none',
+  light: 'none',
+  lightColor: 'black',
+  stabilizer: 'none'
 };
 
 const findGun = () =>
-  catalog.firearms.find(x => x.id === state.firearm);
+  catalog?.firearms.find(x => x.id === state.firearm);
 
 const findAccessory = id =>
-  catalog.accessories.find(x => x.id === id);
+  catalog?.accessories.find(x => x.id === id) || null;
 
-const compatible = (gun, item) =>
-  !!gun &&
-  !!item &&
-  item.stock &&
-  item.compatibleMounts.includes(
-    item.category === 'optic'
-      ? gun.opticMount
-      : gun.lightMount
-  );
+function compatible(gun, item) {
+  if (!gun || !item || !item.stock) return false;
+
+  if (item.category === 'stabilizer') {
+    return Boolean(
+      gun.stabilizerMount &&
+      Array.isArray(item.compatibleMounts) &&
+      item.compatibleMounts.includes(gun.stabilizerMount)
+    );
+  }
+
+  // Preserve the existing optic/light catalog behavior.
+  return true;
+}
 
 function fillSelect(el, items, selected) {
+  if (!el) return;
+
   el.replaceChildren();
 
   for (const item of items) {
-    const opt = document.createElement('option');
-    opt.value = item.id;
-    opt.textContent =
+    const option = document.createElement('option');
+    option.value = item.id;
+    option.textContent =
       item.name +
       (item.id === 'none'
         ? ''
         : ` · ${money(item.price)}`);
 
-    el.append(opt);
+    el.append(option);
   }
 
   el.value = selected;
 }
 
 function setImage(el, item) {
+  if (!el || !item) return;
+
   el.onerror = () => {
     el.onerror = null;
     el.src = item.fallbackImage || 'assets/pistol.svg';
@@ -64,27 +84,22 @@ function setImage(el, item) {
   el.src = item.image;
 }
 
-// =====================================
-// OLIGHT COLOR VARIANTS
-// =====================================
+// -------------------------------------
+// LIGHT COLOR VARIANTS
+// -------------------------------------
 
 function getLightVariants(light) {
-  if (!light) return [];
-
-  const variants = light.colorVariants;
-
-  if (Array.isArray(variants)) {
-    return variants.filter(
-      v => v &&
-        v.enabled !== false &&
-        v.id &&
-        v.image
-    );
+  if (!light || !Array.isArray(light.colorVariants)) {
+    return [];
   }
 
-  // Support catalog entries without
-  // explicitly defined color variants.
-  return [];
+  return light.colorVariants.filter(
+    variant =>
+      variant &&
+      variant.enabled !== false &&
+      variant.id &&
+      variant.image
+  );
 }
 
 function selectedLightVariant() {
@@ -92,51 +107,17 @@ function selectedLightVariant() {
   const variants = getLightVariants(light);
 
   return (
-    variants.find(v => v.id === state.lightColor) ||
+    variants.find(x => x.id === state.lightColor) ||
     variants[0] ||
     null
   );
 }
 
-function updateLightColors() {
-  const light = findAccessory(state.light);
-  const wrap = $('lightColorWrap');
-  const select = $('lightColor');
-
-  if (!wrap || !select) return;
-
-  const variants = getLightVariants(light);
-
-  wrap.hidden = !light || variants.length === 0;
-
-  select.replaceChildren();
-
-  if (!variants.length) {
-    state.lightColor = 'black';
-    return;
-  }
-
-  for (const variant of variants) {
-    const opt = document.createElement('option');
-
-    opt.value = variant.id;
-    opt.textContent =
-      variant.label || variant.id;
-
-    select.append(opt);
-  }
-
-  if (!variants.some(v => v.id === state.lightColor)) {
-    state.lightColor = variants[0].id;
-  }
-
-  select.value = state.lightColor;
-}
-
 function setupLightColors() {
-  const lightSelect = $('light');
+  if ($('lightColorWrap')) return;
 
-  if (!lightSelect || $('lightColorWrap')) return;
+  const lightSelect = $('light');
+  if (!lightSelect) return;
 
   const wrap = document.createElement('div');
   wrap.id = 'lightColorWrap';
@@ -148,10 +129,7 @@ function setupLightColors() {
 
   const select = document.createElement('select');
   select.id = 'lightColor';
-  select.setAttribute(
-    'aria-label',
-    'Light color'
-  );
+  select.setAttribute('aria-label', 'Light color');
 
   select.addEventListener('change', () => {
     state.lightColor = select.value;
@@ -159,20 +137,13 @@ function setupLightColors() {
   });
 
   wrap.append(label, select);
+  lightSelect.insertAdjacentElement('afterend', wrap);
 
-  // Keep the color control within the
-  // existing light selection area.
-  lightSelect.insertAdjacentElement(
-    'afterend',
-    wrap
-  );
+  const style = document.createElement('style');
 
-  const css = document.createElement('style');
-
-  css.textContent = `
+  style.textContent = `
     #lightColorWrap {
-      margin-top: 12px;
-      margin-bottom: 12px;
+      margin: 12px 0;
     }
 
     #lightColorWrap[hidden] {
@@ -190,7 +161,114 @@ function setupLightColors() {
     #lightColorWrap select {
       display: block;
       width: 100%;
-      max-width: 100%;
+      padding: 11px;
+      background: #141414;
+      border: 1px solid #666;
+      border-radius: 6px;
+      color: #eee;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+  `;
+
+  document.head.append(style);
+}
+
+function updateLightColors() {
+  const wrap = $('lightColorWrap');
+  const select = $('lightColor');
+  if (!wrap || !select) return;
+
+  const light = findAccessory(state.light);
+  const variants = getLightVariants(light);
+
+  wrap.hidden = variants.length === 0;
+  select.replaceChildren();
+
+  if (!variants.length) {
+    state.lightColor = 'black';
+    return;
+  }
+
+  for (const variant of variants) {
+    const option = document.createElement('option');
+    option.value = variant.id;
+    option.textContent = variant.label || variant.id;
+    select.append(option);
+  }
+
+  if (!variants.some(x => x.id === state.lightColor)) {
+    state.lightColor =
+      variants.find(x => x.id === light.defaultColor)?.id ||
+      variants[0].id;
+  }
+
+  select.value = state.lightColor;
+}
+
+// -------------------------------------
+// STABILIZER CONTROLS
+// -------------------------------------
+
+function setupStabilizerControls() {
+  // Works with the updated index.html, or
+  // creates the controls if they are absent.
+
+  if (!$('stabilizer')) {
+    const lightSelect = $('light');
+    if (!lightSelect) return;
+
+    const wrap = document.createElement('div');
+    wrap.id = 'stabilizerWrap';
+
+    const label = document.createElement('label');
+    label.htmlFor = 'stabilizer';
+    label.textContent = 'Stabilizer';
+
+    const select = document.createElement('select');
+    select.id = 'stabilizer';
+
+    wrap.append(label, select);
+
+    const anchor = $('lightColorWrap') || lightSelect;
+    anchor.insertAdjacentElement('afterend', wrap);
+  }
+
+  if (!$('stabilizerImage')) {
+    const art = $('art');
+    if (!art) return;
+
+    const image = document.createElement('img');
+    image.id = 'stabilizerImage';
+    image.className = 'overlay';
+    image.alt = 'Stabilizer';
+    image.hidden = true;
+    image.draggable = false;
+
+    art.append(image);
+  }
+
+  const style = document.createElement('style');
+
+  style.textContent = `
+    #stabilizerWrap {
+      margin: 12px 0;
+    }
+
+    #stabilizerWrap[hidden] {
+      display: none !important;
+    }
+
+    #stabilizerWrap label {
+      display: block;
+      margin-bottom: 7px;
+      color: #d8d8d8;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    #stabilizerWrap select {
+      width: 100%;
       padding: 11px;
       background: #141414;
       border: 1px solid #666;
@@ -200,22 +278,46 @@ function setupLightColors() {
       box-sizing: border-box;
     }
 
-    #lightColorWrap select:focus {
-      outline: 2px solid #b6ff00;
-      outline-offset: 2px;
+    #stabilizerImage[hidden] {
+      display: none !important;
     }
   `;
 
-  document.head.append(css);
+  document.head.append(style);
 }
 
-// =====================================
+// -------------------------------------
+// IMAGE POSITIONS
+// -------------------------------------
+
+function defaultPosition(category) {
+  if (category === 'stabilizer') {
+    return { x: 18, y: 49, width: 22 };
+  }
+
+  return { x: 50, y: 50, width: 18 };
+}
+
+function positionFor(gun, category) {
+  return gun[category + 'Position'] ||
+    defaultPosition(category);
+}
+
+function applyImagePosition(el, position) {
+  if (!el) return;
+
+  el.style.left = position.x + '%';
+  el.style.top = position.y + '%';
+  el.style.width = position.width + '%';
+  el.style.transform = 'translate(-50%, -50%)';
+}
+
+// -------------------------------------
 // MAIN RENDER
-// =====================================
+// -------------------------------------
 
 function render() {
   const gun = findGun();
-
   if (!gun) return;
 
   fillSelect(
@@ -224,21 +326,21 @@ function render() {
     state.firearm
   );
 
-  for (const category of ['optic', 'light']) {
+  for (const category of CATEGORIES) {
     const choices = catalog.accessories.filter(
-      x => x.category === category && x.stock
+      item =>
+        item.category === category &&
+        item.stock &&
+        compatible(gun, item)
     );
 
-    if (
-      category === 'optic' &&
-      gun.id === 'psa-pa15'
-    ) {
+    if (category === 'optic' && gun.id === 'psa-pa15') {
       choices.sort((a, b) =>
         a.id === 'osight-r'
           ? -1
           : b.id === 'osight-r'
-          ? 1
-          : 0
+            ? 1
+            : 0
       );
     }
 
@@ -256,80 +358,90 @@ function render() {
     );
   }
 
-  updateLightColors();
-
-  // Firearm image
-  setImage($('firearmImage'), gun);
-
-  $('firearmImage').alt = gun.name;
-
-  $('firearmImage').style.width =
-    (gun.previewScale || 100) + '%';
-
-  $('firearmImage').style.left =
-    (gun.basePosition?.x ?? 50) + '%';
-
-  $('firearmImage').style.top =
-    (gun.basePosition?.y ?? 50) + '%';
-
-  $('firearmImage').style.transform =
-    'translate(-50%,-50%)';
-
-  // Optic and light overlays
-  for (const category of ['optic', 'light']) {
-    const el = $(category + 'Image');
-    const item = findAccessory(state[category]);
-
-    const position =
-      category === 'optic'
-        ? gun.opticPosition
-        : gun.lightPosition;
-
-    el.hidden =
-      !item || item.previewApproved === false;
-
-    if (item) {
-      const variant =
-        category === 'light'
-          ? selectedLightVariant()
-          : null;
-
-      const displayItem =
-        variant
-          ? { ...item, image: variant.image }
-          : item;
-
-      setImage(el, displayItem);
-
-      el.alt =
-        item.name +
-        (variant
-          ? ' ' + (variant.label || variant.id)
-          : '');
-
-      el.style.left = position.x + '%';
-      el.style.top = position.y + '%';
-      el.style.width = position.width + '%';
-
-      el.style.transform =
-        'translate(-50%,-50%)';
-    }
+  const stabilizerWrap = $('stabilizerWrap');
+  if (stabilizerWrap) {
+    stabilizerWrap.hidden = !gun.stabilizerMount;
   }
 
-  const refBox = $('accessoryReference');
+  updateLightColors();
 
-  if (refBox) refBox.hidden = true;
+  // Main firearm image
+  const firearmImage = $('firearmImage');
 
-  $('imageNote').textContent =
-    'Images are illustrative. Verify exact firearm model, mounting compatibility, and hardware before purchase.';
+  setImage(firearmImage, gun);
+  firearmImage.hidden = false;
+  firearmImage.alt = gun.name;
 
+  applyImagePosition(firearmImage, {
+    x: gun.basePosition?.x ?? 50,
+    y: gun.basePosition?.y ?? 50,
+    width: gun.previewScale || 100
+  });
+
+  // Accessory overlays
+  for (const category of CATEGORIES) {
+    const el = $(category + 'Image');
+    if (!el) continue;
+
+    const item = findAccessory(state[category]);
+
+    const allowed =
+      category !== 'stabilizer' ||
+      compatible(gun, item);
+
+    el.hidden =
+      !item ||
+      !allowed ||
+      item.previewApproved === false;
+
+    if (el.hidden) continue;
+
+    const variant =
+      category === 'light'
+        ? selectedLightVariant()
+        : null;
+
+    const displayItem = variant
+      ? { ...item, image: variant.image }
+      : item;
+
+    setImage(el, displayItem);
+
+    el.alt =
+      item.name +
+      (variant
+        ? ` (${variant.label || variant.id})`
+        : '');
+
+    applyImagePosition(
+      el,
+      positionFor(gun, category)
+    );
+  }
+
+  const reference = $('accessoryReference');
+  if (reference) reference.hidden = true;
+
+  if ($('imageNote')) {
+    $('imageNote').textContent =
+      'Images are illustrative. Verify exact firearm model, mounting compatibility, and hardware before purchase.';
+  }
+
+  // Build summary
   const optic = findAccessory(state.optic);
   const light = findAccessory(state.light);
+  const stabilizer = findAccessory(state.stabilizer);
   const lightVariant = selectedLightVariant();
 
-  const lines = [gun, optic, light].filter(Boolean);
+  const lines = [
+    gun,
+    optic,
+    light,
+    stabilizer
+  ].filter(Boolean);
 
-  $('buildLines').replaceChildren();
+  const buildLines = $('buildLines');
+  buildLines.replaceChildren();
 
   for (const item of lines) {
     const row = document.createElement('div');
@@ -340,19 +452,19 @@ function render() {
     name.textContent =
       item.name +
       (item === light && lightVariant
-        ? ' (' +
-          (lightVariant.label || lightVariant.id) +
-          ')'
+        ? ` (${lightVariant.label || lightVariant.id})`
         : '');
 
     const price = document.createElement('span');
     price.textContent = money(item.price);
 
     row.append(name, price);
-    $('buildLines').append(row);
+    buildLines.append(row);
   }
 
-  $('total').textContent =
+  const total = $('total');
+
+  total.textContent =
     lines.every(x => x.price != null)
       ? money(
           lines.reduce(
@@ -362,12 +474,20 @@ function render() {
         )
       : 'Pricing not available';
 
-  $('compatibility').textContent =
-    'PRELIMINARY CATALOG: Imported Square products appear in selections but are not drawn as mounted until manually calibrated and fitment verified. Accessory selection is for visualization only, NOT a verified fitment recommendation. Confirm exact PSA SKU, optic footprint/adapter, rail type, and mounting hardware before purchase. The standard Dagger slide has no optic mount.';
+  if ($('compatibility')) {
+    $('compatibility').textContent =
+      'PRELIMINARY CATALOG: Accessory images are illustrative and do not establish physical compatibility. Confirm firearm model, optic footprint, rail type, mounting interface, and hardware. Stabilizer fitment and applicable legal requirements must be verified independently.';
+  }
 
+  // Update shareable URL
   const url = new URL(location.href);
 
-  for (const key of ['firearm', 'optic', 'light']) {
+  for (const key of [
+    'firearm',
+    'optic',
+    'light',
+    'stabilizer'
+  ]) {
     url.searchParams.set(key, state[key]);
   }
 
@@ -377,206 +497,72 @@ function render() {
   );
 
   history.replaceState(null, '', url);
+
+  if (editorEnabled) {
+    updateEditorControls();
+    markTarget();
+  }
 }
 
-// =====================================
-// BUILD SUMMARY
-// =====================================
+// -------------------------------------
+// BUILD SUMMARY AND SHARING
+// -------------------------------------
 
 function summary() {
   const gun = findGun();
   const optic = findAccessory(state.optic);
   const light = findAccessory(state.light);
+  const stabilizer = findAccessory(state.stabilizer);
   const variant = selectedLightVariant();
 
   return `Offroad Tactical build
-Firearm: ${gun.name}
+Firearm: ${gun?.name || 'None'}
 Optic: ${optic?.name || 'None'}
 Light: ${light?.name || 'None'}${
     light && variant
-      ? ' (' + (variant.label || variant.id) + ')'
+      ? ` (${variant.label || variant.id})`
       : ''
   }
+Stabilizer: ${stabilizer?.name || 'None'}
 Estimated total: ${$('total').textContent}
-Illustrative preview; accessory fit NOT verified; pricing and availability pending.`;
+Illustrative preview. Accessory fitment is not verified.
+Build link: ${location.href}`;
 }
 
 async function copy(text) {
   try {
     await navigator.clipboard.writeText(text);
 
-    $('message').textContent =
-      'Copied to clipboard.';
-  } catch {
-    $('message').textContent =
-      'Clipboard unavailable. Try opening the site over HTTPS.';
-  }
-}
-
-// =====================================
-// INITIALIZATION
-// =====================================
-
-async function init() {
-  try {
-    const response = await fetch(
-      'catalog.json',
-      { cache: 'no-store' }
-    );
-
-    if (!response.ok) {
-      throw Error('Catalog not found');
+    if ($('message')) {
+      $('message').textContent =
+        'Copied to clipboard.';
     }
-
-    catalog = await response.json();
-
-    applySavedPositions();
-
-    // Additional Square product listings
-    try {
-      const sr = await fetch(
-        'square-products.json',
-        { cache: 'no-store' }
-      );
-
-      if (sr.ok) {
-        const sq = await sr.json();
-
-        const ids = new Set(
-          catalog.accessories.map(x => x.id)
-        );
-
-        for (const item of sq.accessories || []) {
-          if (!ids.has(item.id)) {
-            catalog.accessories.push(item);
-            ids.add(item.id);
-          }
-        }
-      }
-    } catch (e) {
-      console.warn(
-        'Square sync unavailable; using base catalog',
-        e
-      );
-    }
-
-    const params =
-      new URLSearchParams(location.search);
-
-    const guns =
-      catalog.firearms.filter(x => x.stock);
-
-    if (!guns.length) {
-      throw Error('No available firearms in catalog');
-    }
-
-    state.firearm =
-      guns.some(x => x.id === params.get('firearm'))
-        ? params.get('firearm')
-        : (
-            guns.find(x => x.id === 'psa-pa15') ||
-            guns[0]
-          ).id;
-
-    for (const category of ['optic', 'light']) {
-      state[category] =
-        params.get(category) || 'none';
-    }
-
-    // Restore selected light color from
-    // a shared URL.
-    state.lightColor =
-      params.get('lightColor') || 'black';
-
-    $('firearm').addEventListener(
-      'change',
-      e => {
-        state.firearm = e.target.value;
-        render();
-      }
-    );
-
-    for (const category of ['optic', 'light']) {
-      $(category).addEventListener(
-        'change',
-        e => {
-          state[category] = e.target.value;
-
-          if (category === 'light') {
-            state.lightColor = 'black';
-          }
-
-          render();
-        }
-      );
-    }
-
-    $('zoomIn').onclick = () => {
-      zoom = Math.min(1.8, zoom + 0.15);
-      $('art').style.setProperty('--zoom', zoom);
-    };
-
-    $('zoomOut').onclick = () => {
-      zoom = Math.max(0.7, zoom - 0.15);
-      $('art').style.setProperty('--zoom', zoom);
-    };
-
-    $('zoomReset').onclick = () => {
-      zoom = 1;
-      $('art').style.setProperty('--zoom', zoom);
-    };
-
-    $('copyBuild').onclick = () =>
-      copy(summary());
-
-    $('shareBuild').onclick = () =>
-      copy(location.href);
-
-    $('year').textContent =
-      new Date().getFullYear();
-
-    // REQUIRED: Create color selector
-    // before rendering.
-    setupLightColors();
-
-    render();
-
-    setupPositionEditor();
-
   } catch (error) {
-    $('compatibility').textContent =
-      'Could not load catalog: ' +
-      error.message +
-      ' (serve this folder using a local web server or GitHub Pages).';
+    if ($('message')) {
+      $('message').textContent =
+        'Clipboard unavailable. Open the site over HTTPS.';
+    }
   }
 }
 
-// =====================================
-// POSITION EDITOR
-// =====================================
-
-const EDITOR_STORAGE =
-  'offroad-builder-positions-v1';
-
-let editorLayer = 'optic';
-let editorEnabled = false;
-let editorDragging = null;
+// -------------------------------------
+// SAVED POSITION CALIBRATIONS
+// -------------------------------------
 
 function applySavedPositions() {
   try {
     const saved = JSON.parse(
-      localStorage.getItem(EDITOR_STORAGE) ||
-      '{}'
+      localStorage.getItem(STORAGE_KEY) || '{}'
     );
 
     for (const gun of catalog.firearms) {
       const data = saved[gun.id];
-
       if (!data) continue;
 
       for (const key of [
         'opticPosition',
         'lightPosition',
+        'stabilizerPosition',
         'basePosition'
       ]) {
         if (data[key]) {
@@ -591,11 +577,8 @@ function applySavedPositions() {
         gun.previewScale = data.previewScale;
       }
     }
-  } catch (err) {
-    console.warn(
-      'Could not restore calibration',
-      err
-    );
+  } catch (error) {
+    console.warn('Could not restore calibration', error);
   }
 }
 
@@ -608,18 +591,28 @@ function savePositions() {
       basePosition:
         gun.basePosition || { x: 50, y: 50 },
       opticPosition: gun.opticPosition,
-      lightPosition: gun.lightPosition
+      lightPosition: gun.lightPosition,
+      stabilizerPosition: gun.stabilizerPosition
     };
   }
 
-  localStorage.setItem(
-    EDITOR_STORAGE,
-    JSON.stringify(data)
-  );
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(data)
+    );
+  } catch (error) {
+    console.warn('Could not save positions', error);
+  }
 }
+
+// -------------------------------------
+// POSITION EDITOR
+// -------------------------------------
 
 function currentEditorPosition() {
   const gun = findGun();
+  if (!gun) return null;
 
   if (editorLayer === 'firearm') {
     return {
@@ -629,53 +622,93 @@ function currentEditorPosition() {
     };
   }
 
-  return gun[editorLayer + 'Position'];
+  if (
+    editorLayer === 'stabilizer' &&
+    !gun.stabilizerMount
+  ) {
+    return null;
+  }
+
+  return positionFor(gun, editorLayer);
+}
+
+function markTarget() {
+  for (const name of LAYERS) {
+    const image = $(
+      name === 'firearm'
+        ? 'firearmImage'
+        : name + 'Image'
+    );
+
+    if (!image) continue;
+
+    image.classList.toggle(
+      'editor-target',
+      editorEnabled &&
+      name === editorLayer &&
+      !image.hidden
+    );
+  }
 }
 
 function updateEditorControls() {
-  const pos = currentEditorPosition();
+  const gun = findGun();
+  if (!gun) return;
 
-  if (!pos) return;
+  const position = currentEditorPosition();
+
+  for (const name of LAYERS) {
+    const button = $('edit-layer-' + name);
+    if (!button) continue;
+
+    button.classList.toggle(
+      'active',
+      name === editorLayer
+    );
+
+    if (name === 'stabilizer') {
+      button.disabled = !gun.stabilizerMount;
+    }
+  }
+
+  if (!position) {
+    if ($('editorHelp')) {
+      $('editorHelp').textContent =
+        'This layer is unavailable for the selected firearm.';
+    }
+    return;
+  }
 
   for (const key of ['x', 'y', 'width']) {
-    const el = $('edit-' + key);
-
-    if (el) {
-      el.value =
-        Number(pos[key]).toFixed(1);
+    const input = $('edit-' + key);
+    if (input) {
+      input.value = Number(position[key]).toFixed(1);
     }
   }
 
-  for (const name of [
-    'firearm',
-    'optic',
-    'light'
-  ]) {
-    const b = $('edit-layer-' + name);
-
-    if (b) {
-      b.classList.toggle(
-        'active',
-        name === editorLayer
-      );
-    }
-  }
-
-  const chosen =
+  const image = $(
     editorLayer === 'firearm'
-      ? $('firearmImage')
-      : $(editorLayer + 'Image');
+      ? 'firearmImage'
+      : editorLayer + 'Image'
+  );
 
-  $('editorHelp').textContent =
-    chosen.hidden
-      ? 'This accessory is not displayed. Select an accessory first.'
-      : 'Drag the selected image in the preview, or change its X, Y and size values.';
+  if ($('editorHelp')) {
+    $('editorHelp').textContent =
+      !image || image.hidden
+        ? 'Select an accessory first to adjust its position.'
+        : 'Drag the image or adjust X, Y, and Size.';
+  }
 }
 
 function setEditorPosition(key, value) {
   const gun = findGun();
 
-  if (!gun || !Number.isFinite(value)) {
+  if (!gun || !Number.isFinite(value)) return;
+
+  if (
+    editorLayer === 'stabilizer' &&
+    !gun.stabilizerMount
+  ) {
     return;
   }
 
@@ -691,27 +724,53 @@ function setEditorPosition(key, value) {
     if (key === 'width') {
       gun.previewScale = value;
     } else {
-      gun.basePosition ??= {
-        x: 50,
-        y: 50
-      };
-
+      gun.basePosition ??= { x: 50, y: 50 };
       gun.basePosition[key] = value;
     }
   } else {
-    gun[editorLayer + 'Position'][key] =
-      value;
+    const positionKey = editorLayer + 'Position';
+
+    gun[positionKey] ??=
+      defaultPosition(editorLayer);
+
+    gun[positionKey][key] = value;
   }
 
+  savePositions();
   render();
   updateEditorControls();
-  savePositions();
+}
+
+function downloadCatalog() {
+  const blob = new Blob(
+    [JSON.stringify(catalog, null, 2) + '\n'],
+    { type: 'application/json' }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'catalog.json';
+
+  document.body.append(link);
+  link.click();
+  link.remove();
+
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000);
+
+  if ($('editorStatus')) {
+    $('editorStatus').textContent =
+      'Downloaded catalog.json. Replace the existing GitHub catalog.json and commit to publish your positions.';
+  }
 }
 
 function setupPositionEditor() {
-  const css = document.createElement('style');
+  const style = document.createElement('style');
 
-  css.textContent = `
+  style.textContent = `
     #editorPanel {
       margin-top: 15px;
       padding: 14px;
@@ -722,7 +781,7 @@ function setupPositionEditor() {
     }
 
     #editorPanel[hidden] {
-      display: none;
+      display: none !important;
     }
 
     #editorPanel .editrow {
@@ -744,6 +803,11 @@ function setupPositionEditor() {
 
     #editorPanel button.active {
       outline: 2px solid #b6cf41;
+    }
+
+    #editorPanel button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
 
     #editorPanel label {
@@ -780,11 +844,9 @@ function setupPositionEditor() {
     }
   `;
 
-  document.head.append(css);
+  document.head.append(style);
 
-  const panel =
-    document.createElement('div');
-
+  const panel = document.createElement('div');
   panel.id = 'editorPanel';
   panel.hidden = true;
 
@@ -792,15 +854,16 @@ function setupPositionEditor() {
     <strong>POSITION EDITOR</strong>
 
     <p class="edit-note">
-      Adjust this firearm independently.
-      Save in browser for testing;
-      download the catalog to publish changes.
+      Adjust images separately for each firearm.
+      Changes are saved in this browser until
+      you download and publish the catalog.
     </p>
 
     <div class="editrow">
       <button type="button" id="edit-layer-firearm">Firearm</button>
       <button type="button" id="edit-layer-optic">Optic</button>
       <button type="button" id="edit-layer-light">Light</button>
+      <button type="button" id="edit-layer-stabilizer">Stabilizer</button>
     </div>
 
     <div class="editrow">
@@ -836,51 +899,35 @@ function setupPositionEditor() {
     </div>
 
     <p class="edit-note" id="editorStatus">
-      Edits are saved locally in this browser.
-      They are not live for customers until you
-      commit the downloaded catalog.
+      Browser edits are local until the
+      updated catalog is committed to GitHub.
     </p>
   `;
 
-  const toggle =
-    document.createElement('button');
-
+  const toggle = document.createElement('button');
   toggle.id = 'editToggle';
   toggle.type = 'button';
-  toggle.textContent =
-    'Edit image positions';
-
-  const tools =
-    document.querySelector('.stage-tools');
+  toggle.textContent = 'Edit image positions';
 
   const anchor =
-    tools || document.getElementById('stage');
+    document.querySelector('.stage-tools') ||
+    $('stage');
 
   if (!anchor) {
-    throw new Error(
-      'Preview controls not found'
-    );
+    throw new Error('Preview controls not found');
   }
 
-  anchor.insertAdjacentElement(
-    'afterend',
-    toggle
-  );
-
-  toggle.insertAdjacentElement(
-    'afterend',
-    panel
-  );
+  anchor.insertAdjacentElement('afterend', toggle);
+  toggle.insertAdjacentElement('afterend', panel);
 
   toggle.onclick = () => {
     editorEnabled = !editorEnabled;
 
     panel.hidden = !editorEnabled;
 
-    toggle.textContent =
-      editorEnabled
-        ? 'Close position editor'
-        : 'Edit image positions';
+    toggle.textContent = editorEnabled
+      ? 'Close position editor'
+      : 'Edit image positions';
 
     $('art').classList.toggle(
       'editor-on',
@@ -891,58 +938,47 @@ function setupPositionEditor() {
     markTarget();
   };
 
-  for (const name of [
-    'firearm',
-    'optic',
-    'light'
-  ]) {
-    $('edit-layer-' + name).onclick =
-      () => {
-        editorLayer = name;
-        markTarget();
-        updateEditorControls();
-      };
+  for (const name of LAYERS) {
+    const button = $('edit-layer-' + name);
+
+    button.onclick = () => {
+      editorLayer = name;
+      updateEditorControls();
+      markTarget();
+    };
   }
 
-  for (const key of [
-    'x',
-    'y',
-    'width'
-  ]) {
+  for (const key of ['x', 'y', 'width']) {
     $('edit-' + key).addEventListener(
       'change',
-      e => setEditorPosition(
-        key,
-        Number(e.target.value)
-      )
+      event => {
+        setEditorPosition(
+          key,
+          Number(event.target.value)
+        );
+      }
     );
   }
-
-  const original =
-    JSON.parse(
-      JSON.stringify(catalog.firearms)
-    );
 
   $('editorReset').onclick = () => {
     const gun = findGun();
+    const base = originalPositions[gun.id];
 
-    const base = original.find(
-      x => x.id === gun.id
-    );
+    if (!base) return;
 
     for (const key of [
       'opticPosition',
       'lightPosition',
+      'stabilizerPosition',
       'basePosition',
       'previewScale'
     ]) {
       if (base[key] === undefined) {
         delete gun[key];
       } else {
-        gun[key] =
-          JSON.parse(
-            JSON.stringify(base[key])
-          );
+        gun[key] = JSON.parse(
+          JSON.stringify(base[key])
+        );
       }
     }
 
@@ -952,153 +988,217 @@ function setupPositionEditor() {
     updateEditorControls();
   };
 
-  $('editorDownload').onclick = () => {
-    const blob = new Blob(
-      [JSON.stringify(catalog, null, 2) + '\n'],
-      { type: 'application/json' }
-    );
-
-    const url =
-      URL.createObjectURL(blob);
-
-    const a =
-      document.createElement('a');
-
-    a.href = url;
-    a.download = 'catalog.json';
-
-    document.body.append(a);
-    a.click();
-    a.remove();
-
-    setTimeout(
-      () => URL.revokeObjectURL(url),
-      1000
-    );
-
-    $('editorStatus').textContent =
-      'Downloaded catalog.json. Replace gun-builder/catalog.json in GitHub and commit to publish.';
-  };
+  $('editorDownload').onclick = downloadCatalog;
 
   const art = $('art');
 
-  art.addEventListener(
-    'pointerdown',
-    e => {
-      if (!editorEnabled) return;
+  art.addEventListener('pointerdown', event => {
+    if (!editorEnabled) return;
 
-      const target =
-        editorLayer === 'firearm'
-          ? $('firearmImage')
-          : $(editorLayer + 'Image');
+    const target = $(
+      editorLayer === 'firearm'
+        ? 'firearmImage'
+        : editorLayer + 'Image'
+    );
 
-      if (
-        target.hidden ||
-        e.target !== target
-      ) {
-        return;
-      }
-
-      e.preventDefault();
-
-      const rect =
-        art.getBoundingClientRect();
-
-      editorDragging = {
-        id: e.pointerId,
-        offsetX: e.clientX - rect.left,
-        offsetY: e.clientY - rect.top
-      };
-
-      target.setPointerCapture(
-        e.pointerId
-      );
+    if (
+      !target ||
+      target.hidden ||
+      event.target !== target
+    ) {
+      return;
     }
-  );
 
-  art.addEventListener(
-    'pointermove',
-    e => {
-      if (
-        !editorDragging ||
-        e.pointerId !== editorDragging.id
-      ) {
-        return;
-      }
+    event.preventDefault();
 
-      const rect =
-        art.getBoundingClientRect();
+    editorDragging = {
+      id: event.pointerId,
+      target
+    };
 
-      const scale = zoom || 1;
+    target.setPointerCapture(event.pointerId);
+  });
 
-      const x =
-        50 +
-        (e.clientX -
-          rect.left -
-          rect.width / 2) /
-        scale /
-        rect.width *
-        100;
-
-      const y =
-        50 +
-        (e.clientY -
-          rect.top -
-          rect.height / 2) /
-        scale /
-        rect.height *
-        100;
-
-      setEditorPosition('x', x);
-      setEditorPosition('y', y);
+  art.addEventListener('pointermove', event => {
+    if (
+      !editorDragging ||
+      event.pointerId !== editorDragging.id
+    ) {
+      return;
     }
-  );
 
-  art.addEventListener(
-    'pointerup',
-    () => {
-      editorDragging = null;
-    }
-  );
+    const rect = art.getBoundingClientRect();
+    const scale = zoom || 1;
 
-  art.addEventListener(
-    'pointercancel',
-    () => {
-      editorDragging = null;
-    }
-  );
+    const x =
+      50 +
+      ((event.clientX - rect.left - rect.width / 2) /
+        scale / rect.width) * 100;
+
+    const y =
+      50 +
+      ((event.clientY - rect.top - rect.height / 2) /
+        scale / rect.height) * 100;
+
+    setEditorPosition('x', x);
+    setEditorPosition('y', y);
+  });
+
+  const stopDragging = () => {
+    editorDragging = null;
+  };
+
+  art.addEventListener('pointerup', stopDragging);
+  art.addEventListener('pointercancel', stopDragging);
+  art.addEventListener('lostpointercapture', stopDragging);
 
   for (const id of [
     'firearm',
     'optic',
-    'light'
+    'light',
+    'stabilizer'
   ]) {
-    $(id).addEventListener(
-      'change',
-      () => {
-        markTarget();
-        updateEditorControls();
-      }
-    );
+    $(id)?.addEventListener('change', () => {
+      updateEditorControls();
+      markTarget();
+    });
   }
 
   updateEditorControls();
 }
 
-function markTarget() {
-  for (const name of [
-    'firearm',
-    'optic',
-    'light'
-  ]) {
-    $(name + 'Image').classList.toggle(
-      'editor-target',
-      editorEnabled &&
-      name === editorLayer
+// -------------------------------------
+// INITIALIZATION
+// -------------------------------------
+
+async function init() {
+  try {
+    const response = await fetch(
+      'catalog.json',
+      { cache: 'no-store' }
     );
+
+    if (!response.ok) {
+      throw new Error('Catalog not found');
+    }
+
+    catalog = await response.json();
+
+    // Save the published starting positions
+    // before loading browser-specific edits.
+    for (const gun of catalog.firearms) {
+      originalPositions[gun.id] =
+        JSON.parse(JSON.stringify(gun));
+    }
+
+    applySavedPositions();
+
+    // Optional Square catalog additions
+    try {
+      const response = await fetch(
+        'square-products.json',
+        { cache: 'no-store' }
+      );
+
+      if (response.ok) {
+        const square = await response.json();
+
+        const ids = new Set(
+          catalog.accessories.map(x => x.id)
+        );
+
+        for (const item of square.accessories || []) {
+          if (!ids.has(item.id)) {
+            catalog.accessories.push(item);
+            ids.add(item.id);
+          }
+        }
+      }
+    } catch (error) {
+      console.warn(
+        'Square sync unavailable; using base catalog',
+        error
+      );
+    }
+
+    setupLightColors();
+    setupStabilizerControls();
+
+    const params = new URLSearchParams(location.search);
+    const guns = catalog.firearms.filter(x => x.stock);
+
+    if (!guns.length) {
+      throw new Error('No available firearms');
+    }
+
+    state.firearm =
+      guns.some(x => x.id === params.get('firearm'))
+        ? params.get('firearm')
+        : (
+            guns.find(x => x.id === 'psa-pa15') ||
+            guns[0]
+          ).id;
+
+    for (const category of CATEGORIES) {
+      state[category] = params.get(category) || 'none';
+    }
+
+    state.lightColor =
+      params.get('lightColor') || 'black';
+
+    $('firearm').addEventListener('change', event => {
+      state.firearm = event.target.value;
+      render();
+    });
+
+    for (const category of CATEGORIES) {
+      $(category).addEventListener('change', event => {
+        state[category] = event.target.value;
+
+        if (category === 'light') {
+          state.lightColor = 'black';
+        }
+
+        render();
+      });
+    }
+
+    $('zoomIn').onclick = () => {
+      zoom = Math.min(1.8, zoom + 0.15);
+      $('art').style.setProperty('--zoom', zoom);
+    };
+
+    $('zoomOut').onclick = () => {
+      zoom = Math.max(0.7, zoom - 0.15);
+      $('art').style.setProperty('--zoom', zoom);
+    };
+
+    $('zoomReset').onclick = () => {
+      zoom = 1;
+      $('art').style.setProperty('--zoom', zoom);
+    };
+
+    $('copyBuild').onclick = () => copy(summary());
+    $('shareBuild').onclick = () => copy(location.href);
+
+    if ($('year')) {
+      $('year').textContent =
+        new Date().getFullYear();
+    }
+
+    render();
+    setupPositionEditor();
+
+  } catch (error) {
+    console.error('Gun Builder initialization failed', error);
+
+    if ($('compatibility')) {
+      $('compatibility').textContent =
+        'Could not load Gun Builder: ' +
+        error.message +
+        '. Check catalog.json and your GitHub Pages files.';
+    }
   }
 }
 
-// Start the configurator only after all
-// functions and editor settings exist.
 init();
