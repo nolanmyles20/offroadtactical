@@ -21,7 +21,12 @@
       },
       "note": "Generic silhouette for layout only; not an actual product photograph. Model variant and mounting hardware must be checked.",
       "fallbackImage": "assets/pistol.svg",
-      "photoStatus": "awaiting-approved-photo"
+      "photoStatus": "awaiting-approved-photo",
+      "basePosition": {
+        "x": 50,
+        "y": 50
+      },
+      "previewScale": 100
     },
     {
       "id": "psa-pa15",
@@ -45,7 +50,11 @@
       "note": "Illustrative rifle preview; actual model and accessory fitment require verification.",
       "fallbackImage": "assets/rifle.svg",
       "photoStatus": "user-supplied",
-      "previewScale": 100
+      "previewScale": 100,
+      "basePosition": {
+        "x": 50,
+        "y": 50
+      }
     },
     {
       "id": "springfield-kuna",
@@ -57,24 +66,28 @@
       "opticMount": "picatinny-top",
       "lightMount": "pistol-rail",
       "opticPosition": {
-        "x": 37.1331743441697,
-        "y": 8.795664049163534,
-        "width": 19
+        "x": 47.56292545494245,
+        "y": 31.608573439472828,
+        "width": 15
       },
       "lightPosition": {
-        "x": 66.53445462532949,
-        "y": 39.93257084329123,
+        "x": 72.35271770461743,
+        "y": 58.49429055642433,
         "width": 18
       },
       "note": "User-supplied side-profile image. Mounting compatibility not verified.",
       "fallbackImage": "assets/pistol.svg",
       "photoStatus": "user-supplied",
-      "previewScale": 65,
+      "previewScale": 50,
       "stabilizerMount": "rear-stabilizer",
       "stabilizerPosition": {
-        "x": 15,
-        "y": 48,
-        "width": 24
+        "x": 17.079406147970182,
+        "y": 58.827533841279774,
+        "width": 35
+      },
+      "basePosition": {
+        "x": 58.870818702642765,
+        "y": 64.52491294216222
       }
     },
     {
@@ -87,24 +100,28 @@
       "opticMount": "picatinny-top",
       "lightMount": "rifle-rail",
       "opticPosition": {
-        "x": 32.31329233086482,
-        "y": 4.698702628883581,
+        "x": 50.34355840740133,
+        "y": 27,
         "width": 18.5
       },
       "lightPosition": {
-        "x": 66.37379189155266,
-        "y": 34.74308637760328,
+        "x": 76.4636380829049,
+        "y": 55.38207491404621,
         "width": 18.5
       },
       "note": "User-supplied side-profile image. Mounting compatibility not verified.",
       "fallbackImage": "assets/rifle.svg",
       "photoStatus": "user-supplied",
-      "previewScale": 70,
+      "previewScale": 60,
       "stabilizerMount": "rear-stabilizer",
       "stabilizerPosition": {
-        "x": 15,
-        "y": 48,
-        "width": 24
+        "x": 16.349042947370954,
+        "y": 54.89229400250047,
+        "width": 35
+      },
+      "basePosition": {
+        "x": 61.729193617938755,
+        "y": 69.88715209593377
       }
     }
   ],
